@@ -290,7 +290,7 @@ function getCookie(callback) {
                     $('.fixopt_btn').html('我也要参团');
                     $('.fixopt_btn').attr('onclick', null);
 
-                    callback(is_join);
+                    callback(data.is_join);
 
                     $('.fixopt_btn').click(function () {
                         alertTwoInput('记录您的信息保存您的拼团信息', '提示', '', '', function () {
