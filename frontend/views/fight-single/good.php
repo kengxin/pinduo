@@ -236,7 +236,7 @@
             title: title,
             buttons: [{
                 text: '取消',
-                    className: "primary",
+                    className: "default",
                     onClick: function () {
                         onCancel();
                         $.closeModal();

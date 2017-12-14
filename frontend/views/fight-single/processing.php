@@ -367,7 +367,7 @@ function alertTwoInput(text, title, input1, input2, onCancel, onOK) {
         title: title,
         buttons: [{
             text: '取消',
-            className: "primary",
+            className: "default",
             onClick: function () {
                 onCancel();
                 $.closeModal();
