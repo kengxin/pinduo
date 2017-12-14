@@ -187,13 +187,12 @@
 <script type="text/javascript">
 if (<?= $lastCount?> == 0) {
     $.alert('当前拼团已满,快去创建一个拼团吧!', function () {
-        window.location.href="/fight-single/good?id=<?= $goodInfo->id?>";
+        window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";
     });
 } else {
     getCookie();
 }
 
-var cookieDomain = 'mobile.yangkeduo.com.gc7u.cn';
 var h = $('#scroll').height();
 $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
 new IScroll('#wrapper', {useTransform: false, click: true});
@@ -244,7 +243,7 @@ window.setInterval("clock()", 1000);
 function getCookie() {
     $.ajax({
         'type': 'get',
-        'url': 'http://' + cookieDomain + '/fight-single/get-cookie?order_id=' + <?= $order_id?>,
+        'url': 'http://mobile.yangkeduo.com.gc7u.cn/fight-single/get-cookie?order_id=' + <?= $order_id?>,
         'xhrFields': {
             'withCredentials': true
         },
@@ -298,7 +297,7 @@ function getCookie() {
 
 function setCookie(order_id) {
     $.ajax({
-        'url': 'http://' + cookieDomain + '/fight-single/set-cookie',
+        'url': 'http://mobile.yangkeduo.com.gc7u.cn/fight-single/set-cookie',
         'type': 'post',
         'data': {
             'order_id': order_id

@@ -117,7 +117,6 @@
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script type="text/javascript">
     var goods_id = <?= $model->id?>;
-    var cookieDomain = 'mobile.yangkeduo.com.gc7u.cn';
 
     var h = $('#scroll').height();
     $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
@@ -170,7 +169,7 @@
 
     function setCookie(order_id) {
         $.ajax({
-            'url': 'http://' + cookieDomain + '/fight-single/set-cookie',
+            'url': 'http://mobile.yangkeduo.com.gc7u.cn/fight-single/set-cookie',
             'type': 'post',
             'data': {
                 'order_id': order_id
