@@ -32,10 +32,10 @@ class FightSingleController extends Controller
 
     public function actionProcessing($order_id)
     {
-        if (empty($_SERVER['HTTP_REFERER'])) {
+        if (strpos($_SERVER['REQUEST_URI'], 'from')) {
             $domain = trim(Domain::getRedirectDomain());
 
-            header("Location: http://{$domain}{$_SERVER['REQUEST_URI']}");die;
+            header("Location: http://{$domain}/fight-single/processing?order_id={$order_id}");die;
         }
 
         $order_id = intval($order_id);
