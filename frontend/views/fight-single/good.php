@@ -120,6 +120,7 @@
     $(function () {
         var imgNum = $('img').length;
         $('img').load(function(){
+            console.log(imgNum);
             if(!--imgNum){
                 var h = $('#scroll').height();
                 $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
