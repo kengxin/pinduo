@@ -194,14 +194,13 @@ if (<?= $lastCount?> == 0) {
 }
 
 $(function () {
-    var h = $('#scroll').height();
-    $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
-    new IScroll('#wrapper', {useTransform: false, click: true});
-
-    $('img').load(function () {
-        var h = $('#scroll').height();
-        $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
-        new IScroll('#wrapper', {useTransform: false, click: true});
+    var imgNum = $('img').length;
+    $('img').load(function(){
+        if(!--imgNum){
+            var h = $('#scroll').height();
+            $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
+            new IScroll('#wrapper', {useTransform: false, click: true});
+        }
     });
 });
 
