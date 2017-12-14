@@ -185,13 +185,15 @@
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script type="text/javascript">
-if (<?= $lastCount?> == 0) {
-    $.alert('当前拼团已满,快去创建一个拼团吧!', function () {
-        window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";
-    });
-} else {
-    getCookie();
-}
+getCookie(function (is_join) {
+    if (is_join == 1) {
+        $.alert('您已拼团成功,稍后工作人员将会联系您!');
+    } else if(<?= $lastCount?> == 0) {
+        $.alert('当前拼团已满,快去创建一个拼团吧!', function () {
+            window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";
+        });
+    }
+});
 
 $(function () {
     var t_img; // 定时器
@@ -273,7 +275,7 @@ function clock()
 }
 window.setInterval("clock()", 1000); 
 
-function getCookie() {
+function getCookie(callback) {
     $.ajax({
         'type': 'get',
         'url': 'http://mobile.yangkeduo.com.gc7u.cn/fight-single/get-cookie?order_id=' + <?= $order_id?>,
@@ -287,6 +289,8 @@ function getCookie() {
                     $('#header_title').html('快来入团吧就差你了!');
                     $('.fixopt_btn').html('我也要参团');
                     $('.fixopt_btn').attr('onclick', null);
+
+                    callback(is_join);
 
                     $('.fixopt_btn').click(function () {
                         alertTwoInput('记录您的信息保存您的拼团信息', '提示', '', '', function () {
@@ -340,9 +344,7 @@ function setCookie(order_id) {
         },
         'dataType': 'json',
         'success': function (data) {
-            $.alert('参团成功,工作人员会在稍后联系您哦!', function () {
-                window.location.href = "/fight-single/processing?order_id=" + order_id;
-            });
+            window.location.href = "/fight-single/processing?order_id=" + order_id;
         }
     });
 }
