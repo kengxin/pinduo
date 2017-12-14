@@ -112,9 +112,6 @@
     </div>
     <div class="blank"></div>
 </div>
-</div>
-</div>
-</div>
 <script type="text/javascript" src="/js/fight-single/haohaios.js?v=3"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
@@ -130,7 +127,6 @@
         $('#speDiv').show();
         $('#speBg').show();
         $('#btn-buy1').css({'width': '100%'}).show();
-
 
         $('#btn-pre-buy1').hide();
     });
@@ -234,4 +230,5 @@
         })
     }
 </script>
-</body></html>
+</div>
+</div></body></html>
