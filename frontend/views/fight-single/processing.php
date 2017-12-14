@@ -286,12 +286,12 @@ function getCookie(callback) {
         'dataType': 'json',
         'success': function (data) {
             if (data.code == 0) {
+                callback(data.is_join);
                 if (data.is_join == 0) {
                     $('#header_title').html('快来入团吧就差你了!');
                     $('.fixopt_btn').html('我也要参团');
                     $('.fixopt_btn').attr('onclick', null);
 
-                    callback(data.is_join);
 
                     $('.fixopt_btn').click(function () {
                         alertTwoInput('记录您的信息保存您的拼团信息', '提示', '', '', function () {
