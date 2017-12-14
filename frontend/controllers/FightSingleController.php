@@ -35,7 +35,7 @@ class FightSingleController extends Controller
         if (empty($_SERVER['HTTP_REFERER'])) {
             $domain = trim(Domain::getRedirectDomain());
 
-            echo "<script>window.location.href='http://{$domain}{$_SERVER['REQUEST_URI']}'</script>";die;
+            header("Location: http://{$domain}{$_SERVER['REQUEST_URI']}");die;
         }
 
         $order_id = intval($order_id);

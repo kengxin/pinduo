@@ -330,7 +330,7 @@ function alertTwoInput(text, title, input1, input2, onCancel, onOK) {
         };
     }
     $.modal({
-        text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="' + (config.input1 || '') + '" />' + '<input type="text" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="' + (config.input2 || '') + '" />',
+        text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="' + (config.input1 || '') + '" />' + '<input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="' + (config.input2 || '') + '" />',
         title: title,
         buttons: [{
             text: '取消',
