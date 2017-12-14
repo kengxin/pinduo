@@ -6,7 +6,7 @@
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <meta name="format-detection" content="telephone=no">
-    <title>拼多多 - 两亿人都在拼的拼多多</title>
+    <title>我正在0元拼<?= $goodInfo->name?> - 拼多多 - 两亿人都在拼的拼多多</title>
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="/css/fight-single/style.css" rel="stylesheet" />
     <link href="/css/fight-single/share.css" rel="stylesheet" />
