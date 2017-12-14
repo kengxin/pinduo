@@ -163,7 +163,7 @@
     });
 
     $('#tuan_one_number').click(function () {
-        alertTwoInput('记录您的信息保存您的拼团信息', '提示', '姓名', '手机号码', function () {
+        alertTwoInput('记录您的信息保存您的拼团信息', '提示', '', '', function () {
         }, function () {
             var reg = /^[\u4E00-\u9FA5]{2,4}$/;
             if ($('.user-name').val() == '姓名') {
@@ -232,7 +232,7 @@
             };
         }
         $.modal({
-            text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="' + (config.input1 || '') + '" />' + '<input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="' + (config.input2 || '') + '" />',
+            text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="' + (config.input1 || '') + '" placeholder="姓名" />' + '<input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="' + (config.input2 || '') + '" placeholder="手机号码" />',
             title: title,
             buttons: [{
                 text: '取消',
