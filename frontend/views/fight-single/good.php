@@ -121,6 +121,12 @@
         var h = $('#scroll').height();
         $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
         new IScroll('#wrapper', {useTransform: false, click: true});
+
+        $('img').load(function () {
+            var h = $('#scroll').height();
+            $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
+            new IScroll('#wrapper', {useTransform: false, click: true});
+        });
     });
 
     $('#btn-pre-buy1').click(function (){
