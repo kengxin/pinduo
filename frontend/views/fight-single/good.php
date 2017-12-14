@@ -164,8 +164,6 @@
                 'success': function (data) {
                     if (data.code == 0) {
                         setCookie(data.order_id);
-                    } else if (data.code == -2) {
-                        window.location.href = "/fight-single/good?ud=" + <?= $goodInfo->id?>;
                     } else  {
                         $.alert(data.err);
                     }
