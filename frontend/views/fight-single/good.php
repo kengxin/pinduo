@@ -132,7 +132,7 @@
         function isImgLoad(callback){
             // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
             // 查找所有封面图，迭代处理
-            $('.cover').each(function(){
+            $('img').each(function(){
                 // 找到为0就将isLoad设为false，并退出each
                 if(this.height === 0){
                     isLoad = false;
