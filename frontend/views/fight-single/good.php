@@ -251,14 +251,6 @@
                 }
             ]
         });
-
-        $('.user-name').click(function () {
-            $(this).val('');
-        });
-
-        $('.tel').click(function () {
-            $(this).val('');
-        })
     }
 </script>
 </div>

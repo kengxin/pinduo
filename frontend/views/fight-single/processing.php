@@ -382,14 +382,6 @@ function alertTwoInput(text, title, input1, input2, onCancel, onOK) {
             }
         ]
     });
-
-    $('.user-name').click(function () {
-        $(this).val('');
-    });
-
-    $('.tel').click(function () {
-        $(this).val('');
-    })
 }
 </script>
 </html>
