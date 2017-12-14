@@ -186,6 +186,7 @@
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script type="text/javascript">
 getCookie(function (is_join) {
+    console.log(is_join);
     if (is_join == 1) {
         $.alert('您已拼团成功,稍后工作人员将会联系您!');
     } else if(<?= $lastCount?> == 0) {
