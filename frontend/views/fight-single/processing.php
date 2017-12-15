@@ -13,6 +13,11 @@
     <link href="/css/fight-single/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
     <link rel="stylesheet" href="/css/fight-single/LArea.css">
+    <style>
+        .weui-dialog__ft:after{
+            border-top: none;
+        }
+    </style>
 </head>
 <body>
     <div class="tips">
@@ -33,9 +38,6 @@
         </div>
         <a class="explain_tuan" id="share_button" href="javascript:void(0);" onclick="document.getElementById('share_tuan').style.display='';"></a>
         <div id="share_tuan" style="display:none;" onclick="document.getElementById('share_tuan').style.display='none';"><img src="/images/fight-single/share-tuan.png" ></div>
-    </div>
-    <div class="spec">
-        <form action="javascript:addToCart(14,0,0,5,327,0);" method="post" name="HHS_FORMBUY" id="HHS_FORMBUY"></form>
     </div>
     <div class="pp">
         <div class="pp_users" id="pp_users">
@@ -170,12 +172,6 @@
         <p align="center">还差<?= $lastCount?>人就能组团成功</p>
         <p align="center">快邀请小伙伴参团吧</p>
     </div>
-
-    <style>
-        .weui-dialog__ft:after{
-            border-top: none;
-        }
-    </style>
     <div id="speBg" style="z-index: 1000; display: none"></div>
     <div class="weui-dialog weui-dialog--visible join_activity" style="display: none">
         <div class="weui-dialog__hd">
@@ -197,10 +193,10 @@
         </div>
         <div class="weui-dialog__bd">
             <div class="content-block">
-                <input id="demo1" type="text" class="weui-input tel weui-prompt-input" readonly="" value="北京市,朝阳区">
+                <input id="demo1" type="text" style="border:1px solid #999;padding: 5px 10px 5px 10px;margin-top: 5px;font-size: 16px" readonly="" value="北京市,朝阳区">
                 <input id="value1" type="hidden" value="20,234,504">
             </div>
-            <input type="text" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="" placeholder="详细地址">
+            <input type="text" style="border:1px solid #999;padding: 5px 10px 5px 10px;margin-top: 5px;font-size: 16px" value="" placeholder="详细地址">
         </div>
         <div class="weui-dialog__ft" style="border-top: none">
             <a href="javascript:;" class="weui-dialog__btn default save_address_click" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">保存地址</a>
