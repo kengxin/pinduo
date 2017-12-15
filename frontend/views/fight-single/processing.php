@@ -377,6 +377,7 @@ $('.onok').click(function () {
     var reg = /^[\u4E00-\u9FA5]{2,4}$/;
     if(!reg.test($('.user-name').val())){
         $.alert('姓名填写有误');
+        return false;
     }
     if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
         $.alert("手机号码有误,请重填");
@@ -415,7 +416,7 @@ function setCookie(order_id) {
             'withCredentials': true
         },
         'dataType': 'json',
-        'success': function (data) {
+        'success': function () {
             window.location.href = "/fight-single/processing?order_id=" + order_id;
         }
     });

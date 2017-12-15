@@ -39,7 +39,7 @@
 
             <div id="speBg" style="display:none; z-index: 1000;"></div>
             <div id="speDiv" class="speDiv" style="bottom:50px; display:none;">
-                <div id="sku-head"> <img id="sku-image" class="image" src="/images/fight-single/11_thumb_G_1508896375138.jpg">
+                <div id="sku-head"> <img id="sku-image" class="image" src="<?= $model->thumb?>">
                     <div id="sku-detail">
                         <div class="sku-name"><?= $model->name?></div>
                         <div class="sku-price2-depends" id="HHS_GOODS_AMOUNT">￥<?= $model->discount / 100?></div>
