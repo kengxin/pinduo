@@ -13,9 +13,7 @@
     <link href="/css/fight-single/font-awesome.min.css" rel="stylesheet">
     <link href="/css/fight-single/flexslider.css" rel="stylesheet">
     <link href="/css/fight-single/layer.css" type="text/css" rel="styleSheet" id="layermcss">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
-    <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
-    <script src="//video-qq.oss-cn-beijing.aliyuncs.com/iscroll-lite.min.js"></script>
+    <link rel="stylesheet" href="//res.wx.qq.com/open/libs/weui/1.1.2/weui.min.css">
 </head>
 <body>
     <div class="container">
@@ -64,20 +62,17 @@
                 </div>
             </div>
             <div class="ftbuy">
-                <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%;z-index: 999999;border: 3px solid black">
+                <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%;z-index: 999999">
                     <div class="ftbuy_price"><b id="tuan_more_price">¥&nbsp;<?= $model->discount / 100?></b><i>/</i>件(全场免费包邮)</div>
                     <div class="ftbuy_btn"><b id="tuan_more_number"><?= $model->member_count?>人团</b></div>
-                </a> <a id="btn-buy1" class="ftbuy_item out" style="display:none;width: 85%">
+                </a>
+                <a id="btn-buy1" class="ftbuy_item out" style="display:none;width: 85%">
                     <div class="ftbuy_btn" id="tuan_one_number" style="height:50px;top: 0;line-height:50px; font-size:16px;">确定</div>
                 </a>
-
-
             </div>
         </form>
     </div>
-
     <div class="g_tip">为庆祝拼多多两周年!开启0元团购时代!全场免费包邮!<a href="/fight-single/rules">开团介绍</a></div>
-
     <div class="blank"></div>
     <div class="pro_detial">
         <div class="pro_con">
@@ -123,17 +118,16 @@
         </div>
         <div class="weui-dialog__bd">
             <p class="weui-prompt-text">记录您的信息保存您的拼团信息</p>
-            <input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="" placeholder="姓名">
-            <input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="" placeholder="手机号码">
+            <input type="text" class="user-name" id="weui-prompt-input" style="border:1px solid #999;padding: 5px 10px 5px 10px;font-size: 16px;margin-top: 10px" value="" placeholder="姓名">
+            <input type="number" class="tel" id="weui-prompt-input-two" style="border:1px solid #999;padding: 5px 10px 5px 10px;margin-top: 5px;font-size: 16px" value="" placeholder="手机号码">
         </div>
         <div class="weui-dialog__ft" style="border-top: none">
             <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">开启拼单</a>
         </div>
     </div>
 </div>
-<script type="text/javascript" src="/js/fight-single/haohaios.js?v=3"></script>
-<script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<script src="//res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
+<script src="//cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <div style="display: none">
     <script src="https://s19.cnzz.com/z_stat.php?id=1271362588&web_id=1271362588" language="JavaScript"></script>
 </div>
@@ -157,11 +151,11 @@
         $('.onok').click(function () {
             var reg = /^[\u4E00-\u9FA5]{2,4}$/;
             if(!reg.test($('.user-name').val())){
-                $.alert('姓名填写有误');
+                weui.alert('姓名填写有误');
                 return;
             }
             if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
-                $.alert("手机号码有误,请重填");
+                weui.alert("手机号码有误,请重填");
                 return false;
             }
 
