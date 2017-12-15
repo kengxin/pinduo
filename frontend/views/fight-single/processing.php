@@ -215,7 +215,15 @@
 <script src="//pinphoto.oss-cn-beijing.aliyuncs.com/jquery.min.js"></script>
 <script src="//res.wx.qq.com/open/libs/weuijs/1.1.3/weui.min.js"></script>
 <div style="display: none">
-    <script src="https://s19.cnzz.com/z_stat.php?id=1271362588&web_id=1271362588" language="JavaScript"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?bda6a8ceac9eac57cb4e7fec270e1e79";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </div>
 <script type="text/javascript">
 $(function () {
