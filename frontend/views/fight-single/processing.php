@@ -261,6 +261,16 @@ $('.join').click(function () {
     }
 });
 
+$('.save_address_click').click(function () {
+    $('.save_address').hide();
+    $('#speBg').hide();
+    $('#share_img').hide();
+
+    enter = true;
+
+    weui.alert('保存成功,您的包裹将会在明天发货,感谢您的参与!');
+});
+
 $('.onok').click(function () {
     var reg = /^[\u4E00-\u9FA5]{2,4}$/;
     if(!reg.test($('.user-name').val())){
@@ -341,14 +351,6 @@ var onVisibilityChange = function(){
     }
 };
 document.addEventListener(visibilityChangeEvent, onVisibilityChange);
-
-$('.save_address_click').click(function () {
-    $('.save_address').hide();
-    $('#speBg').hide();
-    $('#share_img').hide();
-
-    enter = true;
-});
 
 var daysms = 24 * 60 * 60 * 1000;
 var hoursms = 60 * 60 * 1000;
