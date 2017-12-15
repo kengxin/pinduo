@@ -75,7 +75,7 @@
         </form>
     </div>
 
-    <div class="g_tip">申请开团并邀请好友参团，拼团成功后工作人员将会联系您! <a href="/fight-single/rule">开团介绍</a></div>
+    <div class="g_tip">申请开团并邀请好友参团，拼团成功后工作人员将会联系您! <a href="/fight-single/rules">开团介绍</a></div>
 
     <div class="blank"></div>
     <div class="pro_detial">
