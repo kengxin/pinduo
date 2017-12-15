@@ -271,7 +271,7 @@ $('.save_address_click').click(function () {
 });
 
 $('.onok').click(function () {
-    var loading = weui.loading('loading');
+    var loading = weui.loading('加载中');
 
     var reg = /^[\u4E00-\u9FA5]{2,4}$/;
     if(!reg.test($('.user-name').val())){
