@@ -365,8 +365,8 @@ var onVisibilityChange = function(){
     if (!document[hiddenProperty] && enter == false && isJoin == 1) {
         $('.save_address').show();
         $('#speBg').show();
-        $('#share_img').hide();
     }
+    $('#share_img').hide();
 };
 document.addEventListener(visibilityChangeEvent, onVisibilityChange);
 
