@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="pp_box">
-        <div class="pp_tips" id="flag_1_a" >拼团完成，次日发货，人人都可以获得!无抽奖!</div>
+        <div class="pp_tips" id="flag_1_a" style="color: #fd537b">拼团完成，次日发货，人人都可以获得!无抽奖!</div>
         <?php
         if ($lastCount == 0) {
             ?>
