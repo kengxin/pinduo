@@ -140,9 +140,7 @@
 <script type="text/javascript">
     $(function () {
         var goods_id = <?= $model->id?>;
-        alert(1);
         $('#btn-pre-buy1').click(function (){
-            alert(1);
             $('#speDiv').show();
             $('#speBg').show();
             $('#btn-buy1').css({'width': '100%'}).show();
@@ -158,13 +156,10 @@
 
         $('.onok').click(function () {
             var reg = /^[\u4E00-\u9FA5]{2,4}$/;
-            if ($('.user-name').val() == '姓名') {
-                $.alert('请填写您的姓名');
-            }
             if(!reg.test($('.user-name').val())){
                 $.alert('姓名填写有误');
+                return;
             }
-            console.log($('.tel').val());
             if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
                 $.alert("手机号码有误,请重填");
                 return false;
