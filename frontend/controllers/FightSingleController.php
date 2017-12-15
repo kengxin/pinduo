@@ -20,7 +20,7 @@ class FightSingleController extends Controller
         $model = $this->findGoods($id);
 
         $goodsList = FightSingleGoods::find()
-            ->where(['<>', 'id', $model->id])
+//            ->where(['<>', 'id', $model->id])
             ->limit(6)
             ->all();
 
@@ -52,7 +52,7 @@ class FightSingleController extends Controller
         $lastCount = $goodInfo->member_count - count($childrenInfo);
 
         $goodsList = FightSingleGoods::find()
-            ->where(['<>', 'id', $goodInfo->id])
+//            ->where(['<>', 'id', $goodInfo->id])
             ->limit(6)
             ->all();
 
