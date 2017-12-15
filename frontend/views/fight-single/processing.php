@@ -249,8 +249,6 @@ getCookie(function (is_join) {
     if (is_join == 1) {
         if (<?= $lastCount?> == 0) {
             weui.alert('拼团成功,您的商品将会在次日发货,请耐心等候哦!');
-        } else {
-            $('#share_img').show();
         }
         isJoin = 1;
     } else if(<?= $lastCount?> == 0) {
