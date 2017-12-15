@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="ftbuy">
-                <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%">
+                <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%;z-index: 999999;border: 3px solid black">
                     <div class="ftbuy_price"><b id="tuan_more_price">¥&nbsp;<?= $model->discount / 100?></b><i>/</i>件(全场免费包邮)</div>
                     <div class="ftbuy_btn"><b id="tuan_more_number"><?= $model->member_count?>人团</b></div>
                 </a> <a id="btn-buy1" class="ftbuy_item out" style="display:none;width: 85%">
@@ -138,70 +138,74 @@
     <script src="https://s19.cnzz.com/z_stat.php?id=1271362588&web_id=1271362588" language="JavaScript"></script>
 </div>
 <script type="text/javascript">
-    var goods_id = <?= $model->id?>;
-    $('#btn-pre-buy1').click(function (){
-        $('#speDiv').show();
-        $('#speBg').show();
-        $('#btn-buy1').css({'width': '100%'}).show();
-        $('#btn-pre-buy1').hide();
-    });
+    $(function () {
+        var goods_id = <?= $model->id?>;
+        alert(1);
+        $('#btn-pre-buy1').click(function (){
+            alert(1);
+            $('#speDiv').show();
+            $('#speBg').show();
+            $('#btn-buy1').css({'width': '100%'}).show();
+            $('#btn-pre-buy1').hide();
+        });
 
-    $('#tuan_one_number').click(function () {
-        $('.speDiv').hide();
-        $('.btn-buy1').hide();
-        $('.weui-dialog').show();
-        $('#btn-pre-buy1').show();
-    });
+        $('#tuan_one_number').click(function () {
+            $('.speDiv').hide();
+            $('.btn-buy1').hide();
+            $('.weui-dialog').show();
+            $('#btn-pre-buy1').show();
+        });
 
-    $('.onok').click(function () {
-        var reg = /^[\u4E00-\u9FA5]{2,4}$/;
-        if ($('.user-name').val() == '姓名') {
-            $.alert('请填写您的姓名');
-        }
-        if(!reg.test($('.user-name').val())){
-            $.alert('姓名填写有误');
-        }
-        console.log($('.tel').val());
-        if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
-            $.alert("手机号码有误,请重填");
-            return false;
-        }
+        $('.onok').click(function () {
+            var reg = /^[\u4E00-\u9FA5]{2,4}$/;
+            if ($('.user-name').val() == '姓名') {
+                $.alert('请填写您的姓名');
+            }
+            if(!reg.test($('.user-name').val())){
+                $.alert('姓名填写有误');
+            }
+            console.log($('.tel').val());
+            if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
+                $.alert("手机号码有误,请重填");
+                return false;
+            }
 
-        $.ajax({
-            'type': 'post',
-            'url': '/fight-single/save-order',
-            'data': {
-                'good_id': goods_id,
-                'username': $('.user-name').val(),
-                'tel': $('.tel').val(),
-                '_csrf': '<?= Yii::$app->request->csrfToken?>'
-            },
-            'dataType': 'json',
-            'success': function (data) {
-                if (data.code == 0) {
-                    setCookie(data.order_id);
-                } else  {
-                    $.alert(data.err);
+            $.ajax({
+                'type': 'post',
+                'url': '/fight-single/save-order',
+                'data': {
+                    'good_id': goods_id,
+                    'username': $('.user-name').val(),
+                    'tel': $('.tel').val(),
+                    '_csrf': '<?= Yii::$app->request->csrfToken?>'
+                },
+                'dataType': 'json',
+                'success': function (data) {
+                    if (data.code == 0) {
+                        setCookie(data.order_id);
+                    } else  {
+                        $.alert(data.err);
+                    }
                 }
-            }
+            });
         });
-    });
 
-    function setCookie(order_id) {
-        $.ajax({
-            'url': 'http://mobile.yangkeduo.com.gc7u.cn/fight-single/set-cookie',
-            'type': 'post',
-            'data': {
-                'order_id': order_id
-            },
-            'xhrFields': {
-                'withCredentials': true
-            },
-            'dataType': 'json',
-            'success': function (data) {
-                window.location.href = "/fight-single/processing?order_id=" + order_id;
-            }
-        });
-    }
+        function setCookie(order_id) {
+            $.ajax({
+                'url': 'http://mobile.yangkeduo.com.gc7u.cn/fight-single/set-cookie',
+                'type': 'post',
+                'data': {
+                    'order_id': order_id
+                },
+                'xhrFields': {
+                    'withCredentials': true
+                },
+                'dataType': 'json',
+                'success': function (data) {
+                    window.location.href = "/fight-single/processing?order_id=" + order_id;
+                }
+            });
+        }
+    })
 </script>
 </body></html>
