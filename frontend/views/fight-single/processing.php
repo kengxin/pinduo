@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="pp_box">
-        <div class="pp_tips" id="flag_1_a" >优质商品，大家一起玩吧</div>
+        <div class="pp_tips" id="flag_1_a" >拼团完成，次日发货，人人都可以获得!无抽奖!</div>
         <?php
         if ($lastCount == 0) {
             ?>
