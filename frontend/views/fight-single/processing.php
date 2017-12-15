@@ -224,10 +224,10 @@
 var isJoin = 0;
 getCookie(function (is_join) {
     if (is_join == 1) {
-        isJoin = 1;
         if (<?= $lastCount?> == 0) {
             $.alert('拼团成功,您的商品将会在次日发货,请耐心等候哦!');
         } else {
+            isJoin = 1;
             $('#share_img').show();
         }
     } else if(<?= $lastCount?> == 0) {
