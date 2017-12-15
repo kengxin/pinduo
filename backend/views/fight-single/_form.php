@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 <?= $form->field($model, 'discount')?>
 <?= $form->field($model, 'member_count')?>
 
-<?= $form->field($model, 'content')?>
+<?= $form->field($model, 'content')->textarea()?>
 
 <?= Html::submitButton('提交保存', ['class' => 'btn btn-block btn-success'])?>
 <?php
