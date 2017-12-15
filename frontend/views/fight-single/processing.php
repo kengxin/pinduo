@@ -219,12 +219,17 @@
 <script src="/js/fight-single/LArea.js"></script>
 <script type="text/javascript" src="/js/fight-single/haohaios.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script type="text/javascript">
 var isJoin = 0;
 getCookie(function (is_join) {
     if (is_join == 1) {
         isJoin = 1;
-        $('#share_img').show();
+        if (<?= $lastCount?> == 0) {
+            $.alert('拼团成功,您的商品将会在次日发货,请耐心等候哦!');
+        } else {
+            $('#share_img').show();
+        }
     } else if(<?= $lastCount?> == 0) {
         $.alert('当前拼团已满,快去创建一个拼团吧!', function () {
             window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";

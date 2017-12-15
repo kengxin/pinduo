@@ -51,7 +51,9 @@
                     <a href="javascript:showhide();" id="sku-quit"></a>
                 </div>
                 <div class="sku-amount">
-                    <div class="sku-text"> <a style="color: #fd537b">限购一件!全场免费包邮!</a>
+                    <div class="sku-text">
+                        <a style="color: #fd537b">限购一件!全场免费包邮!</a>
+                        <a style="color: #fd537b">拼团成功后您的商品将在次日发货,耐心等候哦!</a>
                     </div>
                     <div class="sku-text" style="display: none"> <a>购买数量</a>
                         <div class="nbox">
