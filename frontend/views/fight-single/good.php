@@ -51,7 +51,7 @@
                     <a href="javascript:showhide();" id="sku-quit"></a>
                 </div>
                 <div class="sku-amount">
-                    <div class="sku-text"> <a>限购一件</a>
+                    <div class="sku-text"> <a>限购一件!全场免费包邮!</a>
                     </div>
                     <div class="sku-text" style="display: none"> <a>购买数量</a>
                         <div class="nbox">
@@ -75,7 +75,7 @@
         </form>
     </div>
 
-    <div class="g_tip">为庆祝拼多多两周年!开启0元团购时代!<a href="/fight-single/rules">开团介绍</a></div>
+    <div class="g_tip">为庆祝拼多多两周年!开启0元团购时代!全场免费包邮!<a href="/fight-single/rules">开团介绍</a></div>
 
     <div class="blank"></div>
     <div class="pro_detial">
