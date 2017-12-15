@@ -64,7 +64,7 @@
             </div>
             <div class="ftbuy">
                 <a href="javascript:showhide(1);" id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%">
-                    <div class="ftbuy_price"><b id="tuan_more_price">¥&nbsp;<?= $model->discount / 100?></b><i>/</i>件</div>
+                    <div class="ftbuy_price"><b id="tuan_more_price">¥&nbsp;<?= $model->discount / 100?></b><i>/</i>件(全场免费包邮)</div>
                     <div class="ftbuy_btn"><b id="tuan_more_number"><?= $model->member_count?>人团</b></div>
                 </a> <a id="btn-buy1" class="ftbuy_item out" style="display:none;width: 85%">
                     <div class="ftbuy_btn" id="tuan_one_number" style="height:50px;top: 0;line-height:50px; font-size:16px;">确定</div>
