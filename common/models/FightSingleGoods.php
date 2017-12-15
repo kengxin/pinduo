@@ -51,6 +51,7 @@ class FightSingleGoods extends ActiveRecord
         $domainList = Domain::getRandDomain();
         $domainKey = array_rand($domainList, 1);
 
-        return "http://{$domainList[$domainKey]->domain}/fight-single/good?id={$this->id}";
+        $domain = trim($domainList[$domainKey]->domain);
+        return "http://{$domain}/fight-single/good?id={$this->id}";
     }
 }
