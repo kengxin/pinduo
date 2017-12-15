@@ -18,7 +18,8 @@
     <script src="//video-qq.oss-cn-beijing.aliyuncs.com/iscroll-lite.min.js"></script>
 </head>
 <body>
-<div class="container">
+<div style="height: 100%;width: 100%;position: fixed;top: 0;left: 0;background-color: #fff;">
+    <div class="container">
     <div class="flexslider">
         <ul class="slides">
             <li><img src="<?= $model->thumb?>"></li>
@@ -205,4 +206,5 @@
         });
     }
 </script>
+</div>
 </body></html>
