@@ -26,13 +26,20 @@
     <div id="group_detail" class="tm ">
         <div class="td tuanDetailWrap">
             <div class="td_img">    
-                <a href="<?= $goodInfo->getUrl()?>"><img src="<?= $goodInfo->thumb?>"></a>
+                <a class="go_goods">
+                    <img src="<?= $goodInfo->thumb?>">
+                </a>
             </div>
             <div class="td_info">
                 <p class="td_name">
-                   <a href="<?= $goodInfo->getUrl()?>"><?= $goodInfo->name?></a>
+                   <a class="go_goods">
+                       <?= $goodInfo->name?>
+                   </a>
                 </p>
-                <p class="td_mprice"><span><?= $goodInfo->member_count?>人团</span><i>¥</i><b><?= $goodInfo->discount / 100?></b></p>
+                <p class="td_mprice">
+                    <span><?= $goodInfo->member_count?>人团</span>
+                    <i>¥</i><b><?= $goodInfo->discount / 100?></b>
+                </p>
             </div>
         </div>
         <a class="explain_tuan" id="share_button" href="javascript:void(0);" onclick="document.getElementById('share_tuan').style.display='';"></a>
@@ -240,16 +247,24 @@ $(function () {
 var isJoin = 0;
 getCookie(function (is_join) {
     if (is_join == 1) {
+        isJoin = 1;
         if (<?= $lastCount?> == 0) {
             weui.alert('拼团成功,您的商品将会在次日发货,请耐心等候哦!');
         } else {
-            isJoin = 1;
             $('#share_img').show();
         }
     } else if(<?= $lastCount?> == 0) {
         weui.alert('当前拼团已满,快去创建一个拼团吧!', function () {
             window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";
         });
+    }
+});
+
+$('.tuanDetailWrap').click(function () {
+    if (isJoin == 0) {
+        window.location.href = "<?= $goodInfo->getUrl()?>";
+    } else {
+        $("#share_img").show();
     }
 });
 
