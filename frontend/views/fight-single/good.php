@@ -18,7 +18,7 @@
     <script src="//video-qq.oss-cn-beijing.aliyuncs.com/iscroll-lite.min.js"></script>
 </head>
 <body>
-<div style="height: 100%;width: 100%;position: fixed;top: 0;left: 0;background-color: #fff;">
+    <script>$("body").on("touchmove",function(e){e.preventDefault()});</script>
     <div class="container">
     <div class="flexslider">
         <ul class="slides">
@@ -206,5 +206,4 @@
         });
     }
 </script>
-</div>
 </body></html>
