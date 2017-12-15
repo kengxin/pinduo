@@ -18,7 +18,7 @@
     <script src="//video-qq.oss-cn-beijing.aliyuncs.com/iscroll-lite.min.js"></script>
 </head>
 <body>
-    <div class="container scroll">
+    <div class="container">
     <div class="flexslider">
         <ul class="slides">
             <li><img src="<?= $model->thumb?>"></li>
@@ -138,7 +138,6 @@
     <script src="https://s19.cnzz.com/z_stat.php?id=1271362588&web_id=1271362588" language="JavaScript"></script>
 </div>
 <script type="text/javascript">
-
     var goods_id = <?= $model->id?>;
     $('#btn-pre-buy1').click(function (){
         $('#speDiv').show();
