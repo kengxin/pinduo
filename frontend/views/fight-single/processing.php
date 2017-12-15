@@ -17,12 +17,8 @@
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
     <link rel="stylesheet" href="/css/fight-single/LArea.css">
-    <script src="//video-qq.oss-cn-beijing.aliyuncs.com/iscroll-lite.min.js"></script>
 </head>
-<body id="activity-detail" class="zh_CN mm_appmsg" style="background-color:#333;">
-    <div id="content-content"  style="height:40px;text-align:center;padding-top:10px;color:#999;font-size:80%;display:block;">网页由 mobile.yangkeduo.com 提供</div>
-    <div id="wrapper" style="position:absolute;top:0;bottom:0;left:0;right:0;">
-    <div id="scroll" style="position:absolute;background-color:#f3f3f3;z-index:100;width:100%;">
+<body>
     <div class="tips">
         <i class="tips_succ"></i>
             <span id="header_title" onclick="document.getElementById('share_img').style.display='';">参团成功快去邀请好友加入吧</span>
@@ -178,8 +174,6 @@
         <p align="center">还差<?= $lastCount?>人就能组团成功</p>
         <p align="center">快邀请小伙伴参团吧</p>
     </div>
-    </div>
-    </div>
 
     <style>
         .weui-dialog__ft:after{
@@ -244,42 +238,6 @@ getCookie(function (is_join) {
 });
 
 $(function () {
-    var t_img; // 定时器
-    var isLoad = true; // 控制变量
-
-    // 判断图片加载状况，加载完成后回调
-    isImgLoad(function(){
-        console.log(1);
-        var h = $('#scroll').height();
-        $('#scroll').css('height', h > window.screen.height ? h : window.screen.height + 1);
-        new IScroll('#wrapper', {useTransform: false, click: true});
-    });
-
-    // 判断图片加载的函数
-    function isImgLoad(callback){
-        // 注意我的图片类名都是cover，因为我只需要处理cover。其它图片可以不管。
-        // 查找所有封面图，迭代处理
-        $('img').each(function(){
-            // 找到为0就将isLoad设为false，并退出each
-            if(this.height === 0){
-                isLoad = false;
-                return false;
-            }
-        });
-        // 为true，没有发现为0的。加载完毕
-        if(isLoad){
-            clearTimeout(t_img); // 清除定时器
-            // 回调函数
-            callback();
-            // 为false，因为找到了没有加载完成的图，将调用定时器递归
-        }else{
-            isLoad = true;
-            t_img = setTimeout(function(){
-                isImgLoad(callback); // 递归扫描
-            },500); // 我这里设置的是500毫秒就扫描一次，可以自己调整
-        }
-    }
-
     var area1 = new LArea();
     area1.init({
         'trigger': '#demo1', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
