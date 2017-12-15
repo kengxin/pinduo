@@ -191,7 +191,7 @@
         <div class="weui-dialog__bd">
             <p class="weui-prompt-text">记录您的信息保存您的拼团信息</p>
             <input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="" placeholder="姓名">
-            <input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="" placeholder="手机号码">
+            <input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input-two" value="" placeholder="手机号码">
         </div>
         <div class="weui-dialog__ft" style="border-top: none">
             <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">加入拼单</a>
