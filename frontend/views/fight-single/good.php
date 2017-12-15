@@ -148,9 +148,12 @@
         });
 
         $('.onok').click(function () {
+            var loading = weui.loading('loading');
+
             var reg = /^[\u4E00-\u9FA5]{2,4}$/;
             if(!reg.test($('.user-name').val())){
                 $('.weui-dialog').hide();
+                loading.hide();
                 weui.alert('姓名填写有误', function () {
                     $('.weui-dialog').show();
                 });
@@ -158,6 +161,7 @@
             }
             if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
                 $('.weui-dialog').hide();
+                loading.hide();
                 weui.alert("手机号码有误,请重填", function () {
                     $('.weui-dialog').show();
                 });
@@ -176,8 +180,10 @@
                 'dataType': 'json',
                 'success': function (data) {
                     if (data.code == 0) {
+                        loading.hide();
                         setCookie(data.order_id);
                     } else  {
+                        loading.hide();
                         $.alert(data.err);
                     }
                 }
@@ -196,7 +202,12 @@
                 },
                 'dataType': 'json',
                 'success': function (data) {
-                    window.location.href = "/fight-single/processing?order_id=" + order_id;
+                    weui.toast('拼团成功', {
+                        duration: 1000,
+                        callback: function(){
+                            window.location.href = "/fight-single/processing?order_id=" + order_id;
+                        }
+                    });
                 }
             });
         }

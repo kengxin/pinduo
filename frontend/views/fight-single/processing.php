@@ -271,9 +271,12 @@ $('.save_address_click').click(function () {
 });
 
 $('.onok').click(function () {
+    var loading = weui.loading('loading');
+
     var reg = /^[\u4E00-\u9FA5]{2,4}$/;
     if(!reg.test($('.user-name').val())){
         $('.join_activity').hide();
+        loading.hide();
         weui.alert('姓名填写有误', function () {
             $('.join_activity').show();
         });
@@ -281,6 +284,7 @@ $('.onok').click(function () {
     }
     if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
         $('.join_activity').hide();
+        loading.hide();
         weui.alert('姓名填写有误', function () {
             $('.join_activity').show();
         });
@@ -300,12 +304,12 @@ $('.onok').click(function () {
         'dataType': 'json',
         'success': function (data) {
             if (data.code == 0) {
+                loading.hide();
                 setCookie(data.order_id);
             } else {
+                loading.hide();
                 weui.alert(data.err);
             }
-
-            window.location.reload();
         }
     });
 });
@@ -343,7 +347,12 @@ function setCookie(order_id) {
         },
         'dataType': 'json',
         'success': function () {
-            window.location.href = "/fight-single/processing?order_id=" + order_id;
+            weui.toast('拼团成功', {
+                duration: 1000,
+                callback: function(){
+                    window.location.href = "/fight-single/processing?order_id=" + order_id;
+                }
+            });
         }
     });
 }
