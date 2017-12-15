@@ -260,7 +260,7 @@ getCookie(function (is_join) {
     }
 });
 
-$('.tuanDetailWrap').click(function () {
+$('.go_goods').click(function () {
     if (isJoin == 0) {
         window.location.href = "<?= $goodInfo->getUrl()?>";
     } else {
