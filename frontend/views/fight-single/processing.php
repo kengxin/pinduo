@@ -248,11 +248,7 @@ var isJoin = 0;
 getCookie(function (is_join) {
     if (is_join == 1) {
         isJoin = 1;
-        if (<?= $lastCount?> == 0) {
-            weui.alert('拼团成功,您的商品将会在次日发货,请耐心等候哦!');
-        } else {
-            $('#share_img').show();
-        }
+        if (<?= $lastCount?> == 0) {weui.alert('拼团成功,您的商品将会在次日发货,请耐心等候哦!');}else{$('#share_img').show();}
     } else if(<?= $lastCount?> == 0) {
         weui.alert('当前拼团已满,快去创建一个拼团吧!', function () {
             window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";
