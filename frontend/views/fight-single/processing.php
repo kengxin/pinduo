@@ -306,9 +306,9 @@ var microsecond = 1000;
 var DifferHour = 0;
 var DifferMinute = 0;
 var DifferSecond = 0;
-var systime=1513105754;
-var team_start=1512742583*1000;
-var team_end=1512742583*1000+30*24*3600*1000;
+var systime=1513320465;
+var team_start=1513320465*1000;
+var team_end=1513320465*1000+7*24*3600*1000;
 setInterval("systime_clock()",1000);
 function systime_clock(){
 	systime++;
