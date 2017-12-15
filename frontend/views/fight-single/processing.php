@@ -138,8 +138,8 @@
                             foreach ($goodsList as $good) {
                                 ?>
                                 <li>
-                                    <div class="recommend_img"><a href="<?= $goodInfo->getUrl()?>"><img src="<?= $good->thumb?>"></a></div>
-                                    <div class="recommend_title"><a href="<?= $goodInfo->getUrl()?>"><?= $good->name?></a></div>
+                                    <div class="recommend_img"><a href="<?= $good->getUrl()?>"><img src="<?= $good->thumb?>"></a></div>
+                                    <div class="recommend_title"><a href="<?= $good->getUrl()?>"><?= $good->name?></a></div>
                                     <div class="recommend_price">￥<span><?= $good->discount / 100?></span></div>
                                     <div class="like_click"> <a href="javascript:collect(21)" class="recommend_like"></a> </div>
                                 </li>
