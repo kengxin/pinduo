@@ -6,13 +6,14 @@
     <meta name="Keywords" content="" />
     <meta name="Description" content="" />
     <meta name="format-detection" content="telephone=no">
-    <title>我正在0元拼<?= $goodInfo->name?> - 拼多多 - 两亿人都在拼的拼多多</title>
+    <title>我正在0元拼<?= $goodInfo->name?> - 拼多多 - 三亿人都在拼的拼多多</title>
     <link rel="shortcut icon" href="favicon.ico" />
     <link href="/css/fight-single/style.css" rel="stylesheet" />
     <link href="/css/fight-single/share.css" rel="stylesheet" />
     <link href="/css/fight-single/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css">
     <link rel="stylesheet" href="https://cdn.bootcss.com/jquery-weui/1.2.0/css/jquery-weui.min.css">
+    <link rel="stylesheet" href="/css/fight-single/LArea.css">
     <script src="//video-qq.oss-cn-beijing.aliyuncs.com/iscroll-lite.min.js"></script>
 </head>
 <body id="activity-detail" class="zh_CN mm_appmsg" style="background-color:#333;">
@@ -127,8 +128,6 @@
             </div>
         </div>
     </div>
-    
-    
     <div class="recommend_grid_wrap" style="padding-bottom:60px;">
         <div id="recommend" class="grid">
             <div class="recommend_head">你可能还喜欢</div>
@@ -152,7 +151,6 @@
             </div>
         </div>
     </div>
-
     <div class="fixopt">  
         <div class="fixopt_item">
             <?php
@@ -162,7 +160,7 @@
                 <?php
             } else {
                 ?>
-                <a class="fixopt_btn" id="share_button" href="javascript:void(0);" onclick="document.getElementById('share_img').style.display='';">还差<?= $lastCount?>人组团成功</a>
+                <a class="fixopt_btn join" id="share_button" href="javascript:void(0);" onclick="document.getElementById('share_img').style.display='';">还差<?= $lastCount?>人组团成功</a>
                 <?php
             }
             ?>
@@ -179,16 +177,54 @@
     </div>
     </div>
     </div>
-</body>
 
+    <style>
+        .weui-dialog__ft:after{
+            border-top: none;
+        }
+    </style>
+    <div id="speBg" style="z-index: 1000; display: none"></div>
+    <div class="weui-dialog weui-dialog--visible join_activity" style="display: none">
+        <div class="weui-dialog__hd">
+            <strong class="weui-dialog__title">提示</strong>
+        </div>
+        <div class="weui-dialog__bd">
+            <p class="weui-prompt-text">记录您的信息保存您的拼团信息</p>
+            <input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="" placeholder="姓名">
+            <input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="" placeholder="手机号码">
+        </div>
+        <div class="weui-dialog__ft" style="border-top: none">
+            <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">加入拼单</a>
+        </div>
+    </div>
+
+    <div class="weui-dialog weui-dialog--visible save_address" style="display: none">
+        <div class="weui-dialog__hd">
+            <strong class="weui-dialog__title">请输入您的收货地址</strong>
+        </div>
+        <div class="weui-dialog__bd">
+            <div class="content-block">
+                <input id="demo1" type="text" class="weui-input tel weui-prompt-input" readonly="" value="北京市,朝阳区">
+                <input id="value1" type="hidden" value="20,234,504">
+            </div>
+            <input type="text" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="" placeholder="详细地址">
+        </div>
+        <div class="weui-dialog__ft" style="border-top: none">
+            <a href="javascript:;" class="weui-dialog__btn default save_address_click" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">保存地址</a>
+        </div>
+    </div>
+</body>
+<script src="/js/fight-single/LAreaData1.js"></script>
+<script src="/js/fight-single/LAreaData2.js"></script>
+<script src="/js/fight-single/LArea.js"></script>
 <script type="text/javascript" src="/js/fight-single/haohaios.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
-<script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
 <script type="text/javascript">
+var isJoin = 0;
 getCookie(function (is_join) {
-    console.log(is_join);
     if (is_join == 1) {
-        $.alert('您已拼团成功,稍后工作人员将会联系您!');
+        isJoin = 1;
+        $('#share_img').show();
     } else if(<?= $lastCount?> == 0) {
         $.alert('当前拼团已满,快去创建一个拼团吧!', function () {
             window.location.href = "/fight-single/good?id=<?= $goodInfo->id?>";
@@ -197,6 +233,31 @@ getCookie(function (is_join) {
 });
 
 $(function () {
+
+    var area1 = new LArea();
+    area1.init({
+        'trigger': '#demo1', //触发选择控件的文本框，同时选择完毕后name属性输出到该位置
+        'valueTo': '#value1', //选择完毕后id属性输出到该位置
+        'keys': {
+            id: 'id',
+            name: 'name'
+        }, //绑定数据源相关字段 id对应valueTo的value属性输出 name对应trigger的value属性输出
+        'type': 1, //数据源类型
+        'data': LAreaData //数据源
+    });
+    area1.value=[1,13,3];//控制初始位置，注意：该方法并不会影响到input的value
+    var area2 = new LArea();
+    area2.init({
+        'trigger': '#demo2',
+        'valueTo': '#value2',
+        'keys': {
+            id: 'value',
+            name: 'text'
+        },
+        'type': 2,
+        'data': [provs_data, citys_data, dists_data]
+    });
+
     var t_img; // 定时器
     var isLoad = true; // 控制变量
 
@@ -291,47 +352,49 @@ function getCookie(callback) {
                     $('#header_title').html('快来入团吧就差你了!');
                     $('.fixopt_btn').html('我也要参团');
                     $('.fixopt_btn').attr('onclick', null);
-
-
-                    $('.fixopt_btn').click(function () {
-                        alertTwoInput('记录您的信息保存您的拼团信息', '提示', '', '', function () {
-                            console.log('error');
-                        }, function () {
-                            var reg = /^[\u4E00-\u9FA5]{2,4}$/;
-                            if(!reg.test($('.user-name').val())){
-                                $.alert('姓名填写有误');
-                            }
-                            if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
-                                $.alert("手机号码有误,请重填");
-                                return false;
-                            }
-
-                            $.ajax({
-                                'type': 'post',
-                                'url': '/fight-single/save-order',
-                                'data': {
-                                    'good_id': <?= $goodInfo->id?>,
-                                    'username': $('.user-name').val(),
-                                    'tel': $('.tel').val(),
-                                    'pid': <?= $order_id?>,
-                                    '_csrf': '<?= Yii::$app->request->csrfToken?>'
-                                },
-                                'dataType': 'json',
-                                'success': function (data) {
-                                    if (data.code == 0) {
-                                        setCookie(data.order_id);
-                                    } else {
-                                        $.alert(data.err);
-                                    }
-                                }
-                            });
-                        });
-                    })
                 }
             }
         }
     });
 }
+
+$('.join').click(function () {
+    if (isJoin == 0) {
+        $('#speBg').show();
+        $('.join_activity').show();
+    }
+});
+
+$('.onok').click(function () {
+    var reg = /^[\u4E00-\u9FA5]{2,4}$/;
+    if(!reg.test($('.user-name').val())){
+        $.alert('姓名填写有误');
+    }
+    if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
+        $.alert("手机号码有误,请重填");
+        return false;
+    }
+
+    $.ajax({
+        'type': 'post',
+        'url': '/fight-single/save-order',
+        'data': {
+            'good_id': <?= $goodInfo->id?>,
+            'username': $('.user-name').val(),
+            'tel': $('.tel').val(),
+            'pid': <?= $order_id?>,
+            '_csrf': '<?= Yii::$app->request->csrfToken?>'
+        },
+        'dataType': 'json',
+        'success': function (data) {
+            if (data.code == 0) {
+                setCookie(data.order_id);
+            } else {
+                $.alert(data.err);
+            }
+        }
+    });
+});
 
 function setCookie(order_id) {
     $.ajax({
@@ -350,41 +413,23 @@ function setCookie(order_id) {
     });
 }
 
-function alertTwoInput(text, title, input1, input2, onCancel, onOK) {
-    var config;
-    if (typeof text === 'object') {
-        config = text;
-    } else {
-        config = {
-            text: text,
-            title: title,
-            input1: input1,
-            input2: input2,
-            onOK: onOK,
-            onCancel: onCancel,
-            empty: false  //allow empty
-        };
+var enter = false;
+var hiddenProperty = 'hidden' in document ? 'hidden' : 'webkitHidden' in document ? 'webkitHidden' : 'mozHidden' in document ? 'mozHidden' : null;
+var visibilityChangeEvent = hiddenProperty.replace(/hidden/i, 'visibilitychange');
+var onVisibilityChange = function(){
+    if (!document[hiddenProperty] && enter == false) {
+        $('.save_address').show();
+        $('#speBg').show()
     }
-    $.modal({
-        text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="' + (config.input1 || '') + '" placeholder="姓名" />' + '<input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="' + (config.input2 || '') + '" placeholder="手机号码" />',
-        title: title,
-        buttons: [{
-            text: '取消',
-            className: "default",
-            onClick: function () {
-                onCancel();
-                $.closeModal();
-            }
-        },
-            {
-                text: '确认',
-                className: "primary",
-                onClick: function () {
-                    onOK();
-                }
-            }
-        ]
-    });
-}
+};
+document.addEventListener(visibilityChangeEvent, onVisibilityChange);
+
+$('.save_address_click').click(function () {
+    $('.save_address').hide();
+    $('#speBg').hide();
+
+    enter = true;
+})
+
 </script>
 </html>

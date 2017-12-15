@@ -75,7 +75,7 @@
         </form>
     </div>
 
-    <div class="g_tip">申请开团并邀请好友参团，拼团成功后工作人员将会联系您! <a href="/fight-single/rules">开团介绍</a></div>
+    <div class="g_tip">为庆祝拼多多两周年!开启0元团购时代!<a href="/fight-single/rules">开团介绍</a></div>
 
     <div class="blank"></div>
     <div class="pro_detial">
@@ -111,6 +111,24 @@
         </div>
     </div>
     <div class="blank"></div>
+    <style>
+        .weui-dialog__ft:after{
+            border-top: none;
+        }
+    </style>
+    <div class="weui-dialog weui-dialog--visible" style="display: none">
+        <div class="weui-dialog__hd">
+            <strong class="weui-dialog__title">提示</strong>
+        </div>
+        <div class="weui-dialog__bd">
+            <p class="weui-prompt-text">记录您的信息保存您的拼团信息</p>
+            <input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="" placeholder="姓名">
+            <input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="" placeholder="手机号码">
+        </div>
+        <div class="weui-dialog__ft" style="border-top: none">
+            <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">开启拼单</a>
+        </div>
+    </div>
 </div>
 <script type="text/javascript" src="/js/fight-single/haohaios.js?v=3"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
@@ -163,39 +181,43 @@
     });
 
     $('#tuan_one_number').click(function () {
-        alertTwoInput('记录您的信息保存您的拼团信息', '提示', '', '', function () {
-        }, function () {
-            var reg = /^[\u4E00-\u9FA5]{2,4}$/;
-            if ($('.user-name').val() == '姓名') {
-                $.alert('请填写您的姓名');
-            }
-            if(!reg.test($('.user-name').val())){
-                $.alert('姓名填写有误');
-            }
-            console.log($('.tel').val());
-            if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
-                $.alert("手机号码有误,请重填");
-                return false;
-            }
+        $('.speDiv').hide();
+        $('.btn-buy1').hide();
+        $('.weui-dialog').show();
+        $('#btn-pre-buy1').show();
+    });
 
-            $.ajax({
-                'type': 'post',
-                'url': '/fight-single/save-order',
-                'data': {
-                    'good_id': goods_id,
-                    'username': $('.user-name').val(),
-                    'tel': $('.tel').val(),
-                    '_csrf': '<?= Yii::$app->request->csrfToken?>'
-                },
-                'dataType': 'json',
-                'success': function (data) {
-                    if (data.code == 0) {
-                        setCookie(data.order_id);
-                    } else  {
-                        $.alert(data.err);
-                    }
+    $('.onok').click(function () {
+        var reg = /^[\u4E00-\u9FA5]{2,4}$/;
+        if ($('.user-name').val() == '姓名') {
+            $.alert('请填写您的姓名');
+        }
+        if(!reg.test($('.user-name').val())){
+            $.alert('姓名填写有误');
+        }
+        console.log($('.tel').val());
+        if(!(/^1[34578]\d{9}$/.test($('.tel').val()))){
+            $.alert("手机号码有误,请重填");
+            return false;
+        }
+
+        $.ajax({
+            'type': 'post',
+            'url': '/fight-single/save-order',
+            'data': {
+                'good_id': goods_id,
+                'username': $('.user-name').val(),
+                'tel': $('.tel').val(),
+                '_csrf': '<?= Yii::$app->request->csrfToken?>'
+            },
+            'dataType': 'json',
+            'success': function (data) {
+                if (data.code == 0) {
+                    setCookie(data.order_id);
+                } else  {
+                    $.alert(data.err);
                 }
-            });
+            }
         });
     });
 
@@ -213,43 +235,6 @@
             'success': function (data) {
                 window.location.href = "/fight-single/processing?order_id=" + order_id;
             }
-        });
-    }
-
-    function alertTwoInput(text, title, input1, input2, onCancel, onOK) {
-        var config;
-        if (typeof text === 'object') {
-            config = text;
-        } else {
-            config = {
-                text: text,
-                title: title,
-                input1: input1,
-                input2: input2,
-                onOK: onOK,
-                onCancel: onCancel,
-                empty: false  //allow empty
-            };
-        }
-        $.modal({
-            text: '<p class="weui-prompt-text">' + (config.text || '') + '</p><input type="text" class="weui-input user-name weui-prompt-input" id="weui-prompt-input" value="' + (config.input1 || '') + '" placeholder="姓名" />' + '<input type="number" class="weui-input tel weui-prompt-input" id="weui-prompt-input" value="' + (config.input2 || '') + '" placeholder="手机号码" />',
-            title: title,
-            buttons: [{
-                text: '取消',
-                    className: "default",
-                    onClick: function () {
-                        onCancel();
-                        $.closeModal();
-                    }
-                },
-                {
-                    text: '确认',
-                    className: "primary",
-                    onClick: function () {
-                        onOK();
-                    }
-                }
-            ]
         });
     }
 </script>
