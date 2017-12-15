@@ -220,6 +220,9 @@
 <script type="text/javascript" src="/js/fight-single/haohaios.js"></script>
 <script src="https://cdn.bootcss.com/jquery/1.11.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/jquery-weui/1.2.0/js/jquery-weui.min.js"></script>
+<div style="display: none">
+    <script src="https://s19.cnzz.com/z_stat.php?id=1271362588&web_id=1271362588" language="JavaScript"></script>
+</div>
 <script type="text/javascript">
 var isJoin = 0;
 getCookie(function (is_join) {
