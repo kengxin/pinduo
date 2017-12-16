@@ -306,9 +306,6 @@ $('.onok').click(function () {
         return false;
     }
 
-    $('#speBg').hide();
-    $('.join_activity').hide();
-
     $.ajax({
         'type': 'post',
         'url': '/fight-single/save-order',
