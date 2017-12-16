@@ -365,7 +365,7 @@ function setCookie(order_id) {
             weui.toast('拼团成功', {
                 duration: 1000,
                 callback: function(){
-                    window.location.href = "/fight-single/processing?order_id=" + order_id;
+                    window.location.reload();
                 }
             });
         }
