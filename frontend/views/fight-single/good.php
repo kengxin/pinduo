@@ -51,9 +51,8 @@
                 </div>
             </div>
             <div class="ftbuy">
-                <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%;z-index: 999999">
-                    <div class="ftbuy_price"><b id="tuan_more_price">¥&nbsp;<?= $model->discount / 100?></b><i>/</i>件(全场免费包邮)</div>
-                    <div class="ftbuy_btn"><b id="tuan_more_number"><?= $model->member_count?>人团</b></div>
+                <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%;z-index: 999999;font-size: 16px;line-height: 50px">
+                    免费参加
                 </a>
                 <a id="btn-buy1" class="ftbuy_item out" style="display:none;width: 85%">
                     <div class="ftbuy_btn" id="tuan_one_number" style="height:50px;top: 0;line-height:50px; font-size:16px;">确定</div>
@@ -61,7 +60,7 @@
             </div>
         </form>
     </div>
-    <div class="g_tip">为庆祝拼多多两周年!开启0元团购时代!全场免费包邮!<a href="/fight-single/rules">开团介绍</a></div>
+    <div class="g_tip">为庆祝拼多多两周年!开启0元团购时代!人满发货!全场免费包邮!<a href="/fight-single/rules">开团介绍</a></div>
     <div class="blank"></div>
     <div class="pro_detial">
         <div class="pro_con">
