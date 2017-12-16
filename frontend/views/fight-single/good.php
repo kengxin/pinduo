@@ -36,7 +36,6 @@
                     <div id="sku-detail">
                         <div class="sku-name"><?= $model->name?></div>
                         <div class="sku-price2-depends" id="HHS_GOODS_AMOUNT">￥<?= $model->discount / 100?></div>
-
                         <div>
                             <span id="sku-msg"></span>
                         </div>
@@ -52,7 +51,7 @@
             </div>
             <div class="ftbuy">
                 <a id="btn-pre-buy1" class="ftbuy_item out" style="width: 100%;z-index: 999999;font-size: 16px;line-height: 50px">
-                    免费参加
+                    免费获取
                 </a>
                 <a id="btn-buy1" class="ftbuy_item out" style="display:none;width: 85%">
                     <div class="ftbuy_btn" id="tuan_one_number" style="height:50px;top: 0;line-height:50px; font-size:16px;">确定</div>
@@ -110,7 +109,7 @@
             <input type="number" class="tel" id="weui-prompt-input-two" style="border:1px solid #999;padding: 5px 10px 5px 10px;margin-top: 5px;font-size: 16px" value="" placeholder="手机号码">
         </div>
         <div class="weui-dialog__ft" style="border-top: none">
-            <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">参加拼单</a>
+            <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">免费获取</a>
         </div>
     </div>
 </div>

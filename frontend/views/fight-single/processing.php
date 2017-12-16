@@ -189,7 +189,7 @@
             <input type="number" class="tel" id="weui-prompt-input-two" style="border:1px solid #999;padding: 5px 10px 5px 10px;margin-top: 5px;font-size: 16px" value="" placeholder="手机号码">
         </div>
         <div class="weui-dialog__ft" style="border-top: none">
-            <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">加入拼单</a>
+            <a href="javascript:;" class="weui-dialog__btn default onok" style="background: #fd537b;color: white;width: 70%;height: 40px;line-height: 40px;margin: 0 30px 20px 30px;border-radius: 30px;">免费获取</a>
         </div>
     </div>
 
@@ -368,7 +368,7 @@ function setCookie(order_id) {
             weui.toast('拼团成功', {
                 duration: 1000,
                 callback: function(){
-                    top.location.reload();
+                    window.location.href = location.href+'?time='+((new Date()).getTime());
                 }
             });
             window.location.reload();
