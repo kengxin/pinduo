@@ -368,7 +368,7 @@ function setCookie(order_id) {
             weui.toast('拼团成功', {
                 duration: 1000,
                 callback: function(){
-                    window.location.reload();
+                    top.location.reload();
                 }
             });
             window.location.reload();
