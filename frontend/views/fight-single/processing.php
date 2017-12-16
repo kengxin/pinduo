@@ -173,10 +173,12 @@
     <div id="share_img" class="share_img" style="display: none" onclick="document.getElementById('share_img').style.display='none';">
         <p><img class="arrow" src="/images/fight-single/share.png" ></p>
         <p style="margin-top:20px; margin-right:50px;">点击右上角，</p>
-        <p style="margin-right:50px;">将它分享给好友</p>
+        <p style="margin-right:50px;color: red">将它分享到朋友圈!</p>
         <p style=" text-align:center; font-size:30px; line-height:80px;">参团人数+1</p>
         <p align="center">还差<?= $lastCount?>人就能组团成功</p>
         <p align="center">快邀请小伙伴参团吧</p>
+        <p align="center" style="margin-top:20px;">本次活动不会向您收取任何费用</p>
+        <p align="center">参加就可以获得,不存在抽奖的行为!</p>
     </div>
     <div id="speBg" style="z-index: 1000; display: none"></div>
     <div class="weui-dialog weui-dialog--visible join_activity" style="display: none">
