@@ -43,7 +43,7 @@
             </div>
         </div>
         <a class="explain_tuan" id="share_button" href="javascript:void(0);" onclick="document.getElementById('share_tuan').style.display='';"></a>
-        <div id="share_tuan" style="display:none;" onclick="document.getElementById('share_tuan').style.display='none';"><img src="/images/fight-single/share-tuan.png" ></div>
+        <div id="share_tuan" style="display:none;" onclick="document.getElementById('share_tuan').style.display='none';"><img src="//ini9g.cn/images/fight-single/share-tuan.png" ></div>
     </div>
     <div class="pp">
         <div class="pp_users" id="pp_users">
@@ -55,7 +55,7 @@
                         <?php
                     } else {
                         ?>
-                        <p class="pp_users_item pp_users_blank"><img src="/images/fight-single/avatar_4_64.png"></p>
+                        <p class="pp_users_item pp_users_blank"><img src="//ini9g.cn/images/fight-single/avatar_4_64.png"></p>
                         <?php
                     }
                 }
@@ -171,7 +171,7 @@
     </div>
 
     <div id="share_img" class="share_img" style="display: none" onclick="document.getElementById('share_img').style.display='none';">
-        <p><img class="arrow" src="/images/fight-single/share.png" ></p>
+        <p><img class="arrow" src="//ini9g.cn/images/fight-single/share.png" ></p>
         <p style="margin-top:20px; margin-right:50px;">点击右上角，</p>
         <p style="margin-right:50px;color: red">将它分享到朋友圈!</p>
         <p style=" text-align:center; font-size:30px; line-height:80px;">参团人数+1</p>

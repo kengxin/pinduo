@@ -79,7 +79,7 @@
                                     <div class="recommend_img"><a href="<?= $good->getUrl();?>"><img src="<?= $good->thumb?>"></a></div>
                                     <div class="recommend_title"><a href="<?= $good->getUrl();?>"><?= $good->name?></a></div>
                                     <div class="recommend_price">￥<span><?= $good->discount / 100 ?></span></div>
-                                    <div class="like_click" data-id="12"> <img src="/images/fight-single/no_liked2.png" data-isliked="0"></div>
+                                    <div class="like_click" data-id="12"> <img src="//ini9g.cn/images/fight-single/no_liked2.png" data-isliked="0"></div>
                                 </li>
                     <?php
                             }
