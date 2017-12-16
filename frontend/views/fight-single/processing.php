@@ -371,6 +371,7 @@ function setCookie(order_id) {
                     window.location.reload();
                 }
             });
+            window.location.reload();
         }
     });
 }
