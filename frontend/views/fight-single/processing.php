@@ -371,7 +371,6 @@ function setCookie(order_id) {
                     window.location.href = location.href+'?time='+((new Date()).getTime());
                 }
             });
-            window.location.reload();
         }
     });
 }
