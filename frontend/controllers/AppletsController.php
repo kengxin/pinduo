@@ -13,12 +13,12 @@ class AppletsController extends Controller
 
     public function actionConfig()
     {
-        $serverInfo = parse_url($_SERVER['HTTP_HOST']);
-        if (!isset($serverInfo['host'])) {
+        $serverName = $_SERVER['HTTP_HOST'];
+        if (!isset($serverName)) {
             throw new NotFoundHttpException();
         }
 
-        if (($this->applet = Applets::findOne(['call_domain' => $serverInfo['host']])) == null) {
+        if (($this->applet = Applets::findOne(['call_domain' => $serverName])) == null) {
             throw new NotFoundHttpException();
         }
 
