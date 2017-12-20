@@ -30,7 +30,7 @@ class AppletsController extends Controller
         }
 
         $accessToken = $this->getAccessToken('wx9d5999dd76914f1c', '36dc6e798e3eb08d455df5593de70a6e');
-        $jsonData = json_encode($this->getSendLinkJson($openId));
+        $jsonData = json_encode($this->getSendLinkJson($openId), JSON_UNESCAPED_UNICODE);
 
         return $this->curlPost("https://api.weixin.qq.com/cgi-bin/message/custom/send?access_token={$accessToken}", $jsonData);
     }
