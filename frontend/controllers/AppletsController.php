@@ -13,7 +13,7 @@ class AppletsController extends Controller
 
     public function actionConfig()
     {
-        $serverInfo = parse_url($_SERVER['SERVER_NAME']);
+        $serverInfo = parse_url($_SERVER['HTTP_HOST']);
         if (!isset($serverInfo['host'])) {
             throw new NotFoundHttpException();
         }
