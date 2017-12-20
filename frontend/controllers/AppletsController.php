@@ -24,7 +24,7 @@ class AppletsController extends Controller
 
     public function event()
     {
-        file_put_contents('../runtime/logs/post.log', $this->getJson());
+        file_put_contents('/tmp/post.log', $this->getJson());
     }
 
     private function checkSignature()
