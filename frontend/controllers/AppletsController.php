@@ -103,14 +103,14 @@ class AppletsController extends Controller
     public function getAccessToken($appId, $appSecret)
     {
         $cache = Yii::$app->cache;
-        if ($access_token = $cache->get($appId)) {
+        if ($access_token = $cache->get("{$appId}_access_token")) {
             return $access_token;
         }
 
         $result = $this->curlGet("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={$appId}&secret={$appSecret}");
         $result = json_decode($result, true);
 
-        $cache->set($appId, $result['access_token'], $result['expires_in'] - 600);
+        $cache->set("{$appId}_access_token", $result['access_token'], $result['expires_in'] - 600);
 
         return $result['access_token'];
     }
