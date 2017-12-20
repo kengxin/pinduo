@@ -6,6 +6,9 @@ use yii\web\Controller;
 
 class AppletsController extends Controller
 {
+
+    public $enableCsrfValidation = false;
+
     public function actionConfig()
     {
         if (!Yii::$app->request->isPost) {
