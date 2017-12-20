@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <?= $form->field($model, 'name')?>
-<?= $form->field($model, 'vid')?>
+<?= $form->field($model, 'video_url')?>
 <?= $form->field($model, 'pause_time')?>
 <?= $form->field($model, 'share_num')?>
 <?= $form->field($model, 'share_thumb')?>

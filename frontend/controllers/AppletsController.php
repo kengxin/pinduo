@@ -6,7 +6,6 @@ use common\models\AppletsVideo;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use Xiang\WechatApp\Decode\WXBizDataCrypt;
 
 class AppletsController extends Controller
 {
@@ -40,19 +39,27 @@ class AppletsController extends Controller
 
     public function actionGetVideo()
     {
-        $vid = Yii::$app->request->get('vid', null);
-        if (($video = AppletsVideo::find()->filterWhere(['vid' => $vid])->one()) == null) {
+        $id = Yii::$app->request->get('id', null);
+        if (($video = AppletsVideo::find()->filterWhere(['id' => $id])->one()) == null) {
             return json_encode([
                 'code' => -1
             ]);
         }
+
+        $videoList = AppletsVideo::find()
+            ->select(['id', 'name'])
+            ->where(['!=', 'id', $video->id])
+            ->limit(2)
+            ->asArray()
+            ->all();
 
         return json_encode([
             'name' => $video->name,
             'video_url' => $video->getVideoUrl(),
             'pause_time' => $video->pause_time,
             'share_num' => $video->share_num,
-            'share_thumb' => $video->share_thumb
+            'share_thumb' => $video->share_thumb,
+            'video_list' => $videoList
         ]);
     }
 
