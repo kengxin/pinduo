@@ -25,7 +25,7 @@ class AppletsController extends Controller
         $model = new Applets();
 
         if (Yii::$app->request->isPost) {
-            if ($model->load(Yii::$app->request->post()) && $model->batchSave()) {
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
                 Yii::$app->session->setFlash('success', '保存成功');
             } else {
                 Yii::$app->session->setFlash('error', '保存失败');

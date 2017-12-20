@@ -2,6 +2,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 class Applets extends ActiveRecord
@@ -9,6 +10,15 @@ class Applets extends ActiveRecord
     public static function tableName()
     {
         return 'applets';
+    }
+
+    public function rules()
+    {
+        return [
+            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'required'],
+            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'string'],
+            [['created_at'], 'integer']
+        ];
     }
 
     public function attributeLabels()
@@ -27,12 +37,15 @@ class Applets extends ActiveRecord
         ];
     }
 
-    public function rules()
+    public function behaviors()
     {
         return [
-            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'required'],
-            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'string'],
-            [['created_at'], 'integer']
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at']
+                ],
+            ],
         ];
     }
 
