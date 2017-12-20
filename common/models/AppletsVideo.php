@@ -2,6 +2,7 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
 class AppletsVideo extends ActiveRecord
@@ -17,6 +18,18 @@ class AppletsVideo extends ActiveRecord
             [['name', 'video_url', 'pause_time', 'share_num', 'share_thumb'], 'required'],
             [['name', 'video_url', 'share_thumb'], 'string'],
             [['pause_time', 'share_num'], 'integer']
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::className(),
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at']
+                ],
+            ],
         ];
     }
 
