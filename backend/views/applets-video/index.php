@@ -13,7 +13,6 @@ $this->title = '视频管理';
         'columns' => [
             'id',
             'name',
-            'video_url',
             'pause_time',
             'share_num',
             'created_at:datetime',
