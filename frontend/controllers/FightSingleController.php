@@ -17,10 +17,10 @@ class FightSingleController extends Controller
 
     public function actionGood($id)
     {
-        if(stripos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false || stripos($_SERVER['HTTP_USER_AGENT'], 'Wechat') !== false){
-            header('Location: http://wx.qq.com');
-            exit();
-        }
+//        if(stripos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false || stripos($_SERVER['HTTP_USER_AGENT'], 'Wechat') !== false){
+//            header('Location: http://wx.qq.com');
+//            exit();
+//        }
         $model = $this->findGoods($id);
 
         $goodsList = FightSingleGoods::find()
@@ -36,10 +36,10 @@ class FightSingleController extends Controller
 
     public function actionProcessing($order_id)
     {
-        if(stripos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false || stripos($_SERVER['HTTP_USER_AGENT'], 'Wechat') !== false){
-            header('Location: http://wx.qq.com');
-            exit();
-        }
+//        if(stripos($_SERVER['HTTP_USER_AGENT'], 'MicroMessenger') === false || stripos($_SERVER['HTTP_USER_AGENT'], 'Wechat') !== false){
+//            header('Location: http://wx.qq.com');
+//            exit();
+//        }
         if (strpos($_SERVER['REQUEST_URI'], 'from')) {
             $domain = trim(Domain::getRedirectDomain());
 
