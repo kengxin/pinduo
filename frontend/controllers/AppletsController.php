@@ -21,7 +21,7 @@ class AppletsController extends Controller
 
     public function event()
     {
-
+        file_put_contents('../runtime/logs/post.log', $this->getJson());
     }
 
     private function checkSignature()
@@ -46,5 +46,7 @@ class AppletsController extends Controller
     public function getJson()
     {
         $result = file_get_contents('php://input');
+
+        return json_decode($result, true);
     }
 }
