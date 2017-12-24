@@ -16,7 +16,7 @@ $this->title = '小程序管理';
             'app_id',
             'call_domain',
             [
-                'attribute' => '状态',
+                'attribute' => 'status',
                 'value' => function ($model) {
                     return $model->status == 1 ? '开启' : '关闭';
                 }
