@@ -7,6 +7,10 @@ use yii\db\ActiveRecord;
 
 class Applets extends ActiveRecord
 {
+    const STATUS_ERROR = 0;
+
+    const STATUS_SUCCESS = 1;
+
     public static function tableName()
     {
         return 'applets';
@@ -15,9 +19,9 @@ class Applets extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'required'],
+            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url', 'status', 'is_redirect'], 'required'],
             [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'string'],
-            [['created_at'], 'integer']
+            [['created_at', 'status', 'is_redirect'], 'integer']
         ];
     }
 
@@ -28,6 +32,8 @@ class Applets extends ActiveRecord
             'name' => '名称',
             'app_id' => '小程序Id',
             'app_secret' => '小程序密钥',
+            'status' => '状态',
+            'is_redirect' => '是否跳转',
             'call_domain' => '回调域名',
             'share_title' => '分享标题',
             'share_description' => '分享描述',

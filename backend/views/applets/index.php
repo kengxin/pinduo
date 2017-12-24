@@ -14,8 +14,19 @@ $this->title = '小程序管理';
             'id',
             'name',
             'app_id',
-            'app_secret',
             'call_domain',
+            [
+                'attribute' => '状态',
+                'value' => function ($model) {
+                    return $model->status == 1 ? '开启' : '关闭';
+                }
+            ],
+            [
+                'attribute' => 'is_redirect',
+                'value' => function ($model) {
+                    return $model->status == 1 ? '开启' : '关闭';
+                }
+            ],
             'created_at:datetime',
             [
                 'class' => 'yii\grid\ActionColumn'

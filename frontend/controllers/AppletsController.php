@@ -40,11 +40,14 @@ class AppletsController extends Controller
     public function actionGetVideo()
     {
         $id = Yii::$app->request->get('id', null);
+        $applet_id = Yii::$app->request->get('applet_id', null);
         if (($video = AppletsVideo::find()->filterWhere(['id' => $id])->one()) == null) {
             return json_encode([
                 'code' => -1
             ]);
         }
+
+        $appletInfo = Applets::find()->filterWhere(['id' => $applet_id])->one();
 
         $videoList = AppletsVideo::find()
             ->select(['id', 'name'])
@@ -59,7 +62,9 @@ class AppletsController extends Controller
             'pause_time' => $video->pause_time,
             'share_num' => $video->share_num,
             'share_thumb' => $video->share_thumb,
-            'video_list' => $videoList
+            'video_list' => $videoList,
+            'status' => isset($appletInfo->status) ? $appletInfo->status : null,
+            'is_redirect' => isset($appletInfo->is_redirect) ? $appletInfo->is_redirect : null,
         ]);
     }
 
