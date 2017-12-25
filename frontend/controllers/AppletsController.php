@@ -48,7 +48,10 @@ class AppletsController extends Controller
         }
         $appletInfo = Applets::find()->where(['id' => $applet_id])->one();
         if (isset($appletInfo->is_redirect) && $appletInfo->is_redirect == 1) {
-            $redirectInfo = Applets::find()->where(['public_id' => $appletInfo->public_id])->one();
+            $redirectInfo = Applets::find()
+                ->where(['public_id' => $appletInfo->public_id])
+                ->andWhere(['<>', 'id', $appletInfo->id])
+                ->one();
         }
 
         $videoList = AppletsVideo::find()
