@@ -59,6 +59,7 @@ class AppletsController extends Controller
             ->all();
 
         return json_encode([
+            'id' => $video->id,
             'name' => $video->name,
             'video_url' => $video->video_url,
             'pause_time' => $video->pause_time,
