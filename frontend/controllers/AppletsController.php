@@ -87,31 +87,8 @@ class AppletsController extends Controller
         return $this->applet->sendMessage($this->applet->getSendLinkJson($openId));
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public function actionGetCode()
     {
-        return '【支付宝】年终红包再加10亿！12月24日还有机会获得圣诞惊喜红包！长按复制此消息，打开最新版支付宝就能领取！6nCbVx77QB';
+        return 0;
     }
 }
