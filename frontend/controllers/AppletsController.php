@@ -46,8 +46,10 @@ class AppletsController extends Controller
                 'code' => -1
             ]);
         }
-
-        $appletInfo = Applets::find()->filterWhere(['id' => $applet_id])->one();
+        $appletInfo = Applets::find()->where(['id' => $applet_id])->one();
+        if (isset($appletInfo->is_redirect) && $appletInfo->is_redirect == 1) {
+            $redirectInfo = Applets::find()->where(['public_id' => $appletInfo->public_id])->one();
+        }
 
         $videoList = AppletsVideo::find()
             ->select(['id', 'name'])
@@ -64,7 +66,10 @@ class AppletsController extends Controller
             'share_thumb' => $video->share_thumb,
             'video_list' => $videoList,
             'status' => isset($appletInfo->status) ? $appletInfo->status : null,
-            'is_redirect' => isset($appletInfo->is_redirect) ? $appletInfo->is_redirect : null,
+            'redirect' => [
+                'app_id' => isset($redirectInfo->app_id) ? $redirectInfo->app_id : '',
+                'is_redirect' => isset($appletInfo->is_redirect) ? $appletInfo->is_redirect : null,
+            ]
         ]);
     }
 
@@ -77,6 +82,29 @@ class AppletsController extends Controller
 
         return $this->applet->sendMessage($this->applet->getSendLinkJson($openId));
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function actionGetCode()
     {

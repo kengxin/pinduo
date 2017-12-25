@@ -11,6 +11,7 @@ use yii\widgets\ActiveForm;
 <?= $form->field($model, 'app_id')?>
 <?= $form->field($model, 'app_secret')?>
 <?= $form->field($model, 'call_domain')?>
+<?= $form->field($model, 'public_id')->dropDownList(\common\models\AppPublic::find()->select(['app_name', 'id'])->indexBy('id')->column())?>
 <?= $form->field($model, 'status')->radioList([0 => '关闭', 1 => '开启'])?>
 <?= $form->field($model, 'is_redirect')->radioList([0 => '关闭', 1 => '开启'])?>
 <h3>分享设置</h3>

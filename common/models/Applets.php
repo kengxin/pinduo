@@ -19,9 +19,9 @@ class Applets extends ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url', 'status', 'is_redirect'], 'required'],
+            [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url', 'status', 'is_redirect', 'public_id'], 'required'],
             [['name', 'app_id', 'app_secret', 'call_domain', 'share_title', 'share_description', 'share_thumb', 'share_url'], 'string'],
-            [['created_at', 'status', 'is_redirect'], 'integer']
+            [['created_at', 'status', 'is_redirect', 'public_id'], 'integer']
         ];
     }
 
@@ -39,6 +39,7 @@ class Applets extends ActiveRecord
             'share_description' => '分享描述',
             'share_thumb' => '分享缩略图',
             'share_url' => '分享Url',
+            'public_id' => '所属公众号',
             'created_at' => '创建时间'
         ];
     }
