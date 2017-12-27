@@ -53,7 +53,6 @@ class AppletsNewController extends Controller
     public function actionGetVideo()
     {
         $id = Yii::$app->request->get('video_id', null);
-        $applet_id = Yii::$app->request->get('applet_id', null);
 
         if (($video = AppletsVideo::find()->filterWhere(['id' => $id])->one()) == null) {
             return json_encode([
@@ -62,7 +61,7 @@ class AppletsNewController extends Controller
         }
 
         return json_encode([
-            'data' => 0,
+            'code' => 0,
             'msg' => 'success',
             'data' => [
                 'video_id' => $video->id,
