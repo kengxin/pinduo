@@ -7,7 +7,7 @@ use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class AppletsController extends Controller
+class AppletsNewController extends Controller
 {
     public $applet = null;
     public $enableCsrfValidation = false;
