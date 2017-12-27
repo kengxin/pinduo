@@ -42,8 +42,11 @@ class AppletsNewController extends Controller
         }
 
         return json_encode([
-            'id' => $appletInfo->id,
-            'status' => boolval($appletInfo->status)
+            'code' => 0,
+            'data' => [
+                'id' => $appletInfo->id,
+                'status' => boolval($appletInfo->status)
+            ]
         ]);
     }
 
