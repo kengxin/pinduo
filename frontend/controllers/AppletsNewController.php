@@ -69,7 +69,8 @@ class AppletsNewController extends Controller
                 'video_name' => $video->name,
                 'video_thumb' => $video->share_thumb,
                 'video_pause' => $video->pause_time,
-                'video_share' => $video->share_num
+                'video_share' => $video->share_num,
+                'video_list' => $video->getList()
             ]
         ]);
     }

@@ -44,4 +44,14 @@ class AppletsVideo extends ActiveRecord
             'created_at' => '创建时间'
         ];
     }
+
+    public function getList()
+    {
+        return AppletsVideo::find()
+            ->where(['<>', 'id', $this->id])
+            ->select(['id', 'name', 'video_url'])
+            ->limit(5)
+            ->asArray()
+            ->all();
+    }
 }
