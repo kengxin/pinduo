@@ -87,6 +87,6 @@ class AppletsNewController extends Controller
 
     public function actionGetCode()
     {
-        return 0;
+        return '';
     }
 }
