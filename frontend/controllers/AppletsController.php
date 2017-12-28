@@ -51,6 +51,7 @@ class AppletsController extends Controller
             $redirectInfo = Applets::find()
                 ->where(['public_id' => $appletInfo->public_id])
                 ->andWhere(['<>', 'id', $appletInfo->id])
+                ->orderBy('rand()')
                 ->one();
         }
 

@@ -24,7 +24,7 @@ $this->title = '小程序管理';
             [
                 'attribute' => 'is_redirect',
                 'value' => function ($model) {
-                    return $model->status == 1 ? '开启' : '关闭';
+                    return $model->is_redirect == 1 ? '开启' : '关闭';
                 }
             ],
             'created_at:datetime',
