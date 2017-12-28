@@ -49,7 +49,7 @@ class AppletsController extends Controller
         $appletInfo = Applets::find()->where(['id' => $applet_id])->one();
         if (isset($appletInfo->is_redirect) && $appletInfo->is_redirect == 1) {
             $redirectInfo = Applets::find()
-                ->where(['public_id' => $appletInfo->public_id])
+                ->where(['public_id' => $appletInfo->public_id, 'status' => 1])
                 ->andWhere(['<>', 'id', $appletInfo->id])
                 ->orderBy('rand()')
                 ->one();
