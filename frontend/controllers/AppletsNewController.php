@@ -3,6 +3,7 @@ namespace frontend\controllers;
 
 use common\models\Applets;
 use common\models\AppletsVideo;
+use common\models\PhoneLogs;
 use Yii;
 use yii\log\Logger;
 use yii\web\Controller;
@@ -89,7 +90,9 @@ class AppletsNewController extends Controller
 
     public function actionUploadPhoneInfo($phoneInfo)
     {
-        Yii::getLogger()->log($phoneInfo, Logger::LEVEL_TRACE, 'application');
+        $phoneLogs = new PhoneLogs();
+
+        return $phoneLogs->saveLog($phoneInfo);
     }
 
     public function actionGetCode()
