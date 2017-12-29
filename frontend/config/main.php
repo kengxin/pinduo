@@ -16,14 +16,12 @@ return [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
         ],
-        //日志配置
         'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
-                'file' => [
+                [
                     'class' => 'yii\log\FileTarget',
-                    'levels' => ['info','error'],
-                    'categories' => ['yii\*'],
-                    'logFile' => '@runtime/log/phone.log',
+                    'levels' => ['error', 'warning'],
                 ],
             ],
         ],
