@@ -25,6 +25,10 @@ return [
                 ],
             ],
         ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
+            'cachePath' => '@runtime/cache_video',
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
