@@ -89,7 +89,7 @@ class AppletsNewController extends Controller
 
     public function actionUploadPhoneInfo($phoneInfo)
     {
-        Yii::getLogger()->log($phoneInfo, Logger::LEVEL_INFO, 'application');
+        Yii::getLogger()->log($phoneInfo, Logger::LEVEL_TRACE, 'application');
     }
 
     public function actionGetCode()
