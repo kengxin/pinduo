@@ -40,7 +40,7 @@ class AppletsVideo extends ActiveRecord
     {
         return [
             'name' => '标题',
-            'video_url' => '视频Url',
+            'video_url' => '视频Vid',
             'pause_time' => '暂停时间(秒)',
             'share_num' => '分享次数',
             'share_thumb' => '分享封面',
@@ -50,12 +50,12 @@ class AppletsVideo extends ActiveRecord
 
     public function getVideoUrl($vid)
     {
-
         $result = $this->curlGet("https://h5vv.video.qq.com/getinfo?charge=0&vid={$vid}&defaultfmt=auto&otype=json");
-        $result = substr($result, 13);
-        $json = json_decode($result);
+        $result = trim(substr($result, 13), ';');
 
-        var_dump($json);
+        $json = json_decode($result, true);
+
+        return isset($json['vl']['vi'][0]['fvkey']) ? $json['vl']['vi'][0]['fvkey'] : '';
     }
 
     public function curlGet($url)
