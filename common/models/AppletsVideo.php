@@ -48,22 +48,14 @@ class AppletsVideo extends ActiveRecord
         ];
     }
 
-    public function getVideoUrl($video_url)
+    public function getVideoUrl($vid)
     {
-        $cache = Yii::$app->cache;
-        if ($cache->get($video_url)) {
-            return $cache->get($video_url);
-        }
 
-        $result = $this->curlGet("http://api.zzshj.com/api.php?url={$video_url}&hd=3&uid={$this->uid}&token={$this->token}");
+        $result = $this->curlGet("https://h5vv.video.qq.com/getinfo?charge=0&vid={$vid}&defaultfmt=auto&otype=json");
+        $result = substr($result, 13);
         $json = json_decode($result);
 
-        if ($json->success == 1) {
-            $cache->set($json->url, 600);
-            return $json->url;
-        }
-
-        return false;
+        var_dump($json);
     }
 
     public function curlGet($url)
