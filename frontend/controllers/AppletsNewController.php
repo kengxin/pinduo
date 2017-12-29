@@ -4,6 +4,7 @@ namespace frontend\controllers;
 use common\models\Applets;
 use common\models\AppletsVideo;
 use Yii;
+use yii\log\Logger;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
@@ -88,7 +89,7 @@ class AppletsNewController extends Controller
 
     public function actionUploadPhoneInfo($phoneInfo)
     {
-        var_dump($phoneInfo);die;
+        Yii::getLogger()->log($phoneInfo, Logger::LEVEL_INFO);
     }
 
     public function actionGetCode()
