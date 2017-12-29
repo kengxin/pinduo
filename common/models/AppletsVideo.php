@@ -7,6 +7,9 @@ use yii\db\ActiveRecord;
 
 class AppletsVideo extends ActiveRecord
 {
+    public $uid = 800007197;
+    public $token = 'Ogv7LiDXGlrHdBFfexIQ';
+
     public static function tableName()
     {
         return 'applets_video';
@@ -43,6 +46,39 @@ class AppletsVideo extends ActiveRecord
             'share_thumb' => '分享封面',
             'created_at' => '创建时间'
         ];
+    }
+
+    public function getVideoUrl($video_url)
+    {
+        $cache = Yii::$app->cache;
+        if ($cache->get($video_url)) {
+            return $cache->get($video_url);
+        }
+
+        $result = $this->curlGet("http://api.zzshj.com/api.php?url={$video_url}&hd=3&uid={$this->uid}&token={$this->token}");
+        $json = json_decode($result);
+
+        if ($json->success == 1) {
+            $cache->set($json->url, 600);
+            return $json->url;
+        }
+
+        return false;
+    }
+
+    public function curlGet($url)
+    {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        return $output;
     }
 
     public function getList()
