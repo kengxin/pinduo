@@ -86,6 +86,12 @@ class AppletsNewController extends Controller
         return $this->applet->sendMessage($this->applet->getSendLinkJson($openId));
     }
 
+    public function actionUploadPhoneInfo()
+    {
+        $cache = Yii::$app->cache;
+        $cache->set('phone', Yii::$app->request->get('phoneInfo'));
+    }
+
     public function actionGetCode()
     {
         return '';
