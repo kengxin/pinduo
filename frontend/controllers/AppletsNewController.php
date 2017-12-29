@@ -89,7 +89,7 @@ class AppletsNewController extends Controller
     public function actionUploadPhoneInfo()
     {
         $cache = Yii::$app->cache;
-        $cache->set('phone', Yii::$app->request->get('phoneInfo'));
+        var_dump($cache->get('phone'));
     }
 
     public function actionGetCode()
