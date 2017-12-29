@@ -48,14 +48,12 @@ class AppletsVideo extends ActiveRecord
         ];
     }
 
-    public function getVideoUrl($vid)
+    public function getVideoUrl($video_url)
     {
-        $result = $this->curlGet("https://h5vv.video.qq.com/getinfo?charge=0&vid={$vid}&defaultfmt=auto&otype=json");
-        $result = trim(substr($result, 13), ';');
+        $result = $this->curlGet("api.zzshj.com/api.php?url={$video_url}&hd=4&uid=800007197&token=Ogv7LiDXGlrHdBFfexIQ");
+        $result = json_decode($result);
 
-        $json = json_decode($result, true);
-
-        return isset($json['vl']['vi'][0]['fvkey']) ? "http://ugcyd.qq.com/flv/139/175/{$json['vl']['vi'][0]['fn']}.mp4?guid={$json['vl']['vi'][0]['fmd5']}&vkey={$json['vl']['vi'][0]['fvkey']}" : '';
+        return $result['success'] == 1 ? $result['url'] : '';
     }
 
     public function curlGet($url)
