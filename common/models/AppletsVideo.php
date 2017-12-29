@@ -58,7 +58,7 @@ class AppletsVideo extends ActiveRecord
         $result = json_decode($result, true);
 
         if ($result['success'] == 1) {
-            $cache->set($this->id, 60);
+            $cache->set($this->id, $result['url'], 60);
             return $result['url'] . '&v=123';
         }
 
