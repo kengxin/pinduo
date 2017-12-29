@@ -60,7 +60,7 @@ class AppletsVideo extends ActiveRecord
         if ($result['success'] == 1) {
             $cache->set($this->id, $result['url'], 1800);
 
-            return $result['url'];
+            return $result['url'] . '&v=1';
         }
 
         return '';
