@@ -55,7 +55,7 @@ class AppletsVideo extends ActiveRecord
 
         $json = json_decode($result, true);
 
-        return isset($json['vl']['vi'][0]['fvkey']) ? "http://ugcyd.qq.com/flv/139/175/{$vid}.mp4?guid={$json['vl']['vi'][0]['fmd5']}&vkey={$json['vl']['vi'][0]['fvkey']}" : '';
+        return isset($json['vl']['vi'][0]['fvkey']) ? "{$json['vl']['vi'][0]['ul']['ui'][0]['url']}{$vid}.mp4?guid={$json['vl']['vi'][0]['fmd5']}&vkey={$json['vl']['vi'][0]['fvkey']}" : '';
     }
 
     public function curlGet($url)
