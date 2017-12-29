@@ -51,9 +51,6 @@ class AppletsVideo extends ActiveRecord
     public function getVideoUrl()
     {
         $cache = Yii::$app->cache;
-        $cache->set($this->id, 123);
-        var_dump($cache->get($this->id));die;
-
         if ($cache->get($this->id)) {
             return $cache->get($this->id);
         }
@@ -62,6 +59,7 @@ class AppletsVideo extends ActiveRecord
 
         if ($result['success'] == 1) {
             $cache->set($this->id, $result['url']);
+
             return $result['url'] . '&v=123';
         }
 
