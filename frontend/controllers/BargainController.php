@@ -65,6 +65,7 @@ class BargainController extends Controller
     public function getRequestContent()
     {
         $result = file_get_contents('php://input');
+        var_dump($result);die;
         if (!empty($result)) {
             $result = json_decode($result, true);
 
