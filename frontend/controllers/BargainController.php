@@ -35,14 +35,8 @@ class BargainController extends Controller
 
     public function actionJoin()
     {
-        $good_id = intval(Yii::$app->request->post('good_id', 0));
-        $user_name = Yii::$app->request->post('user_name', '');
-        $avatar = Yii::$app->request->post('avatar', '');
-
-        var_dump($good_id);
-        var_dump($user_name);
-        var_dump($avatar);
-        if (empty($good_id) || empty($user_name) || empty($avatar)) {
+        $result = $this->getRequestContent();
+        if (empty($result['good_id']) || empty($result['user_name']) || empty($result['avatar'])) {
             return json_encode([
                 'code' => -1,
                 'msg' => '参数错误'
@@ -50,7 +44,7 @@ class BargainController extends Controller
         }
 
         $bargainOrder = new BargainOrder();
-        $order_id = $bargainOrder->saveOrder($good_id, $user_name, $avatar);
+        $order_id = $bargainOrder->saveOrder($result['good_id'], $result['user_name'], $result['avatar']);
 
         if ($order_id) {
             return json_encode([
@@ -66,5 +60,17 @@ class BargainController extends Controller
             'code' => -1,
             'msg' => '系统错误'
         ]);
+    }
+
+    public function getRequestContent()
+    {
+        $result = file_get_contents('php://input');
+        if (!empty($result)) {
+            $result = json_decode($result, true);
+
+            return $result;
+        }
+
+        return false;
     }
 }
