@@ -8,6 +8,8 @@ use common\models\BargainGoods;
 
 class BargainController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     public function actionGetGood($id)
     {
         $id = intval($id);
