@@ -43,4 +43,24 @@ class BargainOrder extends ActiveRecord
             ],
         ];
     }
+
+    public function saveOrder($good_id, $user_name, $avatar)
+    {
+        $goodInfo = BargainGoods::findOne($good_id);
+
+        if (empty($goodInfo)) {
+            return false;
+        }
+
+        $this->good_id = $good_id;
+        $this->user_name = $user_name;
+        $this->avatar = $avatar;
+        $this->current_price = $goodInfo->price;
+
+        if ($this->save()) {
+            return $this->id;
+        }
+
+        return false;
+    }
 }
