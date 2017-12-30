@@ -19,7 +19,7 @@ class m171230_072844_bargin_order_children extends Migration
             'bargain_price' => 'INT(11) NOT NULL DEFAULT 0',
             'order_id' => 'INT(11) NOT NULL DEFAULT 0',
             'created_at' => 'INT(11) NOT NULL DEFAULT 0'
-        ]);
+        ], 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
     }
 
     /**

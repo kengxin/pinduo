@@ -18,7 +18,7 @@ class m171230_072251_bargin_order extends Migration
             'avatar' => 'VARCHAR(255) NOT NULL DEFAULT ""',
             'current_price' => 'INT(11) NOT NULL DEFAULT 0',
             'created_at' => 'INT(11) NOT NULL DEFAULT 0'
-        ]);
+        ], 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
     }
 
     /**

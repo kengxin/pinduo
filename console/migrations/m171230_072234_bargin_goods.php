@@ -21,7 +21,7 @@ class m171230_072234_bargin_goods extends Migration
             'content' => 'TEXT',
             'closed_at' => 'INT(11) NOT NULL DEFAULT 0',
             'created_at' => 'INT(11) NOT NULL DEFAULT 0'
-        ]);
+        ], 'ENGINE=InnoDB DEFAULT CHARSET=utf8mb4');
     }
 
     /**
