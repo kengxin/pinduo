@@ -42,7 +42,7 @@ class BargainController extends Controller
                 'msg' => '参数错误'
             ]);
         }
-var_dump($result);die;
+
         $bargainOrder = new BargainOrder();
         $order_id = $bargainOrder->saveOrder($result['good_id'], $result['user_name'], $result['avatar']);
 
