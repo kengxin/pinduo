@@ -52,9 +52,8 @@ class BargainOrder extends ActiveRecord
             return false;
         }
 
-        var_dump(1);
+        var_dump(1);die;
         $this->good_id = $good_id;
-        var_dump(2);die;
         $this->user_name = $user_name;
         $this->avatar = $avatar;
         $this->current_price = $goodInfo->price;
