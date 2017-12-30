@@ -15,9 +15,9 @@ class BargainOrder extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_name', 'avatar', 'current_price'], 'required'],
+            [['user_name', 'avatar', 'current_price', 'good_id'], 'required'],
             [['user_name', 'avatar'], 'string'],
-            [['current_price', 'created_at'], 'integer']
+            [['current_price', 'good_id', 'created_at'], 'integer']
         ];
     }
 
@@ -28,6 +28,7 @@ class BargainOrder extends ActiveRecord
             'user_name' => '用户名',
             'avatar' => '用户头像',
             'current_price' => '当前价格',
+            'good_id' => '商品Id',
             'created_at' => '创建时间'
         ];
     }
@@ -52,18 +53,15 @@ class BargainOrder extends ActiveRecord
             return false;
         }
 
-        var_dump(1);die;
         $this->good_id = $good_id;
         $this->user_name = $user_name;
         $this->avatar = $avatar;
         $this->current_price = $goodInfo->price;
 
-        var_dump($this);die;
         if ($this->save()) {
             return $this->id;
         }
 
-        var_dump($this->getErrors());die;
         return false;
     }
 }
