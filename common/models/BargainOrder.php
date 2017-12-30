@@ -57,6 +57,7 @@ class BargainOrder extends ActiveRecord
         $this->avatar = $avatar;
         $this->current_price = $goodInfo->price;
 
+        var_dump($this);die;
         if ($this->save()) {
             return $this->id;
         }
