@@ -37,9 +37,6 @@ class BargainController extends Controller
         $user_name = Yii::$app->request->post('user_name', '');
         $avatar = Yii::$app->request->post('avatar', '');
 
-        var_dump($good_id);
-        var_dump($user_name);
-        var_dump($avatar);die;
         if (empty($good_id) || empty($user_name) || empty($avatar)) {
             return json_encode([
                 'code' => -1,
