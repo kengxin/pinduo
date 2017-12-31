@@ -45,12 +45,16 @@ class BargainOrderChildren extends ActiveRecord
         ];
     }
 
-    public function saveOrder($order_id, $user_name, $avatar)
+    public function saveOrder($good_id, $order_id, $user_name, $avatar)
     {
+        $orderInfo = BargainOrder::findOne($order_id);
+        $goodInfo = BargainGoods::findOne($good_id);
+
+        $rand_price =  mt_rand(10000, 50000);
         $this->order_id = $order_id;
         $this->user_name = $user_name;
         $this->avatar = $avatar;
-        $this->bargain_price = mt_rand(10000, 50000);
+        $this->bargain_price = $orderInfo->current_price - $rand_price < $goodInfo->discount ? $goodInfo->dis_count : $rand_price;
 
         if ($this->save()) {
             return $this->bargain_price;

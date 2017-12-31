@@ -70,7 +70,7 @@ class BargainController extends Controller
     public function actionHelpUser()
     {
         $result = $this->getRequestContent();
-        if (empty($result['order_id']) || empty($result['user_name']) || empty($result['avatar'])) {
+        if (empty($result['good_id']) || empty($result['order_id']) || empty($result['user_name']) || empty($result['avatar'])) {
             return json_encode([
                 'code' => -1,
                 'msg' => '参数错误'
@@ -78,7 +78,7 @@ class BargainController extends Controller
         }
 
         $bargainOrder = new BargainOrderChildren();
-        $bargain_price = $bargainOrder->saveOrder( $result['order_id'], $result['user_name'], $result['avatar']);
+        $bargain_price = $bargainOrder->saveOrder($result['good_id'], $result['order_id'], $result['user_name'], $result['avatar']);
 
         if ($bargain_price) {
             return json_encode([
