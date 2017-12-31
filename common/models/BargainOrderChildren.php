@@ -58,6 +58,7 @@ class BargainOrderChildren extends ActiveRecord
 
         if ($this->save()) {
             $orderInfo->current_price = $orderInfo->current_price - $this->bargain_price;
+            $orderInfo->save();
 
             return $this->bargain_price;
         }
