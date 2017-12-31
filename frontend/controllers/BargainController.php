@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\BargainOrder;
+use common\models\BargainOrderChildren;
 use Yii;
 use yii\web\Controller;
 use common\models\BargainGoods;
@@ -29,6 +30,34 @@ class BargainController extends Controller
                 'discount' => $goodInfo->discount,
                 'content' => $goodInfo->content,
                 'closed_at' => $goodInfo->closed_at
+            ]
+        ]);
+    }
+
+    public function getOrderInfo($id)
+    {
+        $id = intval($id);
+        if (($orderInfo = BargainOrder::findOne($id)) == null){
+            return json_encode([
+                'code' => -1,
+                'msg' => 'error'
+            ]);
+        }
+
+        $childrenList = BargainOrderChildren::find()
+            ->where(['order_id' => $orderInfo->id])
+            ->select(['user_name', 'avatar', 'bargain_price', 'created_at'])
+            ->limit(10)
+            ->orderBy('id DESC')
+            ->asArray()
+            ->all();
+
+        return json_encode([
+            'code' => 0,
+            'msg' => 'ok',
+            'data' => [
+                'orderInfo' => $orderInfo,
+                'childrenList' => $childrenList
             ]
         ]);
     }
