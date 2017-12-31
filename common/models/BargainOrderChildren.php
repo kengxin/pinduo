@@ -44,4 +44,18 @@ class BargainOrderChildren extends ActiveRecord
             ],
         ];
     }
+
+    public function saveOrder($order_id, $user_name, $avatar)
+    {
+        $this->order_id = $order_id;
+        $this->user_name = $user_name;
+        $this->avatar = $avatar;
+        $this->bargain_price = mt_rand(10000, 50000);
+
+        if ($this->save()) {
+            return $this->bargain_price;
+        }
+
+        return false;
+    }
 }

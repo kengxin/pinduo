@@ -67,6 +67,35 @@ class BargainController extends Controller
         ]);
     }
 
+    public function actionHelpUser()
+    {
+        $result = $this->getRequestContent();
+        if (empty($result['order_id']) || empty($result['user_name']) || empty($result['avatar'])) {
+            return json_encode([
+                'code' => -1,
+                'msg' => '参数错误'
+            ]);
+        }
+
+        $bargainOrder = new BargainOrderChildren();
+        $bargain_price = $bargainOrder->saveOrder( $result['order_id'], $result['user_name'], $result['avatar']);
+
+        if ($bargain_price) {
+            return json_encode([
+                'code' => 0,
+                'msg' => 'success',
+                'data' => [
+                    'bargain_price' => $bargain_price
+                ]
+            ]);
+        }
+
+        return json_encode([
+            'code' => -1,
+            'msg' => 'error'
+        ]);
+    }
+
     public function actionJoin()
     {
         $result = $this->getRequestContent();
