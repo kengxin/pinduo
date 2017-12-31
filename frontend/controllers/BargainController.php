@@ -34,7 +34,7 @@ class BargainController extends Controller
         ]);
     }
 
-    public function getOrderInfo($id)
+    public function actionGetOrderInfo($id)
     {
         $id = intval($id);
         if (($orderInfo = BargainOrder::findOne($id)) == null){
