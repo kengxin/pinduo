@@ -37,7 +37,7 @@ class BargainController extends Controller
     public function actionGetOrderInfo($id)
     {
         $id = intval($id);
-        if (($orderInfo = BargainOrder::findOne($id)) == null){
+        if (($orderInfo = BargainOrder::find()->where(['id' => $id])->asArray()->one()) == null){
             return json_encode([
                 'code' => -1,
                 'msg' => 'error'
@@ -45,7 +45,7 @@ class BargainController extends Controller
         }
 
         $childrenList = BargainOrderChildren::find()
-            ->where(['order_id' => $orderInfo->id])
+            ->where(['order_id' => $orderInfo['id']])
             ->select(['user_name', 'avatar', 'bargain_price', 'created_at'])
             ->limit(10)
             ->orderBy('id DESC')
