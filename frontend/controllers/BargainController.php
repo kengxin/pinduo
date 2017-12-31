@@ -52,6 +52,11 @@ class BargainController extends Controller
             ->asArray()
             ->all();
 
+        foreach ($childrenList as $k => $v) {
+            $childrenList[$k]['bargain_price'] = $childrenList[$k]['bargain_price'] / 100;
+            $childrenList[$k]['created_at'] = date('Y-m-d H:i:s', $v['created_at']);
+        }
+
         return json_encode([
             'code' => 0,
             'msg' => 'ok',
