@@ -47,7 +47,7 @@ class AppletsNewController extends Controller
             'code' => 0,
             'data' => [
                 'id' => $applet_id,
-                'status' => $applet_id == 4 ? true : false
+                'status' => $applet_id == 3 ? true : false
             ]
         ]);
     }
