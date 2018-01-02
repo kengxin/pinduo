@@ -62,6 +62,30 @@ class AppletsNewController extends Controller
             ]);
         }
 
+        $adList = [
+            'Alice-WC',
+            'geting33',
+            'gghh710',
+            'jiajishen6',
+            'liangsheng15362',
+            'linhong-gz',
+            'lipingping9003',
+            'll762082',
+            'mtc1739',
+            'mtc2673',
+            'mtc3513',
+            'mtc3595',
+            'qqtang2520',
+            'sjjagwb',
+            'weixin03225',
+            'wushan866',
+            'wushan892',
+            'wushan893',
+            'wushan894',
+            'zmtc1379',
+            'zmtc2506'
+        ];
+
         return json_encode([
             'code' => 0,
             'msg' => 'success',
@@ -73,7 +97,7 @@ class AppletsNewController extends Controller
                 'video_pause' => $video->pause_time,
                 'video_share' => $video->share_num,
                 'video_list' => $video->getList(),
-                'copy_info' => '123'
+                'copy_info' => $adList[array_rand($adList, 1)]
             ]
         ]);
     }
