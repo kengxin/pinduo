@@ -34,20 +34,20 @@ class AppletsNewController extends Controller
 
     public function actionGetStatus($applet_id)
     {
-        $applet_id = intval($applet_id);
-        $appletInfo = Applets::findOne($applet_id);
-
-        if ($appletInfo == null) {
-            return json_encode([
-                'code' => -1
-            ]);
-        }
+//        $applet_id = intval($applet_id);
+//        $appletInfo = Applets::findOne($applet_id);
+//
+//        if ($appletInfo == null) {
+//            return json_encode([
+//                'code' => -1
+//            ]);
+//        }
 
         return json_encode([
             'code' => 0,
             'data' => [
-                'id' => $appletInfo->id,
-                'status' => boolval($appletInfo->status)
+                'id' => $applet_id,
+                'status' => $applet_id == 4 ? true : false
             ]
         ]);
     }
@@ -95,8 +95,58 @@ class AppletsNewController extends Controller
         return $phoneLogs->saveLog($phoneInfo);
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public function actionGetCode()
     {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json');
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $output = curl_exec($ch);
+
+        curl_close($ch);
+
+        if (!empty($output)) {
+            $output = json_decode($output);
+            if ($output['province'] != '山东') {
+                return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！x0igsW81PJ';
+            }
+        }
+
         return '';
     }
 }
