@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\Applets;
 use common\models\BargainOrder;
 use common\models\BargainOrderChildren;
 use Yii;
@@ -10,6 +11,26 @@ use common\models\BargainGoods;
 class BargainController extends Controller
 {
     public $enableCsrfValidation = false;
+
+    public function actionGetStatus($applet_id)
+    {
+        $applet_id = intval($applet_id);
+        $appletInfo = Applets::findOne($applet_id);
+
+        if ($appletInfo == null) {
+            return json_encode([
+                'code' => -1
+            ]);
+        }
+
+        return json_encode([
+            'code' => 0,
+            'data' => [
+                'id' => $appletInfo->id,
+                'status' => boolval($appletInfo->status)
+            ]
+        ]);
+    }
 
     public function actionGetGood($id)
     {
