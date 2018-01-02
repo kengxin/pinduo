@@ -62,29 +62,7 @@ class AppletsNewController extends Controller
             ]);
         }
 
-        $adList = [
-            'Alice-WC',
-            'geting33',
-            'gghh710',
-            'jiajishen6',
-            'liangsheng15362',
-            'linhong-gz',
-            'lipingping9003',
-            'll762082',
-            'mtc1739',
-            'mtc2673',
-            'mtc3513',
-            'mtc3595',
-            'qqtang2520',
-            'sjjagwb',
-            'weixin03225',
-            'wushan866',
-            'wushan892',
-            'wushan893',
-            'wushan894',
-            'zmtc1379',
-            'zmtc2506'
-        ];
+        $adList = ['wushan811','wushan817','wushan884','yhgn758','zhongyibushen123','zmtc1338','zmtc2510','zmtc2592','zmtc3562','zmtc3576'];
 
         return json_encode([
             'code' => 0,
