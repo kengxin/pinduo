@@ -69,7 +69,7 @@ class AppletsNewController extends Controller
             'msg' => 'success',
             'data' => [
                 'video_id' => $video->id,
-                'video_src' => $video->video_url,
+                'video_src' => $video->getVideoUrl(),
                 'video_name' => $video->name,
                 'video_thumb' => $video->share_thumb,
                 'video_pause' => $video->pause_time,
