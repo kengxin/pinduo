@@ -50,17 +50,11 @@ class AppletsVideo extends ActiveRecord
 
     public function getVideoUrl()
     {
-        $cache = Yii::$app->cache;
-        if ($cache->get($this->id)) {
-            return $cache->get($this->id);
-        }
         $result = $this->curlGet("http://api.zzshj.com/api.php?url={$this->video_url}&hd=4&uid=800007197&token=Ogv7LiDXGlrHdBFfexIQ");
         $result = json_decode($result, true);
 
         if ($result['success'] == 1) {
-            $cache->set($this->id, $result['url'], 120);
-
-            return $result['url'] . '&v=1';
+            return $result['url'];
         }
 
         return '';
