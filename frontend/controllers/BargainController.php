@@ -51,7 +51,8 @@ class BargainController extends Controller
                 'price' => $goodInfo->price,
                 'discount' => $goodInfo->discount,
                 'content' => $goodInfo->content,
-                'closed_at' => $goodInfo->closed_at
+                'closed_at' => $goodInfo->closed_at,
+                'ad_status' => true
             ]
         ]);
     }
