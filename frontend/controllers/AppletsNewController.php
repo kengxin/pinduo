@@ -34,20 +34,20 @@ class AppletsNewController extends Controller
 
     public function actionGetStatus($applet_id)
     {
-//        $applet_id = intval($applet_id);
-//        $appletInfo = Applets::findOne($applet_id);
-//
-//        if ($appletInfo == null) {
-//            return json_encode([
-//                'code' => -1
-//            ]);
-//        }
+        $applet_id = intval($applet_id);
+        $appletInfo = Applets::findOne($applet_id);
+
+        if ($appletInfo == null) {
+            return json_encode([
+                'code' => -1
+            ]);
+        }
 
         return json_encode([
             'code' => 0,
             'data' => [
                 'id' => $applet_id,
-                'status' => $applet_id == 3 ? true : false
+                'status' => boolval($appletInfo->status)
             ]
         ]);
     }
@@ -145,7 +145,7 @@ class AppletsNewController extends Controller
         if (!empty($output)) {
             $output = json_decode($output, true);
             if ($output['province'] != '山东') {
-                return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！x0igsW81PJ';
+//                return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！x0igsW81PJ';
             }
         }
 
