@@ -29,25 +29,14 @@ class WeChatSendMsg extends Component
     }
 
     function getAccessToken() {
-        $cache = Yii::$app->cache;
-
-        if (!empty($data = $cache->get('wechat_access_token'))) {
-            $data = json_decode($data);
+        $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={$this->app_id}&corpsecret={$this->app_secret}";
+        $res = json_decode($this->curlGet($url),true);
+        $access_token = $res['access_token'];
+        if ($access_token) {
+            $data['expire_time'] = time() + 7000;
+            $data['access_token'] = $access_token;
         }
 
-        if (empty($data) && $data["expire_time"] < time()) {
-            $url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={$this->app_id}&corpsecret={$this->app_secret}";
-            $res = json_decode($this->curlGet($url),true);
-            $access_token = $res['access_token'];
-            if ($access_token) {
-                $data['expire_time'] = time() + 7000;
-                $data['access_token'] = $access_token;
-
-                $cache->set('wechat_access_token', json_encode($data));
-            }
-        } else {
-            $access_token = $data['access_token'];
-        }
         return $access_token;
     }
 
