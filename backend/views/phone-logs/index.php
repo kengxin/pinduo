@@ -25,6 +25,7 @@ $this->title = '截图日志管理';
                     return $json->model;
                 }
             ],
+            'send_ip',
             'created_at:datetime'
         ]
     ])?>
