@@ -81,7 +81,7 @@ class AppletsVideo extends ActiveRecord
         return AppletsVideo::find()
             ->where(['<>', 'id', $this->id])
             ->select(['id', 'name', 'share_thumb'])
-            ->limit(5)
+            ->limit(10)
             ->asArray()
             ->all();
     }
