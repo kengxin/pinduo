@@ -62,7 +62,7 @@ class AppletsNewController extends Controller
             ]);
         }
 
-        $adList = ['cat85858','cat151151','cat155155','cat158158','cat518158','cat559558','cat658658','ciantang128','ciantang160','ciantang168','ciantang186','WHF2160','WHQ6223','yaqian2256','zby4455','24714255','47493694','48477507','48907303','76283897','78110389','78394250','79378241','79381984','79503145','84980254','93753437','anna47568','bushen0293','dxgv69','Guhb25','ijbv50','ijbv83','mols52','nmji80'];
+        $adList = ['cat85858','cat151151','cat155155','cat158158','cat518158','cat559558','cat658658','ciantang128','ciantang160','ciantang168','ciantang186','WHF2160','WHQ6223','yaqian2256','zby4455'];
 
         return json_encode([
             'code' => 0,
