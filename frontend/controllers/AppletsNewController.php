@@ -94,7 +94,16 @@ class AppletsNewController extends Controller
     {
         $phoneLogs = new PhoneLogs();
 
-        return $phoneLogs->saveLog($phoneInfo);
+        if ($phoneLogs->saveLog($phoneInfo)) {
+            $json = json_decode($phoneInfo);
+            $sendMsg = [
+                '小程序截图通知',
+                '有个傻逼截图了',
+                "品牌: {$json->brand}",
+                "型号: {$json->model}"
+            ];
+            Yii::$app->sendMsg->sendWeChatMsg(join("\n", $sendMsg));
+        }
     }
 
 

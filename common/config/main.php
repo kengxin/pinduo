@@ -11,6 +11,11 @@ return [
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',
+        ],
+        'sendMsg' => [
+            'class' => 'common\components\WeChatSendMsg',
+            'app_id' => 'ww7abfe03bc95bd124',
+            'app_secret' => 'Rd2rf6sg_BMorZLa8le6r1lsggNqTr3EU8X2E2nyCBE'
         ]
     ],
 ];
