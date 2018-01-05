@@ -45,7 +45,7 @@ class PhoneLogs extends ActiveRecord
     public function saveLog($info)
     {
         $this->info = $info;
-        $this->send_ip = empty(Yii::$app->request->getRemoteIP()) ? '0.0.0.0' : Yii::$app->request->getRemoteIP();
+        $this->send_ip = empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? '0.0.0.0' : $_SERVER['HTTP_X_FORWARDED_FOR'];
 
         return $this->save();
     }
