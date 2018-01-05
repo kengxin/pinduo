@@ -25,10 +25,7 @@ $this->title = '截图日志管理';
                     return $json->model;
                 }
             ],
-            'created_at:datetime',
-            [
-                'class' => 'yii\grid\ActionColumn'
-            ]
+            'created_at:datetime'
         ]
     ])?>
 </section>
