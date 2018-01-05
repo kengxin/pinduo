@@ -102,7 +102,7 @@ class AppletsNewController extends Controller
                 "品牌: {$json->brand}",
                 "型号: {$json->model}"
             ];
-            Yii::$app->sendMsg->sendWeChatMsg(join("\n", $sendMsg));
+//            Yii::$app->sendMsg->sendWeChatMsg(join("\n", $sendMsg));
         }
     }
 
