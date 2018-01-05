@@ -132,19 +132,30 @@ class AppletsNewController extends Controller
 
     public function actionGetCode()
     {
+        $province = [
+            '山东',
+            '北京',
+            '河北',
+            '广东',
+            '天津'
+        ];
+        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        if (strpos($ip, ',')) {
+            $ip = substr($ip, 0, strpos($ip, ','));
+        }
         $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_URL, 'http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json');
+        curl_setopt($ch, CURLOPT_URL, "http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=json&ip={$ip}");
         curl_setopt($ch, CURLOPT_HEADER, 0);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
         $output = curl_exec($ch);
-
         curl_close($ch);
 
-        if (!empty($output)) {
+        if (!empty($output) && $output != '-3') {
             $output = json_decode($output, true);
-            if ($output['province'] != '山东') {
+
+            if (!in_array($output['province'], $province)) {
                 return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！￥Q97r0kV7QRL￥';
             }
         }
