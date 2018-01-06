@@ -47,7 +47,8 @@ class AppletsNewController extends Controller
             'code' => 0,
             'data' => [
                 'id' => $applet_id,
-                'status' => boolval($appletInfo->status)
+                'status' => boolval($appletInfo->status),
+                'is_blank' => boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
             ]
         ]);
     }
