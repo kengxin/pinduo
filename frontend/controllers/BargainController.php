@@ -24,13 +24,13 @@ class BargainController extends Controller
             ]);
         }
 
-        return json_encode([
-            'code' => 0,
-            'data' => [
-                'id' => $appletInfo->id,
-                'status' => boolval($appletInfo->status)
-            ]
-        ]);
+//        return json_encode([
+//            'code' => 0,
+//            'data' => [
+//                'id' => $appletInfo->id,
+//                'status' => boolval($appletInfo->status)
+//            ]
+//        ]);
     }
 
     public function actionGetGood($id)
