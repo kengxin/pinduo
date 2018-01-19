@@ -103,7 +103,7 @@ class AppletGameController extends Controller
         $decode = new WxBizDataCrypt($this->appId, $this->appSecret);
         $decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData);
 
-        var_dump($decode);die;
+        var_dump($decodeData);die;
     }
 
     public function getRequestContent()
