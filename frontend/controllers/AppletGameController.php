@@ -10,8 +10,8 @@ class AppletGameController extends Controller
 
     public function actionLogin()
     {
-        $appId = 'wx7c7cbfc1ea2daca4';
-        $appSecret = '3fb693d110627f9983952796bff21369';
+        $appId = 'wx9d5999dd76914f1c';
+        $appSecret = '523cf45e47a015d16ba30e4e50d62038';
         $postContent = $this->getRequestContent();
 
         $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
