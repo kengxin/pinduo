@@ -1,10 +1,10 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\GroupLogs;
 use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
+use common\models\GroupLog;
 use common\models\WeixinUser;
 use WxDecrypt\WxBizDataCrypt;
 
@@ -104,7 +104,7 @@ class AppletGameController extends Controller
         $decode = new WxBizDataCrypt($this->appId, Yii::$app->weixinUser->session_key);
         if ($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData) == 0) {
             $decodeData = json_decode($decodeData);
-            $groupLogs = new GroupLogs();
+            $groupLogs = new GroupLog();
             if (!$groupLogs->getLogExists($decodeData->openGId)) {
                 if ($groupLogs->saveGroupLog($decodeData->openGid)) {
                     return json_encode([

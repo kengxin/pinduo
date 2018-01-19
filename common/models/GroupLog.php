@@ -5,7 +5,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 
-class GroupLogs extends ActiveRecord
+class GroupLog extends ActiveRecord
 {
 
     public static function tableName()
