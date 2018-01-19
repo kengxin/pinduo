@@ -43,14 +43,12 @@ class AppletsNewController extends Controller
             ]);
         }
 
-        $userAgent = strtoupper($_SERVER['HTTP_USER_AGENT']);
-
         return json_encode([
             'code' => 0,
             'data' => [
                 'id' => $applet_id,
-                'status' => strpos($userAgent, 'HUAWEI') === 0 ? false : boolval($appletInfo->status),
-                'is_blank' => strpos($userAgent, 'HUAWEI') === 0 ? true : boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
+                'status' => $this->getBlackMobile() ? false : boolval($appletInfo->status),
+                'is_blank' => $this->getBlackMobile() ? true : boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
             ]
         ]);
     }
@@ -107,6 +105,21 @@ class AppletsNewController extends Controller
             ];
 //            Yii::$app->sendMsg->sendWeChatMsg(join("\n", $sendMsg));
         }
+    }
+
+    public function getBlackMobile()
+    {
+        $userAgent = strtoupper($_SERVER['HTTP_USER_AGENT']);
+
+        if (strpos($userAgent, 'HUAWEI') !== false) {
+            return true;
+        }
+
+        if (strpos($userAgent, 'HONOR') !== false) {
+            return true;
+        }
+
+        return false;
     }
 
 
