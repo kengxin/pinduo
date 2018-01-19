@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\GroupLogs;
 use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
@@ -97,14 +98,28 @@ class AppletGameController extends Controller
 
     public function actionGetGroupId()
     {
+        $decodeData = '';
         $postData = $this->getRequestContent();
 
-        var_dump(Yii::$app->weixinUser->session_key);
-        $decodeData = '';
         $decode = new WxBizDataCrypt($this->appId, Yii::$app->weixinUser->session_key);
-        var_dump($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData));
+        if ($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData) == 0) {
+            $decodeData = json_decode($decodeData);
+            $groupLogs = new GroupLogs();
+            if (!$groupLogs->getLogExists($decodeData->openGId)) {
+                if ($groupLogs->saveGroupLog($decodeData->openGid)) {
+                    return json_encode([
+                        'code' => 0,
+                        'data' => [
+                            'groupId' => $decodeData->openGId
+                        ]
+                    ]);
+                }
+            }
+        }
 
-        var_dump($decodeData);die;
+        return json_decode([
+            'code' => -1
+        ]);
     }
 
     public function getRequestContent()
