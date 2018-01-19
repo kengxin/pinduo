@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\GameInfo;
+use Xiang\WechatApp\Decode\WXBizDataCrypt;
 use Yii;
 use yii\web\Controller;
 use common\models\WeixinUser;
@@ -90,6 +91,17 @@ class AppletGameController extends Controller
             'code' => -1,
             'msg' => 'error: not current user'
         ]);
+    }
+
+    public function actionGetGroupId()
+    {
+        $postData = $this->getRequestContent();
+
+        $decodeData = '';
+        $decode = new WXBizDataCrypt();
+        $decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData);
+
+        var_dump($decode);die;
     }
 
     public function getRequestContent()

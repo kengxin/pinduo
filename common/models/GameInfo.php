@@ -55,10 +55,10 @@ class GameInfo extends ActiveRecord
             $this->createUser($user_id);
 
             return [
-                'lastNumber' => $this->lastNumber,
-                'playNumber' => $this->playNumber,
-                'completeNumber' => $this->completeNumber,
-                'maxNumber' => $this->maxNumber
+                'lastNumber' => intval($this->lastNumber),
+                'playNumber' => intval($this->playNumber),
+                'completeNumber' => intval($this->completeNumber),
+                'maxNumber' => intval($this->maxNumber)
             ];
         }
 
