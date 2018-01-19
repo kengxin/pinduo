@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\WeixinUser;
 use Yii;
 use yii\web\Controller;
 
@@ -16,7 +17,29 @@ class AppletGameController extends Controller
 
         $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
 
-        var_dump($result);
+        if (isset($result['openid'])) {
+            if (WeixinUser::find()
+                ->where(['openid' => $result['openid']])
+                ->exists()) {
+                return json_encode([
+                    'code' => 0,
+                    'data' => [
+                        'token' => 'success'
+                    ]
+                ]);
+            } else {
+                return json_encode([
+                    'code' => -1,
+                    'data' => [
+                        'token' => 'success'
+                    ]
+                ]);
+            }
+        }
+
+        return json_decode([
+            'code' => -2
+        ]);
     }
 
     public function getRequestContent()
@@ -42,6 +65,6 @@ class AppletGameController extends Controller
 
         curl_close($ch);
 
-        return $output;
+        return json_decode($output, true);
     }
 }
