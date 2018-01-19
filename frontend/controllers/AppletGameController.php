@@ -1,9 +1,9 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\WeixinUser;
 use Yii;
 use yii\web\Controller;
+use common\models\WeixinUser;
 
 class AppletGameController extends Controller
 {
@@ -14,24 +14,30 @@ class AppletGameController extends Controller
         $appId = 'wx9d5999dd76914f1c';
         $appSecret = '523cf45e47a015d16ba30e4e50d62038';
         $postContent = $this->getRequestContent();
+        $redis = Yii::$app->redis;
 
         $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
 
         if (isset($result['openid'])) {
-            if (WeixinUser::find()
+            $token = md5($result['openid']);
+
+            $redis->set($token, json_encode($result), 86400);
+            if (($userInfo = WeixinUser::find()
+                ->select(['id'])
                 ->where(['openid' => $result['openid']])
-                ->exists()) {
+                ->one()) != null) {
                 return json_encode([
                     'code' => 0,
                     'data' => [
-                        'token' => 'success'
+                        'user_id' => $userInfo->id,
+                        'token' => $token
                     ]
                 ]);
             } else {
                 return json_encode([
                     'code' => -1,
                     'data' => [
-                        'token' => 'success'
+                        'token' => $token
                     ]
                 ]);
             }
@@ -39,6 +45,46 @@ class AppletGameController extends Controller
 
         return json_decode([
             'code' => -2
+        ]);
+    }
+
+    public function actionRegister()
+    {
+        $postContent = $this->getRequestContent();
+
+        if (Yii::$app->weixinUser->login) {
+            $weixinUser = new WeixinUser();
+            if ($weixinUser->saveUser($postContent)) {
+                return json_encode([
+                    'code' => 0,
+                    'data' => [
+                        'user_id' => $weixinUser->id
+                    ]
+                ]);
+            }
+        }
+
+        return json_encode([
+            'code' => -1
+        ]);
+    }
+
+    public function actionGetUserInfo($user_id)
+    {
+        $user_id = intval($user_id);
+        if (Yii::$app->weixinUser->id == $user_id) {
+            return json_encode([
+                'code' => 0,
+                'data' => [
+                    'nickName' => Yii::$app->weixinUser->nickName,
+                    'avatarUrl' => Yii::$app->weixinUser->avatarUrl
+                ]
+            ]);
+        }
+
+        return json_encode([
+            'code' => -1,
+            'msg' => 'error: not current user'
         ]);
     }
 
