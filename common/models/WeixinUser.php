@@ -55,7 +55,12 @@ class WeixinUser extends ActiveRecord
         $this->openid = Yii::$app->weixinUser->openid;
         $this->unionid = '123';
 
-        return $this->save();
+        if ($this->save()) {
+            $gameInfo = new GameInfo();
+            return $gameInfo->createUser($this->id);
+        }
+
+        return false;
     }
 
 }

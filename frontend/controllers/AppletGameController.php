@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\GameInfo;
 use Yii;
 use yii\web\Controller;
 use common\models\WeixinUser;
@@ -73,11 +74,14 @@ class AppletGameController extends Controller
     {
         $user_id = intval($user_id);
         if (Yii::$app->weixinUser->id == $user_id) {
+            $gameInfoModel = new GameInfo();
+            $gameInfo = $gameInfoModel->getGameInfo($user_id);
             return json_encode([
                 'code' => 0,
                 'data' => [
                     'nickName' => Yii::$app->weixinUser->nickName,
-                    'avatarUrl' => Yii::$app->weixinUser->avatarUrl
+                    'avatarUrl' => Yii::$app->weixinUser->avatarUrl,
+                    'gameInfo' => $gameInfo
                 ]
             ]);
         }
