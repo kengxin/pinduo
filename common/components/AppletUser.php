@@ -23,6 +23,7 @@ class AppletUser extends Component
     {
         if (isset($_SERVER['Authorization']) && !empty($_SERVER['Authorization'])) {
             $token = $_SERVER['Authorization'];
+            var_dump($token);die;
             $redis = Yii::$app->redis;
 
             $privateInfo = $redis->get($token);
