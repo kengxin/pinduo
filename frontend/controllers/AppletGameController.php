@@ -12,11 +12,23 @@ class AppletGameController extends Controller
     {
         $appId = 'wx7c7cbfc1ea2daca4';
         $appSecret = '3fb693d110627f9983952796bff21369';
-        $code = Yii::$app->request->post('code');
+        $postContent = $this->getRequestContent();
 
-        $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$code}&grant_type=authorization_code");
+        $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent->code}&grant_type=authorization_code");
 
         var_dump($result);
+    }
+
+    public function getRequestContent()
+    {
+        $result = file_get_contents('php://input');
+        if (!empty($result)) {
+            $result = json_decode($result, true);
+
+            return $result;
+        }
+
+        return false;
     }
 
     public function curlGet($url)
