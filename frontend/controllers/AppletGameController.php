@@ -117,7 +117,7 @@ class AppletGameController extends Controller
             }
         }
 
-        return json_decode([
+        return json_encode([
             'code' => -1
         ]);
     }
