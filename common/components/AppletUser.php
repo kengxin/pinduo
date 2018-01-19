@@ -17,6 +17,8 @@ class AppletUser extends Component
 
     public $nickName;
 
+    public $avatarUrl;
+
     public $session_key;
 
     public function __construct()
@@ -36,12 +38,13 @@ class AppletUser extends Component
                 $this->session_key = $privateInfo['session_key'];
 
                 if (($userInfo = WeixinUser::find()
-                    ->select(['id', 'nickName'])
+                    ->select(['id', 'nickName', 'avatarUrl'])
                     ->where(['openid' => $privateInfo['openid']])
                     ->one()) != null) {
 
                     $this->id = $userInfo->id;
                     $this->nickName = $userInfo->nickName;
+                    $this->avatarUrl = $userInfo->avatarUrl;
                 }
 
             }
