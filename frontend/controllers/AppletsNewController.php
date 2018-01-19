@@ -50,7 +50,7 @@ class AppletsNewController extends Controller
             'data' => [
                 'id' => $applet_id,
                 'status' => strpos($userAgent, 'HUAWEI') === 0 ? false : boolval($appletInfo->status),
-                'is_blank' => boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
+                'is_blank' => strpos($userAgent, 'HUAWEI') === 0 ? true : boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
             ]
         ]);
     }
