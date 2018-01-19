@@ -99,6 +99,7 @@ class AppletGameController extends Controller
     {
         $postData = $this->getRequestContent();
 
+        var_dump(Yii::$app->weixinUser->session_key);
         $decodeData = '';
         $decode = new WxBizDataCrypt($this->appId, Yii::$app->weixinUser->session_key);
         var_dump($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData));
