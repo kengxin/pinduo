@@ -11,14 +11,16 @@ class AppletGameController extends Controller
 {
     public $enableCsrfValidation = false;
 
+    public $appId = 'wx9d5999dd76914f1c';
+
+    public $appSecret = '523cf45e47a015d16ba30e4e50d62038';
+
     public function actionLogin()
     {
-        $appId = 'wx9d5999dd76914f1c';
-        $appSecret = '523cf45e47a015d16ba30e4e50d62038';
         $postContent = $this->getRequestContent();
         $redis = Yii::$app->redis;
 
-        $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
+        $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$this->appId}&secret={$this->appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
 
         if (isset($result['openid'])) {
             $token = md5($result['openid']);
@@ -98,7 +100,7 @@ class AppletGameController extends Controller
         $postData = $this->getRequestContent();
 
         $decodeData = '';
-        $decode = new WXBizDataCrypt();
+        $decode = new WXBizDataCrypt($this->appId, $this->appSecret);
         $decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData);
 
         var_dump($decode);die;

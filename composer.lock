@@ -1009,39 +1009,6 @@
             "time": "2016-04-07T12:29:16+00:00"
         },
         {
-            "name": "xiang1993/wechatapp-decrypt",
-            "version": "v1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Xiang1993/WechatApp-decrypt.git",
-                "reference": "a2d00e5ec28c7318e6f4bc16912840013f9caf3a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://files.phpcomposer.com/files/Xiang1993/WechatApp-decrypt/a2d00e5ec28c7318e6f4bc16912840013f9caf3a.zip",
-                "reference": "a2d00e5ec28c7318e6f4bc16912840013f9caf3a",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">5.4"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Xiang\\WechatApp\\Decode\\": "src/decode"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "axf",
-                    "email": "2792938834@qq.com"
-                }
-            ],
-            "description": "微信小程序签名加密",
-            "time": "2017-05-06T08:15:13+00:00"
-        },
-        {
             "name": "yiisoft/yii2-codeception",
             "version": "2.0.6",
             "source": {
@@ -1183,23 +1150,23 @@
         },
         {
             "name": "yiisoft/yii2-gii",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-gii.git",
-                "reference": "1bd6df6804ca077ec022587905a0d43eb286f507"
+                "reference": "db41f647d9b73702ceb6864fdfce827a72b5ce42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-gii/1bd6df6804ca077ec022587905a0d43eb286f507.zip",
-                "reference": "1bd6df6804ca077ec022587905a0d43eb286f507",
+                "url": "https://files.phpcomposer.com/files/yiisoft/yii2-gii/db41f647d9b73702ceb6864fdfce827a72b5ce42.zip",
+                "reference": "db41f647d9b73702ceb6864fdfce827a72b5ce42",
                 "shasum": ""
             },
             "require": {
                 "bower-asset/typeahead.js": "0.10.* | ~0.11.0",
                 "phpspec/php-diff": ">=1.0.2",
-                "yiisoft/yii2": ">=2.0.4",
-                "yiisoft/yii2-bootstrap": "~2.0"
+                "yiisoft/yii2": "~2.0.13",
+                "yiisoft/yii2-bootstrap": "~2.0.0"
             },
             "type": "yii2-extension",
             "extra": {
@@ -1232,7 +1199,7 @@
                 "gii",
                 "yii2"
             ],
-            "time": "2016-03-18T14:09:46+00:00"
+            "time": "2017-12-22T23:53:06+00:00"
         }
     ],
     "aliases": [],
