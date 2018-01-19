@@ -67,6 +67,12 @@ class GameInfo extends ActiveRecord
 
     public static function addLastNumber($user_id, $num)
     {
-        return GameInfo::updateAll(['lastNumber' => 'lastNumber + 1'], "user_id = {$user_id}");
+        if (($gameInfo = GameInfo::findOne(['user_id' => $user_id])) !== null) {
+            $gameInfo->lastNumber += $num;
+
+            return $gameInfo->save();
+        }
+
+        return false;
     }
 }
