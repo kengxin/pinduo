@@ -19,11 +19,10 @@ class AppletUser extends Component
 
     public $session_key;
 
-    public function init()
+    public function __construct()
     {
         if (isset($_SERVER['Authorization']) && !empty($_SERVER['Authorization'])) {
             $token = $_SERVER['Authorization'];
-            var_dump($token);die;
             $redis = Yii::$app->redis;
 
             $privateInfo = $redis->get($token);
@@ -47,6 +46,8 @@ class AppletUser extends Component
 
             }
         }
+
+        return parent::__construct();
     }
 
     public function getId()
