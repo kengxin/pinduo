@@ -21,7 +21,7 @@ class AppletGameController extends Controller
         if (isset($result['openid'])) {
             $token = md5($result['openid']);
 
-            $redis->setValue($token, json_encode($result));
+            $redis->set($token, json_encode($result));
             if (($userInfo = WeixinUser::find()
                 ->select(['id'])
                 ->where(['openid' => $result['openid']])
