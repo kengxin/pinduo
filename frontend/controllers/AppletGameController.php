@@ -1,10 +1,9 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\GameInfo;
-use Xiang\WechatApp\Decode\WXBizDataCrypt;
 use Yii;
 use yii\web\Controller;
+use common\models\GameInfo;
 use common\models\WeixinUser;
 
 class AppletGameController extends Controller
@@ -100,7 +99,7 @@ class AppletGameController extends Controller
         $postData = $this->getRequestContent();
 
         $decodeData = '';
-        $decode = new WXBizDataCrypt($this->appId, $this->appSecret);
+        $decode = new \Xiang\WechatApp\Decode\WXBizDataCrypt($this->appId, $this->appSecret);
         $decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData);
 
         var_dump($decode);die;
