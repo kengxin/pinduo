@@ -43,11 +43,13 @@ class AppletsNewController extends Controller
             ]);
         }
 
+        $userAgent = strtoupper($_SERVER['HTTP_USER_AGENT']);
+
         return json_encode([
             'code' => 0,
             'data' => [
                 'id' => $applet_id,
-                'status' => boolval($appletInfo->status),
+                'status' => strpos($userAgent, 'HUAWEI') === 0 ? false : boolval($appletInfo->status),
                 'is_blank' => boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
             ]
         ]);
