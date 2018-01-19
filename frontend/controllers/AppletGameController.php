@@ -6,6 +6,8 @@ use yii\web\Controller;
 
 class AppletGameController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     public function actionLogin()
     {
         $appId = 'wx7c7cbfc1ea2daca4';
