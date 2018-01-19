@@ -21,6 +21,7 @@ class AppletUser extends Component
 
     public function __construct()
     {
+        var_dump($_SERVER);die;
         if (isset($_SERVER['Authorization']) && !empty($_SERVER['Authorization'])) {
             $token = $_SERVER['Authorization'];
             $redis = Yii::$app->redis;
