@@ -19,8 +19,8 @@ return [
         ],
         'redis' => [
             'class' => 'yii\redis\Connection',
-            'hostname' => 'localhost',  //你的redis地址
-            'port' => 6379, //端口
+            'hostname' => 'localhost',
+            'port' => 6379,
             'database' => 0,
         ],
         'weixinUser' => [

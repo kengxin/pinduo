@@ -17,7 +17,8 @@
         "izyue/yii2-admin": "*",
         "yiidoc/yii2-redactor": "*",
         "yiisoft/yii2-imagine": "*",
-        "xiaoxin/wechatapp-decrypt": "^1.0"
+        "xiaoxin/wechatapp-decrypt": "^1.0",
+        "yiisoft/yii2-redis": "^2.0"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
