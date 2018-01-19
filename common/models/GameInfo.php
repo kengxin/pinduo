@@ -36,6 +36,9 @@ class GameInfo extends ActiveRecord
     {
         $this->user_id = $user_id;
         $this->lastNumber = 1;
+        $this->playNumber = 0;
+        $this->completeNumber = 0;
+        $this->maxNumber = 0;
 
         return $this->save();
     }
