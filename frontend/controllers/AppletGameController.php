@@ -14,7 +14,7 @@ class AppletGameController extends Controller
         $appSecret = '3fb693d110627f9983952796bff21369';
         $postContent = $this->getRequestContent();
 
-        $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent->code}&grant_type=authorization_code");
+        $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$appId}&secret={$appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
 
         var_dump($result);
     }
