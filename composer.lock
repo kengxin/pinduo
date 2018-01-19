@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f3a1c20c23379eba09732506313bac32",
+    "content-hash": "39d068611d593a1e267779e376a53786",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -417,6 +417,42 @@
                 "yii2-admin"
             ],
             "time": "2016-07-15T11:22:45+00:00"
+        },
+        {
+            "name": "ocxco/wxdecrypt",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ocxco/wxdecrypt.git",
+                "reference": "e107723c4ac8b3a5bb8f67f5dd71eabc2e21b0a7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/ocxco/wxdecrypt/e107723c4ac8b3a5bb8f67f5dd71eabc2e21b0a7.zip",
+                "reference": "e107723c4ac8b3a5bb8f67f5dd71eabc2e21b0a7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "WxDecrypt\\": "wxdecrypt"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "cxc",
+                    "email": "xuechaoc@qq.com"
+                }
+            ],
+            "description": "微信小程序解密工具composer版",
+            "time": "2017-07-24T02:59:15+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1204,7 +1240,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "ocxco/wxdecrypt": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

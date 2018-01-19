@@ -5,6 +5,7 @@ use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
 use common\models\WeixinUser;
+use WxDecrypt\WxBizDataCrypt;
 
 class AppletGameController extends Controller
 {
@@ -99,7 +100,7 @@ class AppletGameController extends Controller
         $postData = $this->getRequestContent();
 
         $decodeData = '';
-        $decode = new \Xiang\WechatApp\Decode\WXBizDataCrypt($this->appId, $this->appSecret);
+        $decode = new WxBizDataCrypt($this->appId, $this->appSecret);
         $decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData);
 
         var_dump($decode);die;
