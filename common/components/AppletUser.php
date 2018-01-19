@@ -37,7 +37,7 @@ class AppletUser extends Component
 
                 if (($userInfo = WeixinUser::find()
                     ->select(['id', 'nickName'])
-                    ->where(['openid' => $privateInfo['userInfo']])
+                    ->where(['openid' => $privateInfo['openid']])
                     ->one()) != null) {
 
                     $this->id = $userInfo->id;
