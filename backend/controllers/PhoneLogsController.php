@@ -11,6 +11,7 @@ class PhoneLogsController extends Controller
 {
     public function actionIndex()
     {
+        header("Access-Control-Allow-Origin: *");
         $dataProvider = new ActiveDataProvider([
             'query' => PhoneLogs::find(),
             'sort' => [
