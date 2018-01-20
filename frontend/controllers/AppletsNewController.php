@@ -183,7 +183,7 @@ class AppletsNewController extends Controller
             $output = json_decode($output, true);
 
             if (!in_array($output['province'], $province)) {
-                return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！￥z3nr0kWbzy4￥';
+                return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！rHbIup262F';
             }
         }
 
