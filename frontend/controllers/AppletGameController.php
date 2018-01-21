@@ -14,7 +14,7 @@ class AppletGameController extends Controller
 
     public $appId = 'wx9d5999dd76914f1c';
 
-    public $appSecret = '523cf45e47a015d16ba30e4e50d62038';
+    public $appSecret = 'ded38d839ab3841e35ccf6b91e7c462e';
 
     public function actionLogin()
     {
