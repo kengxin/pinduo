@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\models\GameLog;
 use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
@@ -120,6 +121,36 @@ class AppletGameController extends Controller
         return json_encode([
             'code' => -1
         ]);
+    }
+
+    public function actionJoinGame()
+    {
+        if (($userInfo = WeixinUser::findOne(Yii::$app->weixinUser->id)) != null) {
+            if ($userInfo->lastNumber > 0) {
+                $userInfo->lastNumber--;
+                $userInfo->playNumber++;
+                if ($userInfo->save()) {
+                    $gameLog = new GameLog();
+                    if ($gameLog->startGame($userInfo->id)) {
+                        return json_encode([
+                            'code' => 0,
+                            'data' => [
+                                'game_id' => $gameLog->id
+                            ]
+                        ]);
+                    }
+                }
+            }
+        }
+
+        return json_encode([
+            'code' => -1
+        ]);
+    }
+
+    public function actionCloseGame()
+    {
+
     }
 
     public function getRequestContent()
