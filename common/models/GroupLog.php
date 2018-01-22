@@ -69,7 +69,7 @@ class GroupLog extends ActiveRecord
             ->select(['group_id'])
             ->where(['user_id' => Yii::$app->weixinUser->id])
             ->asArray()
-            ->column();
+            ->all();
 
         var_dump($groupIds);die;
 
