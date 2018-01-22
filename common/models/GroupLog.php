@@ -75,6 +75,7 @@ class GroupLog extends ActiveRecord
             return GroupLog::find()
                 ->select(['user_id'])
                 ->where(['in', 'group_id', $groupIds])
+                ->groupBy('user_id')
                 ->asArray()
                 ->column();
         }
