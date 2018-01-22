@@ -71,7 +71,7 @@ class GroupLog extends ActiveRecord
             ->asArray()
             ->column();
 
-        var_dump(Yii::$app->weixinUser->id);die;
+        var_dump($groupIds);die;
         if (!empty($groupIds)) {
             return GroupLog::find()
                 ->select(['user_id'])
