@@ -32,6 +32,11 @@ class GameInfo extends ActiveRecord
         ];
     }
 
+    public function getWeixinUser()
+    {
+        return $this->hasOne(WeixinUser::className(), ['id' => 'user_id']);
+    }
+
     public function createUser($user_id)
     {
         $this->user_id = $user_id;
@@ -74,5 +79,42 @@ class GameInfo extends ActiveRecord
         }
 
         return false;
+    }
+
+    public function getIqRand()
+    {
+        $gameList = GameInfo::find()
+            ->joinWith('weixinUser')
+            ->orderBy('completeNumber DESC')
+            ->asArray()
+            ->limit(5)
+            ->all();
+
+        return $gameList;
+    }
+
+    public function getResolveRank()
+    {
+        $gameList = GameInfo::find()
+            ->joinWith('weixinUser')
+            ->orderBy('playNumber DESC')
+            ->asArray()
+            ->limit(5)
+            ->all();
+
+        return $gameList;
+    }
+
+    public function getGroupRank()
+    {
+        $groupLog = new GroupLog();
+        $userIds = $groupLog->getGroupUsers();
+
+        return $this->find()
+            ->joinWith('weixinUser')
+            ->where(['in', 'user_id', $userIds])
+            ->orderBy('maxNumber DESC')
+            ->asArray()
+            ->all();
     }
 }

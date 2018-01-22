@@ -150,7 +150,38 @@ class AppletGameController extends Controller
 
     public function actionCloseGame()
     {
+        $postData = $this->getRequestContent();
+        $gameId = intval($postData['gameId']);
+        $currentNum = intval($postData['currentNum']);
 
+        $gameLog = new GameLog();
+        if ($gameLog->closeGame($gameId, $currentNum)) {
+            return json_encode([
+                'code' => 0
+            ]);
+        }
+
+        return json_encode([
+            'code' => -1
+        ]);
+    }
+
+    public function actionGetIqRank()
+    {
+        $gameModel = new GameInfo();
+
+        $iqRank = $gameModel->getIqRand();
+        $resolveRank = $gameModel->getResolveRank();
+        $groupRank = $gameModel->getGroupRank();
+
+        return json_encode([
+            'code' => 0,
+            'data' => [
+                'iqRank' => $iqRank,
+                'resolveRank' => $resolveRank,
+                'groupRank' => $groupRank
+            ]
+        ]);
     }
 
     public function getRequestContent()

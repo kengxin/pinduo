@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
 
@@ -48,5 +49,29 @@ class GameLog extends ActiveRecord
         $this->currentNumber = 0;
 
         return $this->save();
+    }
+
+    public function closeGame($gameId, $currentNum)
+    {
+        $gameLog = $this->findOne($gameId);
+        $gameInfo = GameInfo::findOne(['user_id' => Yii::$app->weixinUser->id]);
+        if ($gameLog != null) {
+            $gameLog->currentNumber = $currentNum;
+            $gameLog->closed_at = time();
+
+            if ($gameLog->currentNumber > $gameInfo->maxNumber) {
+                $gameInfo->maxNumber = $gameLog->currentNumber;
+            }
+
+            if ($gameLog->currentNumber == 500) {
+                $gameInfo->completeNumber += 1;
+            }
+
+            if ($gameInfo->save() && $gameLog->save()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

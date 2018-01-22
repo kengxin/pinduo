@@ -62,4 +62,23 @@ class GroupLog extends ActiveRecord
             ->where(['user_id' => Yii::$app->weixinUser->id, 'group_id' => $group_id])
             ->exists();
     }
+
+    public function getGroupUsers()
+    {
+        $groupIds = GroupLog::find()
+            ->select(['group_id'])
+            ->where(['user_id' => Yii::$app->weixinUser->id])
+            ->asArray()
+            ->column();
+
+        if (!empty($groupIds)) {
+            return GroupLog::find()
+                ->select(['user_id'])
+                ->where(['in', 'group_id', $groupIds])
+                ->asArray()
+                ->column();
+        }
+
+        return [];
+    }
 }
