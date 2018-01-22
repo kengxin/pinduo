@@ -166,7 +166,7 @@ class AppletGameController extends Controller
         ]);
     }
 
-    public function actionGetIqRank()
+    public function actionGetRank()
     {
         $gameModel = new GameInfo();
 
