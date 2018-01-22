@@ -125,13 +125,13 @@ class AppletGameController extends Controller
 
     public function actionJoinGame()
     {
-        if (($userInfo = WeixinUser::findOne(Yii::$app->weixinUser->id)) != null) {
-            if ($userInfo->lastNumber > 0) {
-                $userInfo->lastNumber--;
-                $userInfo->playNumber++;
-                if ($userInfo->save()) {
+        if (($gameInfo = GameInfo::findOne(['user_id' => Yii::$app->weixinUser->id])) != null) {
+            if ($gameInfo->lastNumber > 0) {
+                $gameInfo->lastNumber--;
+                $gameInfo->playNumber++;
+                if ($gameInfo->save()) {
                     $gameLog = new GameLog();
-                    if ($gameLog->startGame($userInfo->id)) {
+                    if ($gameLog->startGame($gameInfo->user_id)) {
                         return json_encode([
                             'code' => 0,
                             'data' => [
