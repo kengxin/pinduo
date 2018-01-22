@@ -110,6 +110,7 @@ class GameInfo extends ActiveRecord
         $groupLog = new GroupLog();
         $userIds = $groupLog->getGroupUsers();
 
+        var_dump($userIds);die;
         return $this->find()
             ->joinWith('weixinUser')
             ->where(['in', 'user_id', $userIds])
