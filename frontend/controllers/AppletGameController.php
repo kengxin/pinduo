@@ -174,12 +174,15 @@ class AppletGameController extends Controller
         $resolveRank = $gameModel->getResolveRank();
         $groupRank = $gameModel->getGroupRank();
 
+        $prizesList = [];
+
         return json_encode([
             'code' => 0,
             'data' => [
                 'iqRank' => $iqRank,
                 'resolveRank' => $resolveRank,
-                'groupRank' => $groupRank
+                'groupRank' => $groupRank,
+                'prizesList' => $prizesList
             ]
         ]);
     }
