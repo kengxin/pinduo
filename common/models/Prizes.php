@@ -44,4 +44,13 @@ class Prizes extends ActiveRecord
             ],
         ];
     }
+
+    public function getPrizesList()
+    {
+        return $this->find()
+            ->select(['name', 'description', 'img_url'])
+            ->orderBy('id ASC')
+            ->asArray()
+            ->all();
+    }
 }

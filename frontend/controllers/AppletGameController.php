@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\GameLog;
+use common\models\Prizes;
 use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
@@ -169,12 +170,13 @@ class AppletGameController extends Controller
     public function actionGetRank()
     {
         $gameModel = new GameInfo();
+        $prizesModel = new Prizes();
 
         $iqRank = $gameModel->getIqRand();
         $resolveRank = $gameModel->getResolveRank();
         $groupRank = $gameModel->getGroupRank();
 
-        $prizesList = [];
+        $prizesList = $prizesModel->getPrizesList();
 
         return json_encode([
             'code' => 0,

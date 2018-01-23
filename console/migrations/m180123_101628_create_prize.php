@@ -12,7 +12,7 @@ class m180123_101628_create_prize extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('applet_prizes', [
+        $this->createTable('applets_prizes', [
             'id' => $this->primaryKey(),
             'name' => 'VARCHAR(255) NOT NULL DEFAULT ""',
             'description' => 'VARCHAR(255) NOT NULL DEFAULT ""',
