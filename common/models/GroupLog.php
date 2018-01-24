@@ -55,13 +55,15 @@ class GroupLog extends ActiveRecord
         $this->user_id = Yii::$app->weixinUser->id;
         $this->group_id = $group_id;
 
-        $this->save();
-
-        if ($saveLastNumber) {
-            return GameInfo::addLastNumber($this->user_id, 1);
-        } else {
-            return true;
+        if ($this->save()) {
+            if ($saveLastNumber) {
+                return GameInfo::addLastNumber($this->user_id, 1);
+            } else {
+                return true;
+            }
         }
+
+        return false;
     }
 
     public function getLogExists($group_id, $type)
