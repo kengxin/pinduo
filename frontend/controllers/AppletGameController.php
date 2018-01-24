@@ -107,8 +107,8 @@ class AppletGameController extends Controller
         if ($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData) == 0) {
             $decodeData = json_decode($decodeData);
             $groupLogs = new GroupLog();
-            if (!$groupLogs->getLogExists($decodeData->openGId)) {
-                if ($groupLogs->saveGroupLog($decodeData->openGId)) {
+            if (!$groupLogs->getLogExists($decodeData->openGId, intval($postData['type']))) {
+                if ($groupLogs->saveGroupLog($decodeData->openGId, boolval($postData['type']))) {
                     return json_encode([
                         'code' => 0,
                         'data' => [

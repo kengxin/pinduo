@@ -8,6 +8,10 @@ use yii\db\ActiveRecord;
 class GroupLog extends ActiveRecord
 {
 
+    const TYPE_JOIN = 0;
+
+    const TYPE_SHARE = 1;
+
     public static function tableName()
     {
         return 'groupLogs';
@@ -16,9 +20,9 @@ class GroupLog extends ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'group_id'], 'required'],
+            [['user_id', 'group_id', 'type'], 'required'],
             [['group_id'], 'string'],
-            [['user_id', 'created_at'], 'integer']
+            [['user_id', 'type', 'created_at'], 'integer']
         ];
     }
 
@@ -26,6 +30,7 @@ class GroupLog extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'type' => '类型',
             'user_id' => '用户Id',
             'group_id' => '群组Id',
             'created_at' => '分享时间'
@@ -44,22 +49,25 @@ class GroupLog extends ActiveRecord
         ];
     }
 
-    public function saveGroupLog($group_id)
+    public function saveGroupLog($group_id, $type, $saveLastNumber = false)
     {
+        $this->type = $type;
         $this->user_id = Yii::$app->weixinUser->id;
         $this->group_id = $group_id;
 
-        if ($this->save()) {
-            return GameInfo::addLastNumber($this->user_id, 1);
-        }
+        $this->save();
 
-        return false;
+        if ($saveLastNumber) {
+            return GameInfo::addLastNumber($this->user_id, 1);
+        } else {
+            return true;
+        }
     }
 
-    public function getLogExists($group_id)
+    public function getLogExists($group_id, $type)
     {
         return $this->find()
-            ->where(['user_id' => Yii::$app->weixinUser->id, 'group_id' => $group_id])
+            ->where(['user_id' => Yii::$app->weixinUser->id, 'group_id' => $group_id, 'type' => $type])
             ->exists();
     }
 
@@ -68,6 +76,7 @@ class GroupLog extends ActiveRecord
         $groupIds = GroupLog::find()
             ->select(['group_id'])
             ->where(['user_id' => Yii::$app->weixinUser->id])
+            ->groupBy('group_id')
             ->asArray()
             ->column();
 
