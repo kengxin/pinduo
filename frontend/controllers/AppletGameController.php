@@ -178,9 +178,12 @@ class AppletGameController extends Controller
 
         $prizesList = $prizesModel->getPrizesList();
 
+        $joinCount = GameLog::find()->count();
+
         return json_encode([
             'code' => 0,
             'data' => [
+                'currentJoin' => $joinCount,
                 'iqRank' => $iqRank,
                 'resolveRank' => $resolveRank,
                 'groupRank' => $groupRank,
