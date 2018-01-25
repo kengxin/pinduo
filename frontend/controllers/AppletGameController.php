@@ -199,7 +199,7 @@ class AppletGameController extends Controller
 
     public function actionGetPayConfig()
     {
-        $weixinPay = new WeixinPay($this->appId, Yii::$app->weixinUser->getOpenId(), $this->mch_id, $this->mch_key, 1, '数数字', 2000);
+        $weixinPay = new WeixinPay($this->appId, Yii::$app->weixinUser->getOpenId(), $this->mch_id, $this->mch_key, time(), '数数字', 2000);
         $config = $weixinPay->pay();
 
         return json_encode([
