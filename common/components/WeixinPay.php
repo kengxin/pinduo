@@ -14,7 +14,7 @@ class WeixinPay extends  Component
     protected $body;
     protected $total_fee;
 
-    function __construct($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee)
+    public function __construct($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee)
     {
         $this->appid = $appid;
         $this->openid = $openid;
