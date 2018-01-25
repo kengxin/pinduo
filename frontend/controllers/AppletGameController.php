@@ -1,6 +1,7 @@
 <?php
 namespace frontend\controllers;
 
+use common\components\WeixinPay;
 use common\models\GameLog;
 use common\models\Prizes;
 use Yii;
@@ -17,6 +18,10 @@ class AppletGameController extends Controller
     public $appId = 'wx8d8046dfbff8a92c';
 
     public $appSecret = '8958ce13865448add3407fc07be99ebd';
+
+    public $mch_id = '1336595701@1336595701';
+
+    public $mch_key = 'cb4e9e76eb725267ad9712c7dead1ec1';
 
     public function actionLogin()
     {
@@ -189,6 +194,18 @@ class AppletGameController extends Controller
                 'groupRank' => $groupRank,
                 'prizesList' => $prizesList
             ]
+        ]);
+    }
+
+    public function actionGetPayConfig()
+    {
+
+        $weixinPay = new WeixinPay($this->appId, Yii::$app->weixinUser->openid, $this->mch_id, $this->mch_key, 1, '数数字', 2000);
+        $config = $weixinPay->pay();
+
+        return json_encode([
+            'code' => 0,
+            'data' => $config
         ]);
     }
 
