@@ -19,7 +19,7 @@ class AppletGameController extends Controller
 
     public $appSecret = '8958ce13865448add3407fc07be99ebd';
 
-    public $mch_id = '1336595701@1336595701';
+    public $mch_id = '1336595701';
 
     public $mch_key = 'cb4e9e76eb725267ad9712c7dead1ec1';
 
