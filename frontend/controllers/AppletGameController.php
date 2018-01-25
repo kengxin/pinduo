@@ -210,9 +210,7 @@ class AppletGameController extends Controller
             if ($result) {
                 return json_encode([
                     'code' => 0,
-                    'data'=> [
-                        $result
-                    ]
+                    'data'=> $result
                 ]);
             }
         }
