@@ -1,12 +1,11 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\Applets;
-use common\models\AppletsVideo;
-use common\models\PhoneLogs;
 use Yii;
-use yii\log\Logger;
 use yii\web\Controller;
+use common\models\Applets;
+use common\models\PhoneLogs;
+use common\models\AppletsVideo;
 use yii\web\NotFoundHttpException;
 
 class AppletsNewController extends Controller

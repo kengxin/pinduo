@@ -14,9 +14,9 @@ class AppletGameController extends Controller
 {
     public $enableCsrfValidation = false;
 
-    public $appId = 'wx9d5999dd76914f1c';
+    public $appId = 'wx8d8046dfbff8a92c';
 
-    public $appSecret = 'ded38d839ab3841e35ccf6b91e7c462e';
+    public $appSecret = '8958ce13865448add3407fc07be99ebd';
 
     public function actionLogin()
     {
