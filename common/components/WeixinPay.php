@@ -1,6 +1,7 @@
 <?php
 namespace common\components;
 
+use Yii;
 use yii\base\Component;
 use yii\web\NotFoundHttpException;
 
@@ -44,8 +45,8 @@ class WeixinPay extends  Component
             'body' => $this->body,
             'out_trade_no' => $this->out_trade_no,
             'total_fee' => $this->total_fee,
-            'spbill_create_ip' => '47.104.130.82',
-            'notify_url' => 'https://80oz2.cn/applet-game/pay-result',
+            'spbill_create_ip' => Yii::$app->params['current_ip'],
+            'notify_url' => Yii::$app->params['notify_url'],
             'openid' => $this->openid, //用户id  
             'trade_type' => 'JSAPI'//交易类型  
         );
@@ -128,7 +129,6 @@ class WeixinPay extends  Component
         //统一下单接口  
         $unifiedorder = $this->unifiedorder();
 
-        var_dump($unifiedorder);die;
         $parameters = [
             'appId' => $this->appid, //小程序ID  
             'timeStamp' => '' . time() . '', //时间戳  

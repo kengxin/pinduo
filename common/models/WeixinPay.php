@@ -68,7 +68,7 @@ class WeixinPay extends ActiveRecord
                 Yii::$app->weixinUser->getOpenId(),
                 Yii::$app->params['mch_id'],
                 Yii::$app->params['mch_key'],
-                $this->id,
+                "10000$this->id",
                 Yii::$app->params['app_name'],
                 $total_fee);
 
