@@ -127,6 +127,8 @@ class WeixinPay extends  Component
     {
         //统一下单接口  
         $unifiedorder = $this->unifiedorder();
+
+        var_dump($unifiedorder);die;
         $parameters = [
             'appId' => $this->appid, //小程序ID  
             'timeStamp' => '' . time() . '', //时间戳  
