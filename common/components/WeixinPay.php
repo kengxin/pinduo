@@ -6,7 +6,7 @@ use yii\web\NotFoundHttpException;
 
 class WeixinPay extends  Component
 {
-    protected $app_id;
+    protected $appid;
     protected $mch_id;
     protected $key;
     protected $openid;
@@ -14,9 +14,9 @@ class WeixinPay extends  Component
     protected $body;
     protected $total_fee;
 
-    function __construct($app_id, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee)
+    function __construct($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee)
     {
-        $this->appid = $app_id;
+        $this->appid = $appid;
         $this->openid = $openid;
         $this->mch_id = $mch_id;
         $this->key = $key;
