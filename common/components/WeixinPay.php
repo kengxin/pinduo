@@ -52,6 +52,7 @@ class WeixinPay extends  Component
         //统一下单签名  
         $parameters['sign'] = $this->getSign($parameters);
         $xmlData = $this->arrayToXml($parameters);
+        var_dump($xmlData);die;
         $return = $this->xmlToArray($this->postXmlCurl($xmlData, $url, 60));
         return $return;
     }
