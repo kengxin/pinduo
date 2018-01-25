@@ -112,7 +112,6 @@ class WeixinPay extends  Component
     //xml转换成数组  
     private function xmlToArray($xml)
     {
-
         libxml_disable_entity_loader(true);
 
         $xmlstring = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);

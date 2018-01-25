@@ -1,9 +1,9 @@
 <?php
 namespace frontend\controllers;
 
-use common\components\WeixinPay;
 use common\models\GameLog;
 use common\models\Prizes;
+use common\models\WeixinPay;
 use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
@@ -18,10 +18,6 @@ class AppletGameController extends Controller
     public $appId = 'wx8d8046dfbff8a92c';
 
     public $appSecret = '8958ce13865448add3407fc07be99ebd';
-
-    public $mch_id = '1336595701';
-
-    public $mch_key = 'cb4e9e76eb725267ad9712c7dead1ec1';
 
     public function actionLogin()
     {
@@ -199,13 +195,37 @@ class AppletGameController extends Controller
 
     public function actionGetPayConfig()
     {
-        $weixinPay = new WeixinPay($this->appId, Yii::$app->weixinUser->getOpenId(), $this->mch_id, $this->mch_key, time(), '数数字', 2000);
-        $config = $weixinPay->pay();
+        $postData = $this->getRequestContent();
+        $type_id = intval($postData['type_id']);
+
+        $typeList = [
+            1 => ['info' => '购买1次挑战机会', 'total_fee' => 2000, 'extra' => ['count' => 1]],
+            2 => ['info' => '购买3次挑战机会', 'total_fee' => 5000, 'extra' => ['count' => 3]],
+            3 => ['info' => '购买8次挑战机会', 'total_fee' => 8000, 'extra' => ['count' => 8]]
+        ];
+
+        if (isset($typeList[$type_id])) {
+            $weixinPay = new WeixinPay();
+            $result = $weixinPay->startPay($typeList[$type_id]['info'], $typeList[$type_id]['total_fee'], $typeList[$type_id]['extra']);
+            if ($result) {
+                return json_encode([
+                    'code' => 0,
+                    'data'=> [
+                        $result
+                    ]
+                ]);
+            }
+        }
 
         return json_encode([
-            'code' => 0,
-            'data' => $config
+            'code' => -1
         ]);
+    }
+
+    public function actionPayResult()
+    {
+        $postData = $this->getRequestContent();
+        Yii::$app->log->setLogger($postData);
     }
 
     public function getRequestContent()
