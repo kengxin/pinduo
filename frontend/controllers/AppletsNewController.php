@@ -112,6 +112,10 @@ class AppletsNewController extends Controller
     {
         $userAgent = strtoupper($_SERVER['HTTP_USER_AGENT']);
 
+        if (strpos($userAgent, 'IPHONE') !== false) {
+            return true;
+        }
+
         if (strpos($userAgent, 'HUAWEI') !== false) {
             return true;
         }
