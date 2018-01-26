@@ -69,17 +69,14 @@ class WeixinPay extends ActiveRecord
         return false;
     }
 
-    public function setSuccess($pay_id, $bank_type, $transaction_id)
+    public function setSuccess($bank_type, $transaction_id)
     {
-        $pay_id = intval($pay_id) - 10000;
-        if (($payInfo = $this->findOne($pay_id)) != null) {
-            if ($payInfo->status == self::STATUS_WAIT) {
-                $payInfo->bank_type = $bank_type;
-                $payInfo->transaction_id = $transaction_id;
-                $payInfo->status = self::STATUS_SUCCESS;
+        if ($this->status == self::STATUS_WAIT) {
+            $this->bank_type = $bank_type;
+            $this->transaction_id = $transaction_id;
+            $this->status = self::STATUS_SUCCESS;
 
-                return $payInfo->save();
-            }
+            return $this->save();
         }
 
         return false;
