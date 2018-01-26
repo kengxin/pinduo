@@ -222,9 +222,9 @@ class AppletGameController extends Controller
 
     public function actionPayResult()
     {
-        $postData = $this->getRequestContent();
+//        $postData = $this->getRequestContent();
 
-        file_put_contents('/tmp/pay.log', json_encode($postData));
+        file_put_contents('/tmp/pay.log', file_get_contents('php://input'));
     }
 
     public function getRequestContent()
