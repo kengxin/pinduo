@@ -223,7 +223,7 @@ class AppletGameController extends Controller
     public function actionPayResult()
     {
         $postData = $this->getRequestContent();
-        Yii::$app->log->setLogger($postData);
+        Yii::info($postData);
     }
 
     public function getRequestContent()
