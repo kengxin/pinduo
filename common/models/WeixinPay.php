@@ -63,7 +63,7 @@ class WeixinPay extends ActiveRecord
         $this->total_fee = $total_fee;
 
         if ($this->save()) {
-            return Yii::$app->weixinPay->pay(Yii::$app->weixinUser->getOpenId(), "10000$this->id", $info, $total_fee);
+            return Yii::$app->weixinPay->pay(Yii::$app->weixinUser->getOpenId(), $this->id + 10000, $info, $total_fee);
         }
 
         return false;
@@ -71,13 +71,15 @@ class WeixinPay extends ActiveRecord
 
     public function setSuccess($pay_id, $bank_type, $transaction_id)
     {
-        $pay_id = intval($pay_id) - 100000;
+        $pay_id = intval($pay_id) - 10000;
         if (($payInfo = WeixinPay::findOne($pay_id)) != null) {
-            $payInfo->bank_type = $bank_type;
-            $payInfo->transaction_id = $transaction_id;
-            $payInfo->status = self::STATUS_SUCCESS;
+            if ($payInfo->status == self::STATUS_WAIT) {
+                $payInfo->bank_type = $bank_type;
+                $payInfo->transaction_id = $transaction_id;
+                $payInfo->status = self::STATUS_SUCCESS;
 
-            return $payInfo->save();
+                return $payInfo->save();
+            }
         }
 
         return false;

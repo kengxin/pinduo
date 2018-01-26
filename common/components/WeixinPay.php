@@ -22,17 +22,16 @@ class WeixinPay extends  Component
         $this->body = $body;
         $this->total_fee = $total_fee;
 
-        $return = $this->weixinapp();
-        return $return;
+        return $this->weixinapp();
     }
 
     public function payResult($callback)
     {
         $payResult = $this->xmlToArray(file_get_contents('php://input'));
         if ($payResult['return_code'] == 'SUCCESS') {
-            $callback($payResult);
-
-            return $this->returnPayStatus('SUCCESS');
+            if ($callback($payResult)) {
+                return $this->returnPayStatus('SUCCESS');
+            }
         }
 
         $result = json_encode($payResult);
