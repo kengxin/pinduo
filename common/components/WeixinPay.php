@@ -15,24 +15,45 @@ class WeixinPay extends  Component
     protected $body;
     protected $total_fee;
 
-    public function __construct($appid, $openid, $mch_id, $key, $out_trade_no, $body, $total_fee)
+    public function __construct($appid, $mch_id, $key)
     {
         $this->appid = $appid;
-        $this->openid = $openid;
         $this->mch_id = $mch_id;
         $this->key = $key;
-        $this->out_trade_no = $out_trade_no;
-        $this->body = $body;
-        $this->total_fee = $total_fee;
     }
 
 
-    public function pay()
+    public function pay($openid, $out_trade_no, $body, $total_fee)
     {
+        $this->openid = $openid;
+        $this->out_trade_no = $out_trade_no;
+        $this->body = $body;
+        $this->total_fee = $total_fee;
+
         $return = $this->weixinapp();
         return $return;
     }
 
+    public function payResult($callback)
+    {
+        $payResult = $this->xmlToArray(file_get_contents('php://input'));
+        if ($payResult['return_code'] == 'SUCCESS') {
+            $callback($payResult);
+
+            return $this->returnPayStatus('SUCCESS');
+        }
+
+        $result = json_encode($payResult);
+        Yii::error("pay result error, result: {$result}");
+
+        return $this->returnPayStatus('ERROR');
+    }
+
+
+    public function returnPayStatus($code)
+    {
+        return "<xml><return_code><![CDATA[{$code}]]></return_code><return_msg><![CDATA[{$code}]]></return_msg></xml>";
+    }
 
     //统一下单接口  
     private function unifiedorder()
@@ -128,6 +149,10 @@ class WeixinPay extends  Component
     {
         //统一下单接口  
         $unifiedorder = $this->unifiedorder();
+
+        if (!isset($unifiedorder['prepay_id'])) {
+            return false;
+        }
 
         $parameters = [
             'appId' => $this->appid, //小程序ID  

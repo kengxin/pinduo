@@ -222,9 +222,15 @@ class AppletGameController extends Controller
 
     public function actionPayResult()
     {
-//        $postData = $this->getRequestContent();
-
-        file_put_contents('/tmp/pay.log', file_get_contents('php://input'));
+        return Yii::$app->weixinPay->payResult(function ($result) {
+            if (($userInfo = WeixinUser::findOne(['openid' => $result['openid']])) != null) {
+                $weixinPay = new WeixinPay();
+                if ($weixinPay->setSuccess($result['out_trade_no'], $result['bank_type'], $result['transaction_id'])) {
+                    $count = json_decode($weixinPay['extra'], true);
+                    GameInfo::addLastNumber($userInfo->id, $count['count']);
+                }
+            }
+        });
     }
 
     public function getRequestContent()
@@ -237,6 +243,17 @@ class AppletGameController extends Controller
         }
 
         return false;
+    }
+
+    public function decodeXml($xml)
+    {
+        libxml_disable_entity_loader(true);
+
+        $xmlString = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
+
+        $val = json_decode(json_encode($xmlString), true);
+
+        return $val;
     }
 
     public function curlGet($url)
