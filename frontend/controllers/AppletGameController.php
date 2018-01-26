@@ -199,9 +199,9 @@ class AppletGameController extends Controller
         $type_id = intval($postData['type_id']);
 
         $typeList = [
-            1 => ['info' => '购买1次挑战机会', 'total_fee' => 2000, 'extra' => ['count' => 1]],
-            2 => ['info' => '购买3次挑战机会', 'total_fee' => 5000, 'extra' => ['count' => 3]],
-            3 => ['info' => '购买8次挑战机会', 'total_fee' => 8000, 'extra' => ['count' => 8]]
+            1 => ['info' => '购买1次挑战机会', 'total_fee' => 1, 'extra' => ['count' => 1]],
+            2 => ['info' => '购买3次挑战机会', 'total_fee' => 2, 'extra' => ['count' => 3]],
+            3 => ['info' => '购买8次挑战机会', 'total_fee' => 3, 'extra' => ['count' => 8]]
         ];
 
         if (isset($typeList[$type_id])) {
