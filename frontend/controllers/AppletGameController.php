@@ -226,7 +226,7 @@ class AppletGameController extends Controller
             if (($userInfo = WeixinUser::findOne(['openid' => $result['openid']])) != null) {
                 $weixinPay = new WeixinPay();
                 if ($weixinPay->setSuccess($result['out_trade_no'], $result['bank_type'], $result['transaction_id'])) {
-                    $count = json_decode($weixinPay['extra'], true);
+                    $count = json_decode($weixinPay->extra, true);
                     return GameInfo::addLastNumber($userInfo->id, $count['count']);
                 }
             }
