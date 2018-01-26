@@ -72,7 +72,7 @@ class WeixinPay extends ActiveRecord
     public function setSuccess($pay_id, $bank_type, $transaction_id)
     {
         $pay_id = intval($pay_id) - 10000;
-        if (($payInfo = WeixinPay::findOne($pay_id)) != null) {
+        if (($payInfo = $this->findOne($pay_id)) != null) {
             if ($payInfo->status == self::STATUS_WAIT) {
                 $payInfo->bank_type = $bank_type;
                 $payInfo->transaction_id = $transaction_id;
