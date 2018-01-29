@@ -54,7 +54,7 @@ class WeixinUser extends ActiveRecord
         $this->gender = $userInfo['gender'];
 
         $this->openid = Yii::$app->weixinUser->openid;
-        $this->unionid = '123';
+        $this->unionid = Yii::$app->weixinUser->unionid;
 
         if ($this->save()) {
             $gameInfo = new GameInfo();

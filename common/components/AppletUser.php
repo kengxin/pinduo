@@ -34,7 +34,7 @@ class AppletUser extends Component
                 $this->login = true;
 
                 $this->openid = $privateInfo['openid'];
-//                $this->unionid = $privateInfo['unionid'];
+                $this->unionid = $privateInfo['unionid'];
                 $this->session_key = $privateInfo['session_key'];
 
                 if (($userInfo = WeixinUser::find()
