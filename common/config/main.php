@@ -28,8 +28,8 @@ return [
         ],
         'weixinPay' => [
             'class' => 'common\components\WeixinPay',
-            'appid' => 'wx8d8046dfbff8a92c',
-            'mch_id' => '1336595701',
+            'appid' => 'wxbbcb5bf09c262a61',
+            'mch_id' => '11004642',
             'key' => 'cb4e9e76eb725267ad9712c7dead1ec1',
         ]
     ],
