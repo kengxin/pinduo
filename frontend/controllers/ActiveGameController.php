@@ -83,7 +83,6 @@ class ActiveGameController extends Controller
     public function actionGetUserInfo($user_id)
     {
         $user_id = intval($user_id);
-        var_dump(Yii::$app->yearUser->id);die;
         if (Yii::$app->yearUser->id == $user_id) {
             $gameInfoModel = new YearGame();
             $gameInfo = $gameInfoModel->getGameInfo($user_id);
