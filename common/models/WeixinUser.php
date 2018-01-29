@@ -48,7 +48,8 @@ class WeixinUser extends ActiveRecord
 
     public function saveUser($userInfo)
     {
-        $this->nickName = $userInfo['nickName'];
+        $nickName = $this->filterEmoji($userInfo['nickName']);
+        $this->nickName = empty($nickName) ? '[表情]' : $nickName;
         $this->avatarUrl = $userInfo['avatarUrl'];
         $this->gender = $userInfo['gender'];
 
@@ -61,6 +62,18 @@ class WeixinUser extends ActiveRecord
         }
 
         return false;
+    }
+
+    public function filterEmoji($str)
+    {
+        $str = preg_replace_callback(
+            '/./u',
+            function (array $match) {
+                return strlen($match[0]) >= 4 ? '' : $match[0];
+            },
+            $str);
+
+        return $str;
     }
 
 }
