@@ -3,7 +3,7 @@ namespace common\components;
 
 use Yii;
 use yii\base\Component;
-use common\models\WeixinUser;
+use common\models\year\YearUser as User;
 
 class YearUser extends Component
 {
@@ -37,7 +37,7 @@ class YearUser extends Component
 //                $this->unionid = $privateInfo['unionid'];
                 $this->session_key = $privateInfo['session_key'];
 
-                if (($userInfo = WeixinUser::find()
+                if (($userInfo = User::find()
                     ->select(['id', 'nickName', 'avatarUrl'])
                     ->where(['openid' => $privateInfo['openid']])
                     ->one()) != null) {
