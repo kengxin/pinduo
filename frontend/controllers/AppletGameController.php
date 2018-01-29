@@ -19,6 +19,12 @@ class AppletGameController extends Controller
 
     public $appSecret = '8f830afa3f3323396ca57935ac36adb7';
 
+    public function actionIndex()
+    {
+
+//        return $this->render('index');
+    }
+
     public function actionLogin()
     {
         $postContent = $this->getRequestContent();

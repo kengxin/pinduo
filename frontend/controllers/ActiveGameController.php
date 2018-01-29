@@ -9,7 +9,7 @@ use common\models\GameInfo;
 use common\models\WeixinPay;
 use common\models\WeixinUser;
 
-class ActiveGame extends Controller
+class ActiveGameController extends Controller
 {
     public $enableCsrfValidation = false;
 
