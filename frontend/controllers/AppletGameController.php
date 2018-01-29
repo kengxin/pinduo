@@ -21,7 +21,7 @@ class AppletGameController extends Controller
 
     public function actionIndex()
     {
-
+        var_dump($_GET);
 //        return $this->render('index');
     }
 
