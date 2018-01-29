@@ -21,8 +21,18 @@ class AppletGameController extends Controller
 
     public function actionIndex()
     {
-        var_dump($_GET);
-//        return $this->render('index');
+        $code = Yii::$app->request->get('code', false);
+        if ($code) {
+            $result = $this->curlGet("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2ce7f0ec104b86de&secret=52737a83b36568709f132ce996edcdd3&code={$code}&grant_type=authorization_code");
+            if (!isset($result['errcode'])) {
+                $access_token = $result['access_token'];
+                $openid = $result['openid'];
+
+                $userInfo = $this->curlGet("https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$openid}&lang=zh_CN");
+
+                var_dump($userInfo);
+            }
+        }
     }
 
     public function actionLogin()
