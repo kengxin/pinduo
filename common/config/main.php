@@ -27,7 +27,7 @@ return [
             'class' => 'common\components\AppletUser'
         ],
         'yearUser' => [
-            'class' => 'common\components\AppletUser'
+            'class' => 'common\components\YearUser'
         ],
         'weixinPay' => [
             'class' => 'common\components\WeixinPay',

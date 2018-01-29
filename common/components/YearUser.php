@@ -28,8 +28,6 @@ class YearUser extends Component
             $redis = Yii::$app->redis;
 
             $privateInfo = $redis->get($token);
-            var_dump($token);
-            var_dump($privateInfo);die;
             if ($privateInfo) {
                 $privateInfo = json_decode($privateInfo, true);
 
