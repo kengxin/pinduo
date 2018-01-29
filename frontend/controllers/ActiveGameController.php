@@ -24,7 +24,6 @@ class ActiveGameController extends Controller
 
         $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$this->appId}&secret={$this->appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
 
-        var_dump($result);die;
         if (isset($result['openid'])) {
             $token = 'year_' . md5($result['openid']);
 
