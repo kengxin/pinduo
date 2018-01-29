@@ -3,20 +3,21 @@
 use yii\db\Migration;
 
 /**
- * Class m180123_101628_create_prize
+ * Class m180127_071020_create_year_reward
  */
-class m180123_101628_create_prize extends Migration
+class m180127_071020_create_year_reward extends Migration
 {
     /**
      * @inheritdoc
      */
     public function safeUp()
     {
-        $this->createTable('prizes', [
+        $this->createTable('reward', [
             'id' => $this->primaryKey(),
-            'name' => 'VARCHAR(255) NOT NULL DEFAULT ""',
-            'description' => 'VARCHAR(255) NOT NULL DEFAULT ""',
-            'img_url' => 'VARCHAR(255) NOT NULL DEFAULT ""',
+            'user_id' => 'INT(11) NOT NULL DEFAULT 0',
+            'price' => 'INT(11) NOT NULL DEFAULT 0',
+            'type' => 'TINYINT(3) NOT NULL DEFAULT 0',
+            'status' => 'TINYINT(1) NOT NULL DEFAULT 0',
             'created_at' => 'INT(11) NOT NULL DEFAULT 0'
         ]);
     }
@@ -26,7 +27,7 @@ class m180123_101628_create_prize extends Migration
      */
     public function safeDown()
     {
-        echo "m180123_101628_create_prize cannot be reverted.\n";
+        echo "m180127_071020_create_year_reward cannot be reverted.\n";
 
         return false;
     }
@@ -40,7 +41,7 @@ class m180123_101628_create_prize extends Migration
 
     public function down()
     {
-        echo "m180123_101628_create_prize cannot be reverted.\n";
+        echo "m180127_071020_create_year_reward cannot be reverted.\n";
 
         return false;
     }

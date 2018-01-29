@@ -9,7 +9,7 @@ class GameInfo extends ActiveRecord
 
     public static function tableName()
     {
-        return 'gameInfo';
+        return 'game_info';
     }
 
     public function rules()

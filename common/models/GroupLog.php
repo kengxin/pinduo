@@ -14,7 +14,7 @@ class GroupLog extends ActiveRecord
 
     public static function tableName()
     {
-        return 'groupLogs';
+        return 'group_log';
     }
 
     public function rules()

@@ -12,7 +12,7 @@ class m180119_120854_create_group_logs extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('groupLogs', [
+        $this->createTable('group_logs', [
             'id' => $this->primaryKey(),
             'user_id' => 'INT(11) NOT NULL DEFAULT 0',
             'group_id' => 'VARCHAR(255) NOT NULL DEFAULT ""',

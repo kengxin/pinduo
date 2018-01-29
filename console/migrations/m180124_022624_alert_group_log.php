@@ -12,7 +12,7 @@ class m180124_022624_alert_group_log extends Migration
      */
     public function safeUp()
     {
-        $this->addColumn('groupLogs', 'type', 'TINYINT(1) NOT NULL DEFAULT 0');
+        $this->addColumn('group_log', 'type', 'TINYINT(1) NOT NULL DEFAULT 0');
     }
 
     /**

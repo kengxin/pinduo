@@ -12,7 +12,7 @@ class m180119_104535_create_user_game extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('gameInfo', [
+        $this->createTable('game_info', [
             'id' => $this->primaryKey(),
             'user_id' => 'INT(11) NOT NULL DEFAULT 0',
             'lastNumber' => 'INT(11) NOT NULL DEFAULT 0',

@@ -9,7 +9,7 @@ class GameLog extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'gameLog';
+        return 'game_log';
     }
 
     public function rules()

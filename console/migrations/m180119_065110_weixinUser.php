@@ -12,7 +12,7 @@ class m180119_065110_weixinUser extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('weixinUser', [
+        $this->createTable('weixin_user', [
            'id' => $this->primaryKey(),
             'openid' => 'VARCHAR(32) NOT NULL DEFAULT ""',
             'unionid' => 'VARCHAR(32) NOT NULL DEFAULT ""',

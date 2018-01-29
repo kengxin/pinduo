@@ -12,7 +12,7 @@ class m180121_090048_game_log extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('gameLog', [
+        $this->createTable('game_log', [
             'id' => $this->primaryKey(),
             'user_id' => 'INT(11) NOT NULL DEFAULT 0',
             'currentNumber' => 'INT(3) NOT NULL DEFAULT 0',

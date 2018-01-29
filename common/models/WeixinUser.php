@@ -9,7 +9,7 @@ class WeixinUser extends ActiveRecord
 {
     public static function tableName()
     {
-        return 'weixinUser';
+        return 'weixin_user';
     }
 
     public function behaviors()
