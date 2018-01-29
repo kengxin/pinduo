@@ -37,6 +37,7 @@ class AppletGameController extends Controller
                 return json_encode([
                     'code' => 0,
                     'data' => [
+                        'c' => '',
                         'user_id' => $userInfo->id,
                         'token' => $token
                     ]
@@ -45,6 +46,7 @@ class AppletGameController extends Controller
                 return json_encode([
                     'code' => -1,
                     'data' => [
+                        'c' => '',
                         'token' => $token
                     ]
                 ]);

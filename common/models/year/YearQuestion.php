@@ -1,7 +1,19 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: xin
- * Date: 18/1/29
- * Time: 下午3:02
- */
+namespace common\models\year;
+
+use yii\db\ActiveRecord;
+
+class YearQuestion extends ActiveRecord
+{
+    public static function tableName()
+    {
+        return 'year_question';
+    }
+
+    public function rules()
+    {
+        return [
+            [[]]
+        ];
+    }
+}

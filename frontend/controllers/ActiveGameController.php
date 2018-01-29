@@ -5,21 +5,17 @@ use common\models\year\YearGame;
 use common\models\year\YearUser;
 use Yii;
 use yii\web\Controller;
-use common\models\Prizes;
-use common\models\GameLog;
 use common\models\GameInfo;
-use common\models\GroupLog;
 use common\models\WeixinPay;
 use common\models\WeixinUser;
-use WxDecrypt\WxBizDataCrypt;
 
 class ActiveGame extends Controller
 {
     public $enableCsrfValidation = false;
 
-    public $appId = 'wxbbcb5bf09c262a61';
+    public $appId = 'wxd871b73404029273';
 
-    public $appSecret = '8f830afa3f3323396ca57935ac36adb7';
+    public $appSecret = 'c54e4f211e4f1610744f2d177525b744';
 
     public function actionLogin()
     {
@@ -79,6 +75,11 @@ class ActiveGame extends Controller
         ]);
     }
 
+    public function getQuestionList()
+    {
+
+    }
+
     public function actionGetUserInfo($user_id)
     {
         $user_id = intval($user_id);
@@ -101,6 +102,7 @@ class ActiveGame extends Controller
         ]);
     }
 
+    /*
     public function actionGetGroupId()
     {
         $decodeData = '';
@@ -127,22 +129,24 @@ class ActiveGame extends Controller
         ]);
     }
 
+    */
+
     public function actionJoinGame()
     {
-        if (($gameInfo = GameInfo::findOne(['user_id' => Yii::$app->weixinUser->id])) != null) {
+        if (($gameInfo = YearGame::findOne(['user_id' => Yii::$app->yearUser->id])) != null) {
             if ($gameInfo->lastNumber > 0) {
                 $gameInfo->lastNumber--;
                 $gameInfo->playNumber++;
                 if ($gameInfo->save()) {
-                    $gameLog = new GameLog();
-                    if ($gameLog->startGame($gameInfo->user_id)) {
+//                    $gameLog = new GameLog();
+//                    if ($gameLog->startGame($gameInfo->user_id)) {
                         return json_encode([
                             'code' => 0,
-                            'data' => [
-                                'game_id' => $gameLog->id
-                            ]
+//                            'data' => [
+//                                'game_id' => $gameLog->id
+//                            ]
                         ]);
-                    }
+//                    }
                 }
             }
         }
@@ -152,48 +156,48 @@ class ActiveGame extends Controller
         ]);
     }
 
-    public function actionCloseGame()
-    {
-        $postData = $this->getRequestContent();
-        $gameId = intval($postData['gameId']);
-        $currentNum = intval($postData['currentNum']);
+//    public function actionCloseGame()
+//    {
+//        $postData = $this->getRequestContent();
+//        $gameId = intval($postData['gameId']);
+//        $currentNum = intval($postData['currentNum']);
+//
+//        $gameLog = new GameLog();
+//        if ($gameLog->closeGame($gameId, $currentNum)) {
+//            return json_encode([
+//                'code' => 0
+//            ]);
+//        }
+//
+//        return json_encode([
+//            'code' => -1
+//        ]);
+//    }
 
-        $gameLog = new GameLog();
-        if ($gameLog->closeGame($gameId, $currentNum)) {
-            return json_encode([
-                'code' => 0
-            ]);
-        }
-
-        return json_encode([
-            'code' => -1
-        ]);
-    }
-
-    public function actionGetRank()
-    {
-        $gameModel = new GameInfo();
-        $prizesModel = new Prizes();
-
-        $iqRank = $gameModel->getIqRand();
-        $resolveRank = $gameModel->getResolveRank();
-        $groupRank = $gameModel->getGroupRank();
-
-        $prizesList = $prizesModel->getPrizesList();
-
-        $joinCount = GameLog::find()->count();
-
-        return json_encode([
-            'code' => 0,
-            'data' => [
-                'currentJoin' => $joinCount,
-                'iqRank' => $iqRank,
-                'resolveRank' => $resolveRank,
-                'groupRank' => $groupRank,
-                'prizesList' => $prizesList
-            ]
-        ]);
-    }
+//    public function actionGetRank()
+//    {
+//        $gameModel = new GameInfo();
+//        $prizesModel = new Prizes();
+//
+//        $iqRank = $gameModel->getIqRand();
+//        $resolveRank = $gameModel->getResolveRank();
+//        $groupRank = $gameModel->getGroupRank();
+//
+//        $prizesList = $prizesModel->getPrizesList();
+//
+//        $joinCount = GameLog::find()->count();
+//
+//        return json_encode([
+//            'code' => 0,
+//            'data' => [
+//                'currentJoin' => $joinCount,
+//                'iqRank' => $iqRank,
+//                'resolveRank' => $resolveRank,
+//                'groupRank' => $groupRank,
+//                'prizesList' => $prizesList
+//            ]
+//        ]);
+//    }
 
     public function actionGetPayConfig()
     {
