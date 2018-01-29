@@ -27,7 +27,7 @@ class ActiveGameController extends Controller
         if (isset($result['openid'])) {
             $token = md5($result['openid']);
 
-            $redis->set($token, json_encode('year_' . $result));
+            $redis->set('year_' . $token, json_encode($result));
             if (($userInfo = YearUser::find()
                     ->select(['id'])
                     ->where(['openid' => $result['openid']])
