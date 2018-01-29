@@ -25,9 +25,9 @@ class ActiveGameController extends Controller
         $result = $this->curlGet("https://api.weixin.qq.com/sns/jscode2session?appid={$this->appId}&secret={$this->appSecret}&js_code={$postContent['code']}&grant_type=authorization_code");
 
         if (isset($result['openid'])) {
-            $token = 'year_' . md5($result['openid']);
+            $token = md5($result['openid']);
 
-            $redis->set($token, json_encode($result));
+            $redis->set($token, json_encode('year_' . $result));
             if (($userInfo = YearUser::find()
                     ->select(['id'])
                     ->where(['openid' => $result['openid']])
