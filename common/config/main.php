@@ -26,6 +26,9 @@ return [
         'weixinUser' => [
             'class' => 'common\components\AppletUser'
         ],
+        'yearUser' => [
+            'class' => 'common\components\AppletUser'
+        ],
         'weixinPay' => [
             'class' => 'common\components\WeixinPay',
             'appid' => 'wxbbcb5bf09c262a61',
