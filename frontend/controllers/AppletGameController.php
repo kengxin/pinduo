@@ -30,9 +30,11 @@ class AppletGameController extends Controller
 
                 $userInfo = $this->curlGet("https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$openid}&lang=zh_CN");
 
-                var_dump($userInfo);
+
             }
         }
+
+        return $this->render('applet-game/index');
     }
 
     public function actionLogin()
