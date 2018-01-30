@@ -34,7 +34,7 @@ class AppletGameController extends Controller
             }
         }
 
-        return $this->render('applet-game/index');
+        return $this->renderPartial('index');
     }
 
     public function actionLogin()

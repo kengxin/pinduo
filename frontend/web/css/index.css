@@ -1,0 +1,191 @@
+<style>
+		 @charset "utf-8";
+		*{
+			margin:0;
+			padding:0
+		}
+		body{
+			
+			font-size:16px; 
+			font-family:"微软雅黑";;
+		}
+		html{
+			 text-align:justify;
+		}
+		html,body{overflow:hidden;overflow-y:auto;}
+		.challenge{
+			width: 4.75rem;
+			height: 1.5rem;
+			border: 1px solid rgb(203,84,65);
+			border-radius: 1.0rem;
+			text-align: center;
+			font-size: 0.75rem;
+			color: 	rgb(254,230,180);
+			line-height: 1.5rem;
+			position: absolute;
+			top: 1.0rem;
+			left: 1.25rem;
+		}
+		.record{
+			width: 4.75rem;
+			height: 1.5rem;
+			border: 1px solid rgb(203,84,65);
+			border-radius: 1.0rem;
+			text-align: center;
+			font-size: 0.75rem;
+			color: 	rgb(203,84,65);
+			line-height: 1.5rem;
+			position: absolute;
+			top: 1.0rem;
+			right: 1.25rem;
+		}
+		.active{
+			background: rgb(203,84,65);
+		}
+		.activetext{
+			color: rgb(254,230,180);
+		}
+		.activetextRemove{
+			color: rgb(203,84,65);
+		}
+		.users{
+			width: 100%;
+			position: absolute;
+			top: 80px;
+		}
+		.user{
+			width: 80%;
+			height: 60PX;
+			margin: 0 auto;
+			/*border: 1px solid rgb(203,84,65);*/
+			position: relative;
+			border-radius: 5%;
+			background: #FFFAE7;
+		}
+		.user.user{
+			margin-top: 20px;
+		}
+		.hp{
+			width: 40px;
+			height: 40px;
+			/*border: 1px solid rgb(203,84,65);*/
+			border-radius: 50%;
+			margin-top: 10px;
+			margin-left: 10px;
+			float: left;
+			overflow:hidden
+		}
+		.username{
+			float: left;
+			line-height: 60px;
+			margin-left: 20px;
+		}
+		.receive{
+			width: 50px;
+			height: 35px;
+			float: left;
+			color: white;
+			font-size: 15px;
+			border: none;
+			outline: 0;
+			background-color: #4CAF50;
+			position: absolute;
+			top: 25%;
+			right: 5%;
+			border-radius: 50px;
+		}
+		.bomb{
+			width: 100%;
+			height: 100%;
+			background: rgba(0,0,0,0.3);
+			position: fixed;
+			display: none;
+		}
+		.address{
+			width: 80%;
+			/*height: 20rem;*/
+			border-radius: 0.5rem;
+			background: #FFFAE7;
+			/*margin-top: 5.0rem;*/
+			overflow: hidden;
+			position: relative;
+			margin: 0 auto;
+    		margin-top: 10%;
+		}
+		.newadd{
+			width: 100%;
+			height: 1.5rem;
+			background: rgb(203,84,65);
+			color: rgb(254,230,180);
+			text-align: center;
+			line-height: 1.5rem;
+		}
+		.close{
+			font-size: 1.0rem;
+			cursor:pointer;
+			position: fixed;
+			left: 83%;
+		}
+		.consignee span{
+			float: left;
+			margin-left: 1.5rem;
+			margin-top: 1.0rem;
+			font-size: 0.75rem;
+		}
+		.consignee input{
+			float:left;
+			margin-top: 1.1rem;
+			margin-left: 3%;
+			width: 70%;
+			height: 1.0rem;
+			border: 0;
+			outline: 0;
+			color: #000000;
+			font-size: 0.75rem;
+		}
+		.number span{
+			float: left;
+			margin-left: 1.5rem;
+			margin-top: 0.5rem;
+			font-size: 0.75rem;
+		}
+		.number input{
+			float:left;
+			margin-top: 0.4rem;
+			margin-left: 0.25rem;
+			width: 65%;
+			height: 1.0rem;
+			border: 0;
+			outline: 0;
+			color: #000000;
+			font-size: 0.75rem;
+		}
+		.region span{
+			float: left;
+			margin-left: 1.5rem;
+			margin-top: 0.5rem;
+			font-size: 0.75rem;
+		}
+		.region input{
+			float:left;
+			margin-top: 0.4rem;
+			margin-left: 0.25rem;
+			width: 70%;
+			height: 1.0rem;
+			border: 0;
+			outline: 0;
+			color: #000000;
+			font-size: 0.75rem;
+		}
+		.more{
+			float:left;
+			margin-top: 0.4rem;
+			margin-left: 1.5rem;
+			width: 70%;
+			height: 1.0rem;
+			border: 0;
+			outline: 0;
+			color: #A5A5A5;
+			font-size: 0.75rem;
+		}
+	</style>

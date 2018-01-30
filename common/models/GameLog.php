@@ -55,7 +55,7 @@ class GameLog extends ActiveRecord
     {
         $gameLog = $this->findOne($gameId);
         $gameInfo = GameInfo::findOne(['user_id' => Yii::$app->weixinUser->id]);
-        if ($gameLog != null) {
+        if ($gameLog != null && $gameLog->closed_at == 0) {
             $gameLog->currentNumber = $currentNum;
             $gameLog->closed_at = time();
 
@@ -64,6 +64,10 @@ class GameLog extends ActiveRecord
             }
 
             if ($gameLog->currentNumber == 500) {
+                // 插入信息
+                $appletReward = new AppletReward();
+                $appletReward->saveReward(Yii::$app->weixinUser->id);
+
                 $gameInfo->completeNumber += 1;
             }
 
