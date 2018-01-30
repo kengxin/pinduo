@@ -175,6 +175,14 @@ class AppletGameController extends Controller
         $postData = $this->getRequestContent();
         $gameId = intval($postData['gameId']);
         $currentNum = intval($postData['currentNum']);
+        $csrf = $postData['_csrf'];
+
+        $user_id = Yii::$app->weixinUser->id;
+        if ($csrf != md5($gameId . $currentNum . $user_id)) {
+            return json_encode([
+                'code' => -2
+            ]);
+        }
 
         $gameLog = new GameLog();
         if ($gameLog->closeGame($gameId, $currentNum)) {
