@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\year\YearGame;
+use common\models\year\YearQuestion;
 use common\models\year\YearUser;
 use Yii;
 use yii\web\Controller;
@@ -75,9 +76,15 @@ class ActiveGameController extends Controller
         ]);
     }
 
-    public function getQuestionList()
+    public function actionGetQuestionList()
     {
+        $questionModel = new YearQuestion();
+        $questionList = $questionModel->getQuestionList();
 
+        return json_encode([
+            'code' => 0,
+            'data' => $questionList
+        ]);
     }
 
     public function actionGetUserInfo($user_id)

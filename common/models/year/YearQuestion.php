@@ -16,4 +16,35 @@ class YearQuestion extends ActiveRecord
             [[]]
         ];
     }
+
+    public function getAnswer()
+    {
+        return $this->hasMany(YearAnswer::className(), ['question_id' => 'id']);
+    }
+
+    public function getQuestionList()
+    {
+        $answerModel = new YearAnswer();
+
+        $easyQuestion = YearQuestion::find()
+            ->select(['id', 'question', 'level'])
+            ->where(['in', 'level', [1, 2]])
+            ->indexBy('id')
+            ->asArray()
+            ->limit(10)
+            ->all();
+
+        $questionIds = array_keys($easyQuestion);
+        $easyAnswer = $answerModel->getAnswerList($questionIds, true);
+
+        $questionList = [];
+        foreach ($easyQuestion as $question) {
+            $questionList[] = [
+                'question' => $question,
+                'answer' => shuffle($easyAnswer[$question['id']])
+            ];
+        }
+
+        return $questionList;
+    }
 }
