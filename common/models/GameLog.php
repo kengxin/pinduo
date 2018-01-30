@@ -53,7 +53,7 @@ class GameLog extends ActiveRecord
 
     public function closeGame($gameId, $currentNum)
     {
-        $gameLog = $this->findOne($gameId);
+        $gameLog = $this->find()->where(['id' => $gameId, 'user_id' => Yii::$app->weixinUser->id])->one();
         $gameInfo = GameInfo::findOne(['user_id' => Yii::$app->weixinUser->id]);
         if ($gameLog != null && $gameLog->closed_at == 0) {
             $gameLog->currentNumber = $currentNum;
