@@ -1,15 +1,16 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\GameLog;
-use common\models\Prizes;
-use common\models\WeixinPay;
 use Yii;
 use yii\web\Controller;
+use common\models\Prizes;
+use common\models\GameLog;
 use common\models\GameInfo;
 use common\models\GroupLog;
+use common\models\WeixinPay;
 use common\models\WeixinUser;
 use WxDecrypt\WxBizDataCrypt;
+use common\models\AppletReward;
 
 class AppletGameController extends Controller
 {
@@ -30,11 +31,17 @@ class AppletGameController extends Controller
 
                 $userInfo = $this->curlGet("https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$openid}&lang=zh_CN");
 
-
+                $user = WeixinUser::findOne(['unionid' => $userInfo['unionid']]);
+                if ($user) {
+                    $rewardList = AppletReward::find()->where(['user_id' => $user->id])->asArray()->all();
+                }
             }
         }
 
-        return $this->renderPartial('index');
+        return $this->renderPartial('index', [
+            'user' => isset($user) ?: [],
+            'rewardList' => isset($rewardList) ?: []
+        ]);
     }
 
     public function actionLogin()
