@@ -39,7 +39,10 @@ class YearQuestion extends ActiveRecord
 
         $questionList = [];
         foreach ($easyQuestion as $question) {
+            $question['level'] = intval($question['level']);
+
             shuffle($easyAnswer[$question['id']]);
+
             $questionList[] = [
                 'question' => $question,
                 'answer' => $easyAnswer[$question['id']]

@@ -29,6 +29,9 @@ class YearAnswer extends ActiveRecord
 
         $result = [];
         foreach ($answerList as $answer) {
+            $answer['is_correct'] = boolval($answer['is_correct']);
+            $answer['question_id'] = intval($answer['question_id']);
+
             if (!isset($result[$answer['question_id']]) || count($result[$answer['question_id']]) < 4) {
                 if ($answer['is_correct'] == 1) {
                     if ($is_correct == true) {
