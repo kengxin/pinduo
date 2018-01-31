@@ -5,6 +5,10 @@ use yii\db\ActiveRecord;
 
 class YearAnswer extends ActiveRecord
 {
+    const STATUS_ERROR = 0;
+
+    const STATUS_SUCCESS = 1;
+
     public static function tableName()
     {
         return 'year_answer';

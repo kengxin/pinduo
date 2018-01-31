@@ -69,4 +69,17 @@ class YearGame extends ActiveRecord
 
         return $gameInfo;
     }
+
+    public function getRankList()
+    {
+        return YearGame::find()
+            ->select(['completeNumber'])
+            ->joinWith('weixinUser')
+            ->orderBy('completeNumber DESC')
+            ->asArray()
+            ->limit(6)
+            ->all();
+
+    }
+
 }

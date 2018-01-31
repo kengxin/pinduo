@@ -1,14 +1,18 @@
 <?php
 namespace frontend\controllers;
 
-use common\models\year\YearGame;
-use common\models\year\YearQuestion;
-use common\models\year\YearUser;
+use common\models\year\YearGroupLog;
+use WxDecrypt\WxBizDataCrypt;
 use Yii;
 use yii\web\Controller;
 use common\models\GameInfo;
 use common\models\WeixinPay;
 use common\models\WeixinUser;
+use common\models\year\YearGame;
+use common\models\year\YearUser;
+use common\models\year\YearAnswer;
+use common\models\year\YearGameLog;
+use common\models\year\YearQuestionLog;
 
 class ActiveGameController extends Controller
 {
@@ -76,17 +80,6 @@ class ActiveGameController extends Controller
         ]);
     }
 
-    public function actionGetQuestionList()
-    {
-        $questionModel = new YearQuestion();
-        $questionList = $questionModel->getQuestionList();
-
-        return json_encode([
-            'code' => 0,
-            'data' => $questionList
-        ]);
-    }
-
     public function actionGetUserInfo($user_id)
     {
         $user_id = intval($user_id);
@@ -109,22 +102,78 @@ class ActiveGameController extends Controller
         ]);
     }
 
-    /*
-    public function actionGetGroupId()
+    public function actionJoinGame()
     {
-        $decodeData = '';
-        $postData = $this->getRequestContent();
+        if (($gameInfo = YearGame::findOne(['user_id' => Yii::$app->yearUser->id])) != null) {
+            if ($gameInfo->lastNumber > 0) {
+                $gameInfo->lastNumber--;
+                $gameInfo->playNumber++;
+                if ($gameInfo->save()) {
+                    $gameLog = new YearGameLog();
+                    if ($gameLog->startGame($gameInfo->user_id)) {
+                        $questionLog = new YearQuestionLog();
+                        $questionInfo = $questionLog->getQuestion($gameLog->id, $gameLog->user_id, $gameLog->current_num);
+                        return json_encode([
+                            'code' => 0,
+                            'data' => [
+                                'game_id' => $gameLog->id,
+                                'questionInfo' => $questionInfo
+                            ]
+                        ]);
+                    }
+                }
+            }
+        }
 
-        $decode = new WxBizDataCrypt($this->appId, Yii::$app->weixinUser->session_key);
-        if ($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData) == 0) {
-            $decodeData = json_decode($decodeData);
-            $groupLogs = new GroupLog();
-            if (!$groupLogs->getLogExists($decodeData->openGId, intval($postData['type']))) {
-                if ($groupLogs->saveGroupLog($decodeData->openGId, intval($postData['type']), boolval($postData['type']))) {
+        return json_encode([
+            'code' => -1
+        ]);
+    }
+
+    public function actionSendAnswer()
+    {
+        $postData = $this->getRequestContent();
+        $question_id = $postData['question_id'];
+        $answer_id = $postData['answer_id'];
+        $game_id = $postData['game_id'];
+
+        $gameLogInfo = YearGameLog::findOne($game_id);
+        $questionLogInfo = YearQuestionLog::find()
+            ->where(['game_id' => $game_id])
+            ->orderBy('id DESC')
+            ->one();
+        if (!empty($gameLogInfo) && !empty($questionLogInfo)) {
+            if ($questionLogInfo->question_id == $question_id) {
+                $answerInfo = YearAnswer::findOne(['question_id' => $question_id, 'is_correct' => YearAnswer::STATUS_SUCCESS]);
+                if ($answerInfo->id == $answer_id) {
+
+                    $questionLogInfo->is_correct = YearQuestionLog::STATUS_SUCCESS;
+                    $questionLogInfo->save();
+                    $gameLogInfo->current_num++;
+                    $gameLogInfo->save();
+
+                    $questionLog = new YearQuestionLog();
+                    $questionInfo = $questionLog->getQuestion($gameLogInfo->id, $gameLogInfo->user_id, $gameLogInfo->current_num);
+
                     return json_encode([
                         'code' => 0,
                         'data' => [
-                            'groupId' => $decodeData->openGId
+                            'status' => true,
+                            'questionInfo' => $questionInfo
+                        ]
+                    ]);
+                } else {
+                    $questionLogInfo->is_correct = YearQuestionLog::STATUS_ERROR;
+                    $questionLogInfo->save();
+
+                    $questionLog = new YearQuestionLog();
+                    $questionInfo = $questionLog->getQuestion($gameLogInfo->id, $gameLogInfo->user_id, $gameLogInfo->current_num);
+
+                    return json_encode([
+                        'code' => 0,
+                        'data' => [
+                            'status' => false,
+                            'questionInfo' => $questionInfo
                         ]
                     ]);
                 }
@@ -136,26 +185,44 @@ class ActiveGameController extends Controller
         ]);
     }
 
-    */
-
-    public function actionJoinGame()
+    public function actionGetGroupId()
     {
-        if (($gameInfo = YearGame::findOne(['user_id' => Yii::$app->yearUser->id])) != null) {
-            if ($gameInfo->lastNumber > 0) {
-                $gameInfo->lastNumber--;
-                $gameInfo->playNumber++;
-                if ($gameInfo->save()) {
-//                    $gameLog = new GameLog();
-//                    if ($gameLog->startGame($gameInfo->user_id)) {
-                        return json_encode([
-                            'code' => 0,
-//                            'data' => [
-//                                'game_id' => $gameLog->id
-//                            ]
-                        ]);
-//                    }
-                }
-            }
+        $decodeData = '';
+        $postData = $this->getRequestContent();
+        $user_id = Yii::$app->yearUser->id;
+
+       $decode = new WxBizDataCrypt($this->appId, Yii::$app->yearUser->session_key);
+       if ($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData) == 0) {
+           $decodeData = json_decode($decodeData);
+           $groupLogs = new YearGroupLog();
+           if (!$groupLogs->existsLog($user_id, $decodeData->openGId)) {
+               if ($groupLogs->saveLog($user_id, $decodeData->openGId)) {
+                   return json_encode([
+                       'code' => 0,
+                       'data' => [
+                           'groupId' => $decodeData->openGId
+                       ]
+                   ]);
+               }
+           }
+       }
+
+       return json_encode([
+           'code' => -1
+       ]);
+    }
+
+    public function actionCloseGame()
+    {
+        $postData = $this->getRequestContent();
+        $game_id = intval($postData['game_id']);
+        $current_num = intval($postData['current_num']);
+
+        $gameLog = new YearGameLog();
+        if ($gameLog->closeGame($game_id, $current_num)) {
+            return json_encode([
+                'code' => 0
+            ]);
         }
 
         return json_encode([
@@ -163,48 +230,16 @@ class ActiveGameController extends Controller
         ]);
     }
 
-//    public function actionCloseGame()
-//    {
-//        $postData = $this->getRequestContent();
-//        $gameId = intval($postData['gameId']);
-//        $currentNum = intval($postData['currentNum']);
-//
-//        $gameLog = new GameLog();
-//        if ($gameLog->closeGame($gameId, $currentNum)) {
-//            return json_encode([
-//                'code' => 0
-//            ]);
-//        }
-//
-//        return json_encode([
-//            'code' => -1
-//        ]);
-//    }
+    public function actionGetRank()
+    {
+        $gameModel = new YearGame();
+        $gameList = $gameModel->getRankList();
 
-//    public function actionGetRank()
-//    {
-//        $gameModel = new GameInfo();
-//        $prizesModel = new Prizes();
-//
-//        $iqRank = $gameModel->getIqRand();
-//        $resolveRank = $gameModel->getResolveRank();
-//        $groupRank = $gameModel->getGroupRank();
-//
-//        $prizesList = $prizesModel->getPrizesList();
-//
-//        $joinCount = GameLog::find()->count();
-//
-//        return json_encode([
-//            'code' => 0,
-//            'data' => [
-//                'currentJoin' => $joinCount,
-//                'iqRank' => $iqRank,
-//                'resolveRank' => $resolveRank,
-//                'groupRank' => $groupRank,
-//                'prizesList' => $prizesList
-//            ]
-//        ]);
-//    }
+        return json_encode([
+            'code' => 0,
+            'data' => $gameList
+        ]);
+    }
 
     public function actionGetPayConfig()
     {
@@ -212,9 +247,9 @@ class ActiveGameController extends Controller
         $type_id = intval($postData['type_id']);
 
         $typeList = [
-            1 => ['info' => '购买1次挑战机会', 'total_fee' => 1, 'extra' => ['count' => 1]],
-            2 => ['info' => '购买3次挑战机会', 'total_fee' => 2, 'extra' => ['count' => 3]],
-            3 => ['info' => '购买8次挑战机会', 'total_fee' => 3, 'extra' => ['count' => 8]]
+            1 => ['info' => '春节活动购买1次挑战机会', 'total_fee' => 1, 'extra' => ['count' => 1]],
+            2 => ['info' => '春节活动购买3次挑战机会', 'total_fee' => 2, 'extra' => ['count' => 3]],
+            3 => ['info' => '春节活动购买8次挑战机会', 'total_fee' => 3, 'extra' => ['count' => 8]]
         ];
 
         if (isset($typeList[$type_id])) {
@@ -259,17 +294,6 @@ class ActiveGameController extends Controller
         }
 
         return false;
-    }
-
-    public function decodeXml($xml)
-    {
-        libxml_disable_entity_loader(true);
-
-        $xmlString = simplexml_load_string($xml, 'SimpleXMLElement', LIBXML_NOCDATA);
-
-        $val = json_decode(json_encode($xmlString), true);
-
-        return $val;
     }
 
     public function curlGet($url)
