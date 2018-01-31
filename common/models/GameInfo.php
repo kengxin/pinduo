@@ -34,7 +34,7 @@ class GameInfo extends ActiveRecord
 
     public function getWeixinUser()
     {
-        return $this->hasOne(WeixinUser::className(), ['id' => 'user_id']);
+        return $this->hasOne(WeixinUser::className(), ['id' => 'user_id'])->select(['id', 'avatarUrl', 'nickName']);
     }
 
     public function createUser($user_id)

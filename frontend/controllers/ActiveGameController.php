@@ -187,12 +187,15 @@ class ActiveGameController extends Controller
 
     public function actionGetGroupId()
     {
-        $decodeData = '';
         $postData = $this->getRequestContent();
+
+        $decodeData = '';
+        $encryptedData = trim($postData['encryptedData']);
+        $iv = trim($postData['iv']);
         $user_id = Yii::$app->yearUser->id;
 
        $decode = new WxBizDataCrypt($this->appId, Yii::$app->yearUser->session_key);
-       if ($decode->decryptData($postData['encryptedData'], $postData['iv'], $decodeData) == 0) {
+       if ($decode->decryptData($encryptedData, $iv, $decodeData) == 0) {
            $decodeData = json_decode($decodeData);
            $groupLogs = new YearGroupLog();
            if (!$groupLogs->existsLog($user_id, $decodeData->openGId)) {

@@ -72,7 +72,7 @@ class YearGame extends ActiveRecord
 
     public function getRankList()
     {
-        return YearGame::find()
+        $rankList = YearGame::find()
             ->select(['user_id', 'completeNumber'])
             ->joinWith('weixinUser')
             ->orderBy('completeNumber DESC')
@@ -80,6 +80,11 @@ class YearGame extends ActiveRecord
             ->limit(6)
             ->all();
 
+        foreach ($rankList as $k => $v) {
+            $rankList[$k]['price'] = $v['completeNumber'] * 50;
+        }
+
+        return $rankList;
     }
 
 }
