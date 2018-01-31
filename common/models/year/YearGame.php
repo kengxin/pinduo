@@ -73,7 +73,7 @@ class YearGame extends ActiveRecord
     public function getRankList()
     {
         return YearGame::find()
-            ->select(['completeNumber'])
+            ->select(['user_id', 'completeNumber'])
             ->joinWith('weixinUser')
             ->orderBy('completeNumber DESC')
             ->asArray()
