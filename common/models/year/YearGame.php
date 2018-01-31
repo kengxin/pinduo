@@ -34,7 +34,7 @@ class YearGame extends ActiveRecord
 
     public function getWeixinUser()
     {
-        return $this->hasOne(YearGame::className(), ['id' => 'user_id']);
+        return $this->hasOne(YearUser::className(), ['id' => 'user_id']);
     }
 
     public function createUser($user_id)
