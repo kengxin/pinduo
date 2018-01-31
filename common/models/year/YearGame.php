@@ -81,9 +81,10 @@ class YearGame extends ActiveRecord
             ->all();
 
         foreach ($rankList as $k => $v) {
-            $rankList[$k]['weixinUser']['id'] = intval($rankList[$k]['weixinUser']['id']);
-            $rankList[$k]['user_id'] = intval($rankList[$k]['user_id']);
             $rankList[$k]['price'] = $v['completeNumber'] * 50;
+            $rankList[$k]['user_id'] = intval($rankList[$k]['user_id']);
+            $rankList[$k]['completeNumber'] = intval($v['completeNumber']);
+            $rankList[$k]['weixinUser']['id'] = intval($rankList[$k]['weixinUser']['id']);
         }
 
         return $rankList;
