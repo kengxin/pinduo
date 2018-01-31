@@ -66,7 +66,7 @@ class YearQuestionLog extends ActiveRecord
 
             $result['answer'] = [];
             foreach ($answerInfo as $answer) {
-                if (count($result['answer']) < 2) {
+                if (count($result['answer']) < 3) {
                     $result['answer'][] = $answer;
                 }
             }
