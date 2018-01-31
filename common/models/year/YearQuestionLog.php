@@ -83,6 +83,7 @@ class YearQuestionLog extends ActiveRecord
                 ->select(['id', 'answer'])
                 ->where(['question_id' => $questionInfo['id']])
                 ->orderBy('is_correct ASC')
+                ->limit(4)
                 ->asArray()
                 ->all();
 
