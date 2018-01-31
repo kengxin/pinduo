@@ -53,7 +53,7 @@ class YearQuestionLog extends ActiveRecord
 
             $answerInfo = YearAnswer::find()
                 ->select(['id', 'answer'])
-                ->where(['question_id' => $questionInfo->id])
+                ->where(['question_id' => $questionInfo['id']])
                 ->orderBy('is_correct DESC')
                 ->asArray()
                 ->all();
@@ -80,7 +80,7 @@ class YearQuestionLog extends ActiveRecord
 
             $answerInfo = YearAnswer::find()
                 ->select(['id', 'answer'])
-                ->where(['question_id' => $questionInfo->id])
+                ->where(['question_id' => $questionInfo['id']])
                 ->orderBy('is_correct ASC')
                 ->asArray()
                 ->all();
