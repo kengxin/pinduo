@@ -32,14 +32,20 @@ class AppletGameController extends Controller
                 $userInfo = $this->curlGet("https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$openid}&lang=zh_CN");
 
                 $user = WeixinUser::findOne(['unionid' => $userInfo['unionid']]);
+
                 if ($user) {
-                    $rewardList = AppletReward::find()->where(['user_id' => $user->id])->asArray()->all();
+                    Yii::$app->session->set('user_id', $user->id);
+
+                    var_dump($userInfo);
+                    $obtainList = AppletReward::find()->where(['user_id' => $user->id, 'status' => AppletReward::STATUS_OBTAIN])->asArray()->all();
+                    $receiveList = AppletReward::find()->where(['user_id' => $user->id, 'status' => AppletReward::STATUS_RECEIVE])->asArray()->all();
                 }
             }
 
             return $this->renderPartial('index', [
                 'user' => isset($user) ?: [],
-                'rewardList' => isset($rewardList) ?: []
+                'obtainList' => isset($obtainList) ?: [],
+                'receiveList' => isset($receiveList) ?: []
             ]);
         } else {
             return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2fapplet-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
