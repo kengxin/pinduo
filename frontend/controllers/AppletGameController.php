@@ -42,11 +42,14 @@ class AppletGameController extends Controller
                 }
             }
 
-            return $this->renderPartial('index', [
-                'user' => isset($user) ?: [],
-                'obtainList' => isset($obtainList) ?: [],
-                'receiveList' => isset($receiveList) ?: []
-            ]);
+            var_dump($obtainList);
+            var_dump($receiveList);die;
+
+//            return $this->renderPartial('index', [
+//                'user' => isset($user) ?: [],
+//                'obtainList' => isset($obtainList) ?: [],
+//                'receiveList' => isset($receiveList) ?: []
+//            ]);
         } else {
             return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2fapplet-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
         }
