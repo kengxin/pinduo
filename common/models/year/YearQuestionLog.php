@@ -43,11 +43,18 @@ class YearQuestionLog extends ActiveRecord
         $this->game_id = $game_id;
         $this->is_correct = self::STATUS_START;
 
+        $questionIds = YearQuestionLog::find()
+            ->select(['question_id'])
+            ->where(['game_id' => $game_id])
+            ->indexBy('question_id')
+            ->column();
+
         if ($current_num <= 8) {
             // easy
             $questionInfo = YearQuestion::find()
                 ->select(['id', 'question'])
                 ->where(['in', 'level', [1, 2]])
+                ->andFilterWhere(['not in', 'id', $questionIds])
                 ->asArray()
                 ->one();
 
@@ -76,6 +83,7 @@ class YearQuestionLog extends ActiveRecord
             $questionInfo = YearQuestion::find()
                 ->select(['id', 'question'])
                 ->where(['level' => 3])
+                ->andFilterWhere(['not in', 'id', $questionIds])
                 ->asArray()
                 ->one();
 
