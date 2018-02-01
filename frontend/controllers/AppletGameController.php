@@ -36,12 +36,14 @@ class AppletGameController extends Controller
                     $rewardList = AppletReward::find()->where(['user_id' => $user->id])->asArray()->all();
                 }
             }
-        }
 
-        return $this->renderPartial('index', [
-            'user' => isset($user) ?: [],
-            'rewardList' => isset($rewardList) ?: []
-        ]);
+            return $this->renderPartial('index', [
+                'user' => isset($user) ?: [],
+                'rewardList' => isset($rewardList) ?: []
+            ]);
+        } else {
+            return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2fapplet-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+        }
     }
 
     public function actionLogin()
