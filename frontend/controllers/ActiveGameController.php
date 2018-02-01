@@ -133,9 +133,10 @@ class ActiveGameController extends Controller
     public function actionSendAnswer()
     {
         $postData = $this->getRequestContent();
-        $question_id = $postData['question_id'];
-        $answer_id = $postData['answer_id'];
-        $game_id = $postData['game_id'];
+
+        $question_id = isset($postData['question_id']) ? intval($postData['question_id']) : 0;
+        $answer_id = isset($postData['answer_id']) ? intval($postData['answer_id']) : 0;
+        $game_id = isset($postData['game_id']) ? intval($postData['game_id']) : 0;
 
         $gameLogInfo = YearGameLog::findOne($game_id);
         $questionLogInfo = YearQuestionLog::find()
