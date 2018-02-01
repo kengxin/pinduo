@@ -78,10 +78,12 @@ class AppletGameController extends Controller
         }
 
         if (($rewardInfo = AppletReward::findOne($reward_id) != null)) {
-            if ($rewardInfo->saveOrder($real_name, $tel, $address)) {
-                return json_encode([
-                    'code' => 0
-                ]);
+            if ($rewardInfo->user_id == Yii::$app->session->get('user_id', false)) {
+                if ($rewardInfo->saveOrder($real_name, $tel, $address)) {
+                    return json_encode([
+                        'code' => 0
+                    ]);
+                }
             }
         }
 
