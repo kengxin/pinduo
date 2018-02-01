@@ -160,7 +160,8 @@ class ActiveGameController extends Controller
                         'code' => 0,
                         'data' => [
                             'status' => true,
-                            'questionInfo' => $questionInfo
+                            'questionInfo' => $questionInfo,
+                            'currentNum' => $gameLogInfo->current_num
                         ]
                     ]);
                 } else {
@@ -174,7 +175,8 @@ class ActiveGameController extends Controller
                         'code' => 0,
                         'data' => [
                             'status' => false,
-                            'questionInfo' => $questionInfo
+                            'questionInfo' => $questionInfo,
+                            'currentNum' => $gameLogInfo->current_num
                         ]
                     ]);
                 }
