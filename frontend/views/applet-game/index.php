@@ -266,7 +266,7 @@
 
         $.ajax({
             'method': 'POST',
-            'url': '',
+            'url': '/applet-game/save-reward',
             'data': {
                 'real-name': $('.real-name').val(),
                 'tel': $('.tel').val(),
