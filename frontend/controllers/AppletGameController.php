@@ -71,10 +71,12 @@ class AppletGameController extends Controller
         $real_name = Yii::$app->request->get('real-name', false);
         $tel = Yii::$app->request->get('tel', false);
         $address = Yii::$app->request->get('address', false);
-        $reward_id = intval(Yii::$app->request->get('address', false));
+        $reward_id = intval(Yii::$app->request->get('reward_id', false));
 
         if (!$reward_id || !$address || !$tel || !$real_name) {
-            throw new NotFoundHttpException();
+            return json_encode([
+                'code' => -1
+            ]);
         }
 
         if (($rewardInfo = AppletReward::findOne($reward_id) != null)) {
