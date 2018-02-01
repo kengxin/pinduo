@@ -207,7 +207,7 @@
 <script>
     $('.users .user .lingqu').click(function () {
         $('.bomb').show();
-        $('.reward_id').va($(this).parents('.user').attr('data-id')));
+        $('.reward_id').val($(this).parents('.user').attr('data-id'));
     });
     $('.users .user .chakan').click(function () {
         $('.bombb').show();
