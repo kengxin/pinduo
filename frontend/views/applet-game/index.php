@@ -125,7 +125,7 @@
         } else {
             foreach ($receiveList as $receive) {
                 ?>
-                <div class="user" data-id="<?= $receive['id']?>">
+                <div class="user" data-id="<?= $receive['id']?>" data-tel="<?= $receive['tel']?>"  data-realname="<?= $receive['real-name']?>" data-address="<?= $receive['address']?>">
                     <div class="hp"><img src="<?= $user['avatarUrl']?>" style="width:100%"></div>
                     <div class="username">领取了一个娃娃</div>
                     <button class="receive chakan">查看</button>
@@ -179,20 +179,20 @@
             </h1>
             <label>
                 <span>收货姓名:</span>
-                <input id="name" type="text" name="name" value="ABC" />
+                <input id="name" type="text" class="look-real-name" disabled name="name" value="" />
             </label><br/>
             <label>
                 <span>手机号 : </span>
-                <input id="iphone" type="text" name="iphone" placeholder="13312341234" />
+                <input id="iphone" type="text" class="look-tel" disabled name="iphone" placeholder="" />
             </label><br/>
             <label>
                 <span>地址 : </span>
-                <input id="address" type="text" name="address" placeholder="北京市朝阳区天安门广场108号" />
+                <input id="address" type="text" class="look-address" disabled name="address" placeholder="" />
             </label><br/>
-            <label>
-                <span>订单号 : </span>
-                <input id="address" type="text" name="address" placeholder="1321546786363541351" />
-            </label>
+<!--            <label>-->
+<!--                <span>订单号 : </span>-->
+<!--                <input id="address" type="text" name="address" placeholder="1321546786363541351" />-->
+<!--            </label>-->
         </form>
     </div>
 </div>
@@ -206,17 +206,15 @@
 <script src="/js/main.js"></script>
 <script>
     $('.users .user .lingqu').click(function () {
-
         $('.bomb').show();
-        $('.reward_id').val($(this).parents('user').attr('data-id'));
-
+        $('.reward_id').va($(this).parents('.user').attr('data-id')));
     });
     $('.users .user .chakan').click(function () {
-
         $('.bombb').show();
-//        $.ajax(function () {
-//
-//        });
+
+        $('.look-real-name').val($(this).parents('.user').attr('data-realname'));
+        $('.look-tel').val($(this).parents('.user').attr('data-tel'));
+        $('.look-address').val($(this).parents('.user').attr('data-address'));
     });
     $('.bomb .address .close').click(function () {
         $('.bomb').hide();
