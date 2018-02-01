@@ -140,7 +140,7 @@ class ActiveGameController extends Controller
 
         $gameLogInfo = YearGameLog::findOne($game_id);
         $questionLogInfo = YearQuestionLog::find()
-            ->where(['game_id' => $game_id])
+            ->where(['game_id' => $game_id, 'is_correct' => YearQuestionLog::STATUS_START])
             ->orderBy('id DESC')
             ->one();
         if (!empty($gameLogInfo) && !empty($questionLogInfo)) {

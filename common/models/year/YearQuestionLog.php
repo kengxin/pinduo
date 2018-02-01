@@ -102,6 +102,11 @@ class YearQuestionLog extends ActiveRecord
 
         $this->question_id = $result['id'];
         if ($this->save()) {
+
+            $result['id'] = intval($result['id']);
+            foreach ($result['answer'] as $k => $v) {
+                $result['answer'][$k]['id'] = intval($v['id']);
+            }
             return $result;
         }
 
