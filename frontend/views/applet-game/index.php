@@ -268,7 +268,7 @@
             'data': {
                 'real-name': $('.real-name').val(),
                 'tel': $('.tel').val(),
-                'address': $('.province').val() . $('.city').val() . $('.area').val() . $('.input-address').val(),
+                'address': $('.province').val() + $('.city').val() + $('.area').val() + $('.input-address').val(),
                 'reward_id': $('.reward_id').val()
             },
             success: function () {
