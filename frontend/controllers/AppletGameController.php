@@ -68,10 +68,10 @@ class AppletGameController extends Controller
 
     public function actionSaveReward()
     {
-        $real_name = Yii::$app->request->get('real-name', false);
-        $tel = Yii::$app->request->get('tel', false);
-        $address = Yii::$app->request->get('address', false);
-        $reward_id = intval(Yii::$app->request->get('reward_id', false));
+        $real_name = Yii::$app->request->post('real-name', false);
+        $tel = Yii::$app->request->post('tel', false);
+        $address = Yii::$app->request->post('address', false);
+        $reward_id = intval(Yii::$app->request->post('reward_id', false));
 
         if (!$reward_id || !$address || !$tel || !$real_name) {
             return json_encode([
