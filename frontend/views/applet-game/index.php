@@ -125,7 +125,7 @@
         } else {
             foreach ($receiveList as $receive) {
                 ?>
-                <div class="user" data-id="<?= $receive['id']?>" data-tel="<?= $receive['tel']?>"  data-realname="<?= $receive['real-name']?>" data-address="<?= $receive['address']?>">
+                <div class="user" data-id="<?= $receive['id']?>" data-tel="<?= $receive['tel']?>"  data-realname="<?= $receive['real_name']?>" data-address="<?= $receive['address']?>">
                     <div class="hp"><img src="<?= $user['avatarUrl']?>" style="width:100%"></div>
                     <div class="username">领取了一个娃娃</div>
                     <button class="receive chakan">查看</button>
