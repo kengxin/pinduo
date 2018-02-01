@@ -11,6 +11,7 @@ use common\models\WeixinPay;
 use common\models\WeixinUser;
 use WxDecrypt\WxBizDataCrypt;
 use common\models\AppletReward;
+use yii\web\NotFoundHttpException;
 
 class AppletGameController extends Controller
 {
@@ -63,6 +64,30 @@ class AppletGameController extends Controller
                 'receiveList' => isset($receiveList) ? $receiveList : []
             ]);
         }
+    }
+
+    public function actionSaveReward()
+    {
+        $real_name = Yii::$app->request->get('real-name', false);
+        $tel = Yii::$app->request->get('tel', false);
+        $address = Yii::$app->request->get('address', false);
+        $reward_id = intval(Yii::$app->request->get('address', false));
+
+        if (!$reward_id || !$address || !$tel || !$real_name) {
+            throw new NotFoundHttpException();
+        }
+
+        if (($rewardInfo = AppletReward::findOne($reward_id) != null)) {
+            if ($rewardInfo->saveOrder($real_name, $tel, $address)) {
+                return json_encode([
+                    'code' => 0
+                ]);
+            }
+        }
+
+        return json_encode([
+            'code' => -1
+        ]);
     }
 
     public function actionLogin()

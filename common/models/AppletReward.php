@@ -44,4 +44,15 @@ class AppletReward extends ActiveRecord
 
         return $this->save();
     }
+
+    public function saveOrder($real_name, $tel, $address)
+    {
+        $this->real_name = $real_name;
+        $this->tel = $tel;
+        $this->address = $address;
+        $this->status = self::STATUS_RECEIVE;
+
+        return $this->save();
+    }
+
 }
