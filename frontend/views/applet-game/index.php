@@ -159,7 +159,7 @@
                     <select class="city" style="margin-left: 25%;"></select>
                     <select class="area" style="margin-left: 25%;"></select>
                 </div>
-                <input id="address" class="address" type="text" name="address" placeholder="详细地址"  style="margin-left: 25%;"/>
+                <input id="address" class="input-address" type="text" name="address" placeholder="详细地址"  style="margin-left: 25%;"/>
             </label>
             <label class="feineishi">
                 <span>&nbsp;</span>
@@ -256,7 +256,7 @@
             return false;
         }
 
-        if ($('.address').val() == '') {
+        if ($('.input-address').val() == '') {
             alert('请填写收货地址');
 
             return false;
@@ -268,7 +268,7 @@
             'data': {
                 'real-name': $('.real-name').val(),
                 'tel': $('.tel').val(),
-                'address': $('.address').val(),
+                'address': $('.input-address').val(),
                 'province': $('.province').val(),
                 'city': $('.city').val(),
                 'area': $('.area').val(),
