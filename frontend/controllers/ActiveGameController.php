@@ -2,6 +2,7 @@
 namespace frontend\controllers;
 
 use common\models\year\YearGroupLog;
+use common\models\year\YearWeixinPay;
 use WxDecrypt\WxBizDataCrypt;
 use Yii;
 use yii\web\Controller;
@@ -259,7 +260,7 @@ class ActiveGameController extends Controller
         ];
 
         if (isset($typeList[$type_id])) {
-            $weixinPay = new WeixinPay();
+            $weixinPay = new YearWeixinPay();
             $result = $weixinPay->startPay($typeList[$type_id]['info'], $typeList[$type_id]['total_fee'], $typeList[$type_id]['extra']);
             if ($result) {
                 return json_encode([
@@ -277,12 +278,12 @@ class ActiveGameController extends Controller
     public function actionPayResult()
     {
         return Yii::$app->weixinPay->payResult(function ($result) {
-            if (($userInfo = WeixinUser::findOne(['openid' => $result['openid']])) != null) {
-                if (($weixinPay = WeixinPay::findOne((intval($result['out_trade_no']) - 10000))) != null) {
+            if (($userInfo = YearUser::findOne(['openid' => $result['openid']])) != null) {
+                if (($weixinPay = YearWeixinPay::findOne((intval($result['out_trade_no']) - 10000))) != null) {
                     $weixinPay->setSuccess($result['bank_type'], $result['transaction_id']);
 
                     $count = json_decode($weixinPay->extra, true);
-                    return GameInfo::addLastNumber($userInfo->id, $count['count']);
+                    return YearGame::addLastNumber($userInfo->id, $count['count']);
                 }
             }
 

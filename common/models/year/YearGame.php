@@ -90,4 +90,14 @@ class YearGame extends ActiveRecord
         return $rankList;
     }
 
+    public static function addLastNumber($user_id, $num)
+    {
+        if (($gameInfo = YearGame::findOne(['user_id' => $user_id])) !== null) {
+            $gameInfo->lastNumber += $num;
+
+            return $gameInfo->save();
+        }
+
+        return false;
+    }
 }

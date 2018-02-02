@@ -11,7 +11,6 @@ use common\models\WeixinPay;
 use common\models\WeixinUser;
 use WxDecrypt\WxBizDataCrypt;
 use common\models\AppletReward;
-use yii\web\NotFoundHttpException;
 
 class AppletGameController extends Controller
 {
