@@ -53,7 +53,7 @@ class YearGameLog extends ActiveRecord
             ->where(['id' => $game_id, 'user_id' => Yii::$app->yearUser->id])
             ->one();
 
-        if (!empty($loga)) {
+        if (!empty($log)) {
             if ($current_num == 10) {
                 $log->status = self::STATUS_SUCCESS;
             } else {
