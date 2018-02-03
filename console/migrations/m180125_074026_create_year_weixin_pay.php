@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m180125_074026_create_weixin_pay
  */
-class m180125_074026_create_weixin_pay extends Migration
+class m180125_074026_create_year_weixin_pay extends Migration
 {
     /**
      * @inheritdoc
