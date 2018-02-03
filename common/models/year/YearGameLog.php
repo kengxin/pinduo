@@ -50,7 +50,7 @@ class YearGameLog extends ActiveRecord
     public function closeGame($game_id, $current_num)
     {
         $log = $this->find()
-            ->where(['game_id' => $game_id, 'user_id' => Yii::$app->yearUser->id])
+            ->where(['id' => $game_id, 'user_id' => Yii::$app->yearUser->id])
             ->one();
 
         if (!empty($loga)) {
