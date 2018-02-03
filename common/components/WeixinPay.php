@@ -140,7 +140,7 @@ class WeixinPay extends  Component
     {
         //统一下单接口  
         $unifiedorder = $this->unifiedorder();
-
+var_dump($unifiedorder);die;
         if (!isset($unifiedorder['prepay_id'])) {
             return false;
         }
