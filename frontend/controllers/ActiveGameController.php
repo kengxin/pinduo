@@ -148,10 +148,9 @@ class ActiveGameController extends Controller
             if ($questionLogInfo->question_id == $question_id) {
                 $answerInfo = YearAnswer::findOne(['question_id' => $question_id, 'is_correct' => YearAnswer::STATUS_SUCCESS]);
                 if ($answerInfo->id == $answer_id) {
-
                     $questionLogInfo->is_correct = YearQuestionLog::STATUS_SUCCESS;
                     $questionLogInfo->save();
-                    if ($gameLogInfo->current_num == 0) {
+                    if ($gameLogInfo->current_num == 10) {
                         return json_encode([
                             'code' => 0,
                             'data' => [
