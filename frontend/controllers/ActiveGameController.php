@@ -151,6 +151,15 @@ class ActiveGameController extends Controller
 
                     $questionLogInfo->is_correct = YearQuestionLog::STATUS_SUCCESS;
                     $questionLogInfo->save();
+                    if ($gameLogInfo->current_num == 0) {
+                        return json_encode([
+                            'code' => 0,
+                            'data' => [
+                                'status' => true
+                            ]
+                        ]);
+                    }
+
                     $gameLogInfo->current_num++;
                     $gameLogInfo->save();
 
