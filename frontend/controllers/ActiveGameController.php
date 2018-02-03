@@ -269,7 +269,7 @@ class ActiveGameController extends Controller
                 ]);
             }
         }
-
+        var_dump($type_id);die;
         return json_encode([
             'code' => -1
         ]);
