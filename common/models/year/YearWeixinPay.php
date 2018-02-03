@@ -64,8 +64,6 @@ class YearWeixinPay extends ActiveRecord
 
         if ($this->save()) {
             return Yii::$app->yearWeixinPay->pay(Yii::$app->yearUser->getOpenId(), $this->id + 1000000, $info, $total_fee);
-        } else {
-            var_dump($this->getErrors());die;
         }
 
         return false;
