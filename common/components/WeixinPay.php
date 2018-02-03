@@ -10,6 +10,7 @@ class WeixinPay extends  Component
     public $appid;
     public $mch_id;
     public $key;
+    public $notify_url;
     protected $openid;
     protected $out_trade_no;
     protected $body;
@@ -58,7 +59,7 @@ class WeixinPay extends  Component
             'out_trade_no' => $this->out_trade_no,
             'total_fee' => $this->total_fee,
             'spbill_create_ip' => Yii::$app->params['current_ip'],
-            'notify_url' => Yii::$app->params['notify_url'],
+            'notify_url' => $this->notify_url,
             'openid' => $this->openid, //用户id  
             'trade_type' => 'JSAPI'//交易类型  
         );

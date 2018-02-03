@@ -34,12 +34,14 @@ return [
             'appid' => 'wxbbcb5bf09c262a61',
             'mch_id' => '1295216701',
             'key' => 'cb4e9e76eb725267ad9712c7dead1ec1',
+            'notify_url' => 'https://80oz2.cn/applet-game/pay-result'
         ],
         'yearWeixinPay' => [
             'class' => 'common\components\WeixinPay',
             'appid' => 'wxd871b73404029273',
             'mch_id' => '1295216701',
             'key' => 'cb4e9e76eb725267ad9712c7dead1ec1',
+            'notify_url' => 'https://80oz2.cn/active-game/pay-result'
         ]
     ],
 ];
