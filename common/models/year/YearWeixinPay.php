@@ -56,7 +56,7 @@ class YearWeixinPay extends ActiveRecord
 
     public function startPay($info, $total_fee, $extra)
     {
-        $this->user_id = Yii::$app->weixinUser->id;
+        $this->user_id = Yii::$app->yearUser->id;
         $this->status = self::STATUS_WAIT;
         $this->info = $info;
         $this->extra = json_encode($extra);
@@ -64,8 +64,6 @@ class YearWeixinPay extends ActiveRecord
 
         if ($this->save()) {
             return Yii::$app->yearWeixinPay->pay(Yii::$app->yearUser->getOpenId(), $this->id + 1000000, $info, $total_fee);
-        } else {
-            var_dump($this->getErrors());die;
         }
 
         return false;
