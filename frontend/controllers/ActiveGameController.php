@@ -256,7 +256,8 @@ class ActiveGameController extends Controller
         $typeList = [
             1 => ['info' => '春节活动购买1次挑战机会', 'total_fee' => 1, 'extra' => ['count' => 1]],
             2 => ['info' => '春节活动购买3次挑战机会', 'total_fee' => 2, 'extra' => ['count' => 3]],
-            3 => ['info' => '春节活动购买8次挑战机会', 'total_fee' => 3, 'extra' => ['count' => 8]]
+            3 => ['info' => '春节活动购买8次挑战机会', 'total_fee' => 3, 'extra' => ['count' => 8]],
+            4 => ['info' => '春节活动复活答题', 'total_fee' => 1, 'extra' => ['count' => 0]]
         ];
 
         if (isset($typeList[$type_id])) {
