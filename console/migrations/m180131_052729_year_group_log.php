@@ -12,7 +12,7 @@ class m180131_052729_year_group_log extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('year_group_id', [
+        $this->createTable('year_group_log', [
             'id' => $this->primaryKey(),
             'user_id' => 'INT(11) NOT NULL DEFAULT 0',
             'group_id' => 'VARCHAR(255) NOT NULL DEFAULT ""',
