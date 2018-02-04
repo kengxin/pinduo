@@ -55,6 +55,11 @@ class YearGameLog extends ActiveRecord
 
         if (!empty($log)) {
             if ($current_num == 10) {
+                $yearGame = YearGame::findOne(['user_id' => $log->user_id]);
+                $yearGame->completeNumber++;
+
+                $yearGame->save();
+
                 $log->status = self::STATUS_SUCCESS;
             } else {
                 $log->status = self::STATUS_ERROR;
