@@ -33,10 +33,13 @@ class YearGroupLog extends ActiveRecord
 
     public function saveLog($user_id, $group_id)
     {
-        $this->user_id = $user_id;
-        $this->group_id = $group_id;
+        $groupModel = new YearGroupLog();
+        $groupModel->user_id = $user_id;
+        $groupModel->group_id = $group_id;
 
-        return $this->save();
+        if (!$groupModel->save()) {
+            var_dump($groupModel->getErrors());die;
+        }
     }
 
     public function existsLog($user_id, $group_id)

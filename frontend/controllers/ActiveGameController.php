@@ -208,7 +208,6 @@ class ActiveGameController extends Controller
 
        $decode = new WxBizDataCrypt($this->appId, Yii::$app->yearUser->session_key);
        if ($decode->decryptData($encryptedData, $iv, $decodeData) == 0) {
-           var_dump($decodeData);die;
            $decodeData = json_decode($decodeData);
            $groupLogs = new YearGroupLog();
            if (!$groupLogs->existsLog($user_id, $decodeData->openGId)) {
