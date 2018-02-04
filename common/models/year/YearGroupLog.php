@@ -37,7 +37,11 @@ class YearGroupLog extends ActiveRecord
         $this->user_id = $user_id;
         $this->group_id = $group_id;
 
-        return $this->save();
+        if ($this->save()) {
+            return YearGame::addLastNumber($user_id, 1);
+        }
+
+        return false;
     }
 
     public function existsLog($user_id, $group_id)
