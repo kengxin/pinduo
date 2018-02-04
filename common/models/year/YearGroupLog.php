@@ -15,7 +15,8 @@ class YearGroupLog extends ActiveRecord
     {
         return [
             [['user_id', 'group_id'], 'required'],
-            [['user_id', 'group_id', 'created_at'], 'integer']
+            [['user_id', 'created_at'], 'integer'],
+            [['group_id'], 'string']
         ];
     }
 
@@ -36,9 +37,7 @@ class YearGroupLog extends ActiveRecord
         $this->user_id = $user_id;
         $this->group_id = $group_id;
 
-        if (!$this->save()) {
-            var_dump($this->getErrors());die;
-        }
+        return $this->save();
     }
 
     public function existsLog($user_id, $group_id)
