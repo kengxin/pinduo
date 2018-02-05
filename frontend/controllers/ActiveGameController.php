@@ -188,7 +188,7 @@ class ActiveGameController extends Controller
                         return json_encode([
                             'code' => 0,
                             'data' => [
-                                'show' => 1,
+                                'show' => 0,
                                 'game_id' => $gameLog->id,
                                 'questionInfo' => $questionInfo
                             ]
