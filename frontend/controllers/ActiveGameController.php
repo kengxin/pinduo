@@ -90,7 +90,6 @@ class ActiveGameController extends Controller
             }
         }
 
-
         return json_encode([
             'code' => -1
         ]);
@@ -189,6 +188,7 @@ class ActiveGameController extends Controller
                         return json_encode([
                             'code' => 0,
                             'data' => [
+                                'show' => 0,
                                 'game_id' => $gameLog->id,
                                 'questionInfo' => $questionInfo
                             ]

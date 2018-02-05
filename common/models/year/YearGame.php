@@ -40,7 +40,7 @@ class YearGame extends ActiveRecord
     public function createUser($user_id)
     {
         $this->user_id = $user_id;
-        $this->lastNumber = 1;
+        $this->lastNumber = 100000;
         $this->playNumber = 0;
         $this->completeNumber = 0;
         $this->maxNumber = 0;
