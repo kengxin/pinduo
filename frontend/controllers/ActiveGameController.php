@@ -2,13 +2,11 @@
 namespace frontend\controllers;
 
 use common\models\year\YearGroupLog;
+use common\models\year\YearReward;
 use common\models\year\YearWeixinPay;
 use WxDecrypt\WxBizDataCrypt;
 use Yii;
 use yii\web\Controller;
-use common\models\GameInfo;
-use common\models\WeixinPay;
-use common\models\WeixinUser;
 use common\models\year\YearGame;
 use common\models\year\YearUser;
 use common\models\year\YearAnswer;
@@ -23,6 +21,80 @@ class ActiveGameController extends Controller
 
     public $appSecret = 'c54e4f211e4f1610744f2d177525b744';
 
+    public function actionIndex()
+    {
+        if (Yii::$app->session->get('user_id', false) == false) {
+            $code = Yii::$app->request->get('code', false);
+            if ($code) {
+                $result = $this->curlGet("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2ce7f0ec104b86de&secret=52737a83b36568709f132ce996edcdd3&code={$code}&grant_type=authorization_code");
+                if (!isset($result['errcode'])) {
+                    $access_token = $result['access_token'];
+                    $openid = $result['openid'];
+
+                    $userInfo = $this->curlGet("https://api.weixin.qq.com/sns/userinfo?access_token={$access_token}&openid={$openid}&lang=zh_CN");
+
+                    $user = YearUser::findOne(['unionid' => $userInfo['unionid']]);
+                    if ($user) {
+                        Yii::$app->session->set('user_id', $user->id);
+
+                        $obtainList = YearReward::find()->where(['user_id' => $user->id, 'status' => YearReward::STATUS_OBTAIN])->asArray()->all();
+                        $receiveList = YearReward::find()->where(['user_id' => $user->id, 'status' => YearReward::STATUS_RECEIVE])->asArray()->all();
+                    }
+                }
+
+                return $this->renderPartial('index', [
+                    'user' => isset($user) ? $user : [],
+                    'obtainList' => isset($obtainList) ? $obtainList : [],
+                    'receiveList' => isset($receiveList) ? $receiveList : []
+                ]);
+            } else {
+                return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2fapplet-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+            }
+        } else {
+            $user_id = Yii::$app->session->get('user_id');
+            $user = YearUser::findOne($user_id);
+            if ($user) {
+                $obtainList = YearReward::find()->where(['user_id' => $user_id, 'status' => YearReward::STATUS_OBTAIN])->asArray()->all();
+                $receiveList = YearReward::find()->where(['user_id' => $user_id, 'status' => YearReward::STATUS_RECEIVE])->asArray()->all();
+            }
+
+            return $this->renderPartial('index', [
+                'user' => isset($user) ? $user : [],
+                'obtainList' => isset($obtainList) ? $obtainList : [],
+                'receiveList' => isset($receiveList) ? $receiveList : []
+            ]);
+        }
+    }
+
+    public function actionSaveReward()
+    {
+        $real_name = Yii::$app->request->post('real-name', false);
+        $tel = Yii::$app->request->post('tel', false);
+        $address = Yii::$app->request->post('address', false);
+        $reward_id = intval(Yii::$app->request->post('reward_id', false));
+
+        if (!$reward_id || !$address || !$tel || !$real_name) {
+            return json_encode([
+                'code' => -1
+            ]);
+        }
+
+        $rewardInfo = YearReward::findOne($reward_id);
+        if (!empty($rewardInfo)) {
+            if ($rewardInfo->user_id == Yii::$app->session->get('user_id', false)) {
+                if ($rewardInfo->saveOrder($real_name, $tel, $address)) {
+                    return json_encode([
+                        'code' => 0
+                    ]);
+                }
+            }
+        }
+
+
+        return json_encode([
+            'code' => -1
+        ]);
+    }
     public function actionLogin()
     {
         $postContent = $this->getRequestContent();

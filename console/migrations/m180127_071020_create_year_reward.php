@@ -12,10 +12,13 @@ class m180127_071020_create_year_reward extends Migration
      */
     public function safeUp()
     {
-        $this->createTable('year_reward', [
+        $this->createTable('applet_reward', [
             'id' => $this->primaryKey(),
             'user_id' => 'INT(11) NOT NULL DEFAULT 0',
-            'price' => 'INT(11) NOT NULL DEFAULT 0',
+            'real_name' => 'VARCHAR(255) NOT NULL DEFAULT ""',
+            'tel' => 'INT(11) NOT NULL DEFAULT 0',
+            'address' => 'VARCHAR(255) NOT NULL DEFAULT ""',
+            'express_id' => 'VARCHAR(32) NOT NULL DEFAULT ""',
             'status' => 'TINYINT(1) NOT NULL DEFAULT 0',
             'created_at' => 'INT(11) NOT NULL DEFAULT 0'
         ]);
