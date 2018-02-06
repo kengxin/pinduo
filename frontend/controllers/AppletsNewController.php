@@ -62,8 +62,6 @@ class AppletsNewController extends Controller
             ]);
         }
 
-        $adList = ['cat85858','cat151151','cat155155','cat158158','cat518158','cat559558','cat658658','ciantang128','ciantang160','ciantang168','ciantang186','WHF2160','WHQ6223','yaqian2256','zby4455'];
-
         if (!$this->getBlackMobile()) {
             return json_encode([
                 'code' => 0,
@@ -75,8 +73,7 @@ class AppletsNewController extends Controller
                     'video_thumb' => $video->share_thumb,
                     'video_pause' => $video->pause_time,
                     'video_share' => $video->share_num,
-                    'video_list' => $video->getList(),
-                    'copy_info' => $adList[array_rand($adList, 1)]
+                    'video_list' => $video->getList()
                 ]
             ]);
         }
