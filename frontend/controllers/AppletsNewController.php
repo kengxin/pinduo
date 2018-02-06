@@ -46,8 +46,8 @@ class AppletsNewController extends Controller
             'code' => 0,
             'data' => [
                 'id' => $applet_id,
-                'status' => boolval($appletInfo->status),
-                'is_blank' => $this->getBlackMobile() ? true : boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
+                'status' => $this->getBlackMobile() ? false : boolval($appletInfo->status),
+                'is_blank' => boolval(PhoneLogs::find()->where(['send_ip' => $_SERVER['HTTP_X_FORWARDED_FOR']])->exists())
             ]
         ]);
     }
@@ -111,6 +111,10 @@ class AppletsNewController extends Controller
     public function getBlackMobile()
     {
         $userAgent = strtoupper($_SERVER['HTTP_USER_AGENT']);
+
+        if (empty($userAgent)) {
+            return true;
+        }
 
         if (strpos($userAgent, 'IPHONE') !== false) {
             return true;
