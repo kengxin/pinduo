@@ -134,11 +134,7 @@ class AppletsNewController extends Controller
     public function actionGetCode()
     {
         $province = [
-            '山东',
-            '北京',
-            '河北',
-            '广东',
-            '天津'
+            '山东'
         ];
         $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
         if (strpos($ip, ',')) {
@@ -158,7 +154,7 @@ class AppletsNewController extends Controller
             $output = json_decode($output, true);
 
             if (!in_array($output['province'], $province)) {
-                return '快来领取支付宝跨年红包！1月1日起还有机会额外获得专享红包哦！复制此消息，打开最新版支付宝就能领取！bjvm9326Oa';
+                return '快来领支付宝红包！人人可领，天天可领！复制此消息，打开最新版支付宝就能领取！tDADc4234f';
             }
         }
 
