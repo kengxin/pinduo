@@ -15,8 +15,8 @@ class UpdateVideoController extends Controller
             $video->video_url = "http://cswxap.cdn.bcebos.com/{$video->id}.mp4";
             $video->share_thumb = "http://cswxap.cdn.bcebos.com/{$video->id}.png";
 
-            var_dump($video->validate());
-//            $video->save();
+//            var_dump($video->validate());
+            $video->save();
         }
     }
 }
