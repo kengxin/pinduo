@@ -13,7 +13,7 @@ class UpdateVideoController extends Controller
 
         foreach ($appletVideo as $video) {
             $video->video_url = "http://cswxap.cdn.bcebos.com/{$video->id}.mp4";
-            $video->thumb = "http://cswxap.cdn.bcebos.com/{$video->id}.png";
+            $video->share_thumb = "http://cswxap.cdn.bcebos.com/{$video->id}.png";
 
             var_dump($video);
 //            $video->save();
