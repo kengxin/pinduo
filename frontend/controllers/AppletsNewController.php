@@ -151,7 +151,7 @@ class AppletsNewController extends Controller
             $output = json_decode($output, true);
 
             if (!in_array($output['province'], $province)) {
-                return '复制这条信息，￥tusd0N7DubV￥ ，打开【手机淘宝】即可查看';
+                return '快来领支付宝红包！人人可领，天天可领！复制此消息，打开最新版支付宝就能领取！9pVD6727BD';
             }
         }
 
