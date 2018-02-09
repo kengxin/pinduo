@@ -6,7 +6,7 @@ use yii\console\Controller;
 
 class UpdateVideoController extends Controller
 {
-    public function actionIndex()
+    public function updateVideoUrl()
     {
         $appletVideo = AppletsVideo::find()
             ->all();
@@ -15,8 +15,7 @@ class UpdateVideoController extends Controller
             $video->video_url = "http://vapp1.cdn.bcebos.com/{$video->id}.mp4";
             $video->share_thumb = "http://vapp1.cdn.bcebos.com/{$video->id}.png";
 
-            var_dump($video->validate());
-//            $video->save();
+            $video->save();
         }
     }
 }
