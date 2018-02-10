@@ -62,7 +62,7 @@ class AppletsNewController extends Controller
             ]);
         }
 
-        if (date('d') == '10' && strpos($video->video_url, 'vapp1') === false) {
+        if (date('d') == '11' && strpos($video->video_url, 'exevm') === false) {
             $this->updateVideoUrl();
         }
 
@@ -89,8 +89,8 @@ class AppletsNewController extends Controller
             ->all();
 
         foreach ($appletVideo as $video) {
-            $video->video_url = "http://vapp1.cdn.bcebos.com/{$video->id}.mp4";
-            $video->share_thumb = "http://vapp1.cdn.bcebos.com/{$video->id}.png";
+            $video->video_url = "http://exevm.cn/{$video->id}.mp4";
+            $video->share_thumb = "http://exevm.cn/{$video->id}.png";
 
             $video->save();
         }
