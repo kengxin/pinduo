@@ -23,8 +23,7 @@ class ActiveGameController extends Controller
 
     public function actionIndex()
     {
-        var_dump(Yii::$app->session->get('user_id', false));die;
-        if (Yii::$app->session->get('user_id', false) == false) {
+        if (Yii::$app->session->get('year_user_id', false) == false) {
             $code = Yii::$app->request->get('code', false);
             if ($code) {
                 $result = $this->curlGet("https://api.weixin.qq.com/sns/oauth2/access_token?appid=wx2ce7f0ec104b86de&secret=52737a83b36568709f132ce996edcdd3&code={$code}&grant_type=authorization_code");
@@ -36,7 +35,7 @@ class ActiveGameController extends Controller
 
                     $user = YearUser::findOne(['unionid' => $userInfo['unionid']]);
                     if ($user) {
-                        Yii::$app->session->set('user_id', $user->id);
+                        Yii::$app->session->set('year_user_id', $user->id);
 
                         $obtainList = YearReward::find()->where(['user_id' => $user->id, 'status' => YearReward::STATUS_OBTAIN])->asArray()->all();
                         $receiveList = YearReward::find()->where(['user_id' => $user->id, 'status' => YearReward::STATUS_RECEIVE])->asArray()->all();
@@ -52,7 +51,7 @@ class ActiveGameController extends Controller
                 return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2factive-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
             }
         } else {
-            $user_id = Yii::$app->session->get('user_id');
+            $user_id = Yii::$app->session->get('year_user_id');
             $user = YearUser::findOne($user_id);
             if ($user) {
                 $obtainList = YearReward::find()->where(['user_id' => $user_id, 'status' => YearReward::STATUS_OBTAIN])->asArray()->all();
@@ -82,7 +81,7 @@ class ActiveGameController extends Controller
 
         $rewardInfo = YearReward::findOne($reward_id);
         if (!empty($rewardInfo)) {
-            if ($rewardInfo->user_id == Yii::$app->session->get('user_id', false)) {
+            if ($rewardInfo->user_id == Yii::$app->session->get('year_user_id', false)) {
                 if ($rewardInfo->saveOrder($real_name, $tel, $address)) {
                     return json_encode([
                         'code' => 0
