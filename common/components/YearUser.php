@@ -34,7 +34,7 @@ class YearUser extends Component
                 $this->login = true;
 
                 $this->openid = $privateInfo['openid'];
-                $this->unionid = 0;
+                $this->unionid = '0';
                 $this->session_key = $privateInfo['session_key'];
 
                 if (($userInfo = User::find()
