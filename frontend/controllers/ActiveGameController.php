@@ -48,7 +48,7 @@ class ActiveGameController extends Controller
                     'receiveList' => isset($receiveList) ? $receiveList : []
                 ]);
             } else {
-                return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2fapplet-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
+                return $this->redirect('https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2ce7f0ec104b86de&redirect_uri=http%3a%2f%2fh5.3l60.cn%2factive-game%2findex&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect');
             }
         } else {
             $user_id = Yii::$app->session->get('user_id');
