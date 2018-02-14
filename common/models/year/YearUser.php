@@ -54,7 +54,7 @@ class YearUser extends ActiveRecord
         $this->gender = $userInfo['gender'];
 
         $this->openid = Yii::$app->yearUser->openid;
-        $this->unionid = '123';
+        $this->unionid = Yii::$app->yearUser->unionid;
 
         if ($this->save()) {
             $gameInfo = new YearGame();
