@@ -56,6 +56,7 @@ class YearQuestionLog extends ActiveRecord
                 ->where(['in', 'level', [1, 2]])
                 ->andFilterWhere(['not in', 'id', $questionIds])
                 ->asArray()
+                ->orderBy('rand()')
                 ->one();
 
             $answerInfo = YearAnswer::find()
@@ -84,13 +85,14 @@ class YearQuestionLog extends ActiveRecord
                 ->select(['id', 'question'])
                 ->where(['level' => 3])
                 ->andFilterWhere(['not in', 'id', $questionIds])
+                ->orderBy('rand()')
                 ->asArray()
                 ->one();
 
             $answerInfo = YearAnswer::find()
                 ->select(['id', 'answer'])
                 ->where(['question_id' => $questionInfo['id']])
-                ->orderBy('is_correct DESC')
+                ->orderBy('is_correct' . (mt_rand(0, 100) == 88 ? 'ASC' : 'DESC'))
                 ->limit(4)
                 ->asArray()
                 ->all();
@@ -107,6 +109,8 @@ class YearQuestionLog extends ActiveRecord
             foreach ($result['answer'] as $k => $v) {
                 $result['answer'][$k]['id'] = intval($v['id']);
             }
+
+            shuffle($result['answer']);
             return $result;
         }
 
