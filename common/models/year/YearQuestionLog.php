@@ -80,6 +80,7 @@ class YearQuestionLog extends ActiveRecord
             }
 
             array_push($result['answer'], $correctInfo);
+            shuffle($answerInfo);
         } else {
             $questionInfo = YearQuestion::find()
                 ->select(['id', 'question'])
@@ -111,6 +112,7 @@ class YearQuestionLog extends ActiveRecord
             }
 
             shuffle($result['answer']);
+
             return $result;
         }
 
