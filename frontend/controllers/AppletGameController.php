@@ -310,7 +310,7 @@ class AppletGameController extends Controller
     {
         return Yii::$app->weixinPay->payResult(function ($result) {
             if (($userInfo = WeixinUser::findOne(['openid' => $result['openid']])) != null) {
-                if (($weixinPay = WeixinPay::findOne((intval($result['out_trade_no']) - 10000))) != null) {
+                if (($weixinPay = WeixinPay::findOne((intval($result['out_trade_no']) - 20000))) != null) {
                     $weixinPay->setSuccess($result['bank_type'], $result['transaction_id']);
 
                     $count = json_decode($weixinPay->extra, true);

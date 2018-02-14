@@ -360,7 +360,7 @@ class ActiveGameController extends Controller
     {
         return Yii::$app->weixinPay->payResult(function ($result) {
             if (($userInfo = YearUser::findOne(['openid' => $result['openid']])) != null) {
-                if (($weixinPay = YearWeixinPay::findOne((intval($result['out_trade_no']) - 1000000))) != null) {
+                if (($weixinPay = YearWeixinPay::findOne((intval($result['out_trade_no']) - 2000000))) != null) {
                     $weixinPay->setSuccess($result['bank_type'], $result['transaction_id']);
 
                     $count = json_decode($weixinPay->extra, true);
