@@ -59,6 +59,8 @@ class YearUser extends ActiveRecord
         if ($this->save()) {
             $gameInfo = new YearGame();
             return $gameInfo->createUser($this->id);
+        } else {
+            var_dump($this->getErrors());die;
         }
 
         return false;
