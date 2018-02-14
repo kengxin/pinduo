@@ -23,6 +23,7 @@ class ActiveGameController extends Controller
 
     public function actionIndex()
     {
+        var_dump(Yii::$app->session->get('user_id', false));die;
         if (Yii::$app->session->get('user_id', false) == false) {
             $code = Yii::$app->request->get('code', false);
             if ($code) {
