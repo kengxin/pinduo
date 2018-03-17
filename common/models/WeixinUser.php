@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use WxDecrypt\WxBizDataCrypt;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\behaviors\TimestampBehavior;
@@ -48,6 +49,13 @@ class WeixinUser extends ActiveRecord
 
     public function saveUser($userInfo)
     {
+        $decode = new WxBizDataCrypt('wxbbcb5bf09c262a61', Yii::$app->weixinUser->session_key);
+        if ($decode->decryptData($userInfo['encryptedData'], $userInfo['iv'], $decodeData) == 0) {
+            $decodeData = json_decode($decodeData);
+            var_dump($decodeData);die;
+        }
+
+        $userInfo = $userInfo['userInfo'];
         $nickName = $this->filterEmoji($userInfo['nickName']);
         $this->nickName = empty($nickName) ? '[表情]' : $nickName;
         $this->avatarUrl = $userInfo['avatarUrl'];
