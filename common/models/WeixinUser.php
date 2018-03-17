@@ -51,8 +51,9 @@ class WeixinUser extends ActiveRecord
     {
         $decode = new WxBizDataCrypt('wxbbcb5bf09c262a61', Yii::$app->weixinUser->session_key);
         if ($decode->decryptData($userInfo['encryptedData'], $userInfo['iv'], $decodeData) == 0) {
-            $decodeData = json_decode($decodeData);
-            var_dump($decodeData);die;
+            $decodeData = json_decode($decodeData, true);
+
+            $unionId = $decodeData['unionId'];
         }
 
         $userInfo = $userInfo['userInfo'];
@@ -62,7 +63,7 @@ class WeixinUser extends ActiveRecord
         $this->gender = $userInfo['gender'];
 
         $this->openid = Yii::$app->weixinUser->openid;
-        $this->unionid = Yii::$app->weixinUser->unionid;
+        $this->unionid = isset($unionId) ? $unionId : 0;
 
         if ($this->save()) {
             $gameInfo = new GameInfo();
